@@ -10,9 +10,9 @@
 
 typedef struct dot
 {
-    double coordX;
-    double coordY;
-    double coordZ;
+    int coordX;
+    int coordY;
+    int coordZ;
 
     std::string dotName;
     std::vector<std::string> m_vLinkNodes;
