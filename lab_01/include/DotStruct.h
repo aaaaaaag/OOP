@@ -7,16 +7,24 @@
 
 #include <vector>
 #include "string"
+#include "map"
+
+typedef struct coord
+{
+    double coordX;
+    double coordY;
+    double coordZ;
+} dotCoords;
 
 typedef struct dot
 {
-    int coordX;
-    int coordY;
-    int coordZ;
+    dotCoords coords;
 
     std::string dotName;
     std::vector<std::string> m_vLinkNodes;
 } myDots;
+
+typedef std::map<std::string, myDots> allDots;
 
 
 #endif //LAB_01_DOTSTRUCT_H
