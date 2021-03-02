@@ -3,7 +3,15 @@ project(lab_01_oop)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(${PROJECT_NAME} include/DotStruct.h include/DotFileIO.h src/DotFileIO.cpp include/StringAnalizator.h src/StringAnalizator.cpp include/Errors.h include/DotStructUtils.h src/DotStructUtils.cpp)
+add_library(${PROJECT_NAME} include/DotStruct.h include/DotFileIO.h src/DotFileIO.cpp include/StringAnalizator.h
+        src/StringAnalizator.cpp include/Errors.h include/DotStructUtils.h src/DotStructUtils.cpp
+        src/Qt/MainMenu.cpp include/Qt/MainMenu.h src/Qt/MoveButton.cpp include/Qt/MoveButton.h
+        src/Qt/ZoomButton.cpp include/Qt/ZoomButton.h src/Qt/RotateButton.cpp include/Qt/RotateButton.h src/Qt/PaintHouse.cpp
+        include/Qt/PaintHouse.h src/Qt/BackButton.cpp include/Qt/BackButton.h)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} -std=c++1y")
+find_package(Qt5Widgets REQUIRED)
+target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
