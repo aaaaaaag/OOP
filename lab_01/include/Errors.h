@@ -8,6 +8,7 @@
 #define OK 0
 #define FAIL_OPEN_FILE 1
 #define FAIL_READ_FILE_DATA 2
+#define INCORRECT_FILE_DATA 3
 
 
 #endif //LAB_01_OOP_ERRORS_H

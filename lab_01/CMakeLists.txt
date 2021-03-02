@@ -3,7 +3,7 @@ project(lab_01_oop)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(${PROJECT_NAME} include/DotStruct.h include/DotFileIO.h src/DotFileIO.cpp)
+add_library(${PROJECT_NAME} include/DotStruct.h include/DotFileIO.h src/DotFileIO.cpp include/StringAnalizator.h src/StringAnalizator.cpp include/Errors.h)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 

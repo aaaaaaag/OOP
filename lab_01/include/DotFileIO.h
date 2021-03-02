@@ -7,8 +7,9 @@
 
 #include "vector"
 #include "DotStruct.h"
+#include "map"
 
-std::vector<myDots> getDotsFromFile(std::string fileName, int &error);
+std::map<std::string, myDots> GetDotsFromFile(const std::string& fileName, int &error);
 
 int setDotsToFile(std::string fileName, std::vector<myDots> inVDots);
 
