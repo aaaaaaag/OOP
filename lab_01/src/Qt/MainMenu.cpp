@@ -14,7 +14,7 @@
 
 
 
-MainMenu::MainMenu(const std::shared_ptr<MyHouse>& inHouse) {
+MainMenu::MainMenu() {
 
     resize(1200, 800);
 

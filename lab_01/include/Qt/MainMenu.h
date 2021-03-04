@@ -6,7 +6,7 @@
 #define LAB_01_MAINMENU_H
 
 #include "QWidget"
-#include "MyHouse.h"
+#include "DotStruct.h"
 
 #define MAX_MENU_WIDE 200
 #define MAX_MENU_HEIGHT 300
@@ -14,11 +14,11 @@
 class MainMenu: public QWidget {
 public:
 
-    explicit MainMenu(const std::shared_ptr<MyHouse>& inHouse);
+    MainMenu();
 
 private:
 
-
+    allDots dots;
 
 };
 
