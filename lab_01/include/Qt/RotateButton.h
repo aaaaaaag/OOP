@@ -6,29 +6,22 @@
 #define LAB_01_ROTATEBUTTON_H
 
 #include <memory>
-#include <MyHouse.h>
 #include <QtWidgets/QLineEdit>
 #include "QPushButton"
 #include "PaintHouse.h"
+#include "ActionSlots.h"
+#include "RotateShapeUI.h"
 
 class RotateButton: public QPushButton {
 public:
 
-    RotateButton(std::shared_ptr<MyHouse> inHouse, QLineEdit *editLineDegrees, QLineEdit *xRotateCenter, QLineEdit *yRotateCenter, PaintHouse *painter, QWidget *parent);
-
-
-private slots:
-
-    void RotateHouse();
+    RotateButton(std::shared_ptr<ActionSlots> inActionSlots, RotateShapeUI* inShape);
 
 private:
+    void UpdateUtilData();
 
-    QWidget *m_pParent;
-    PaintHouse *m_pPainter;
-    std::shared_ptr<MyHouse> m_pHouse;
-    QLineEdit *m_pLineDegrees;
-    QLineEdit *m_pRotateCenterX;
-    QLineEdit *m_pRotateCenterY;
+    std::shared_ptr<ActionSlots> m_pActionSlots;
+    RotateShapeUI *m_pShapeUI;
 };
 
 
