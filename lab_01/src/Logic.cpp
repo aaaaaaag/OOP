@@ -9,19 +9,24 @@
 
 
 
-int applyAction(choose userChoose, mainShape_t& mainShape)
+int applyAction(choose userChoose, mainShape_t& mainShape, utilData data)
 {
     int error = OK;
     switch (userChoose) {
         case GetShapeFromFile:
-            mainShape = GetDotsFromFile("123", error);
+            mainShape = GetDotsFromFile(data.filename, error);
+            break;
         case SetShapeToFile:
             break;
         case MoveShape:
-            Move(mainShape);
+            Move(mainShape, data);
+            break;
         case RotateShape:
-            Rotate(mainShape);
+            Rotate(mainShape, data);
+            break;
         case ScaleShape:
-            Zoom(mainShape);
+            Zoom(mainShape, data);
+            break;
     }
+    return error;
 }
