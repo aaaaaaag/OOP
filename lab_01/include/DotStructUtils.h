@@ -7,12 +7,13 @@
 
 #include "map"
 #include "DotStruct.h"
+#include "UtilStruct.h"
 
-void Move(mainShape_t& shape);
+void Move(mainShape_t& shape, utilData data);
 
-void Rotate(mainShape_t& shape);
+void Rotate(mainShape_t& shape, utilData data);
 
-void Zoom(mainShape_t& shape, dot zoomCenter);
+void Zoom(mainShape_t& shape, utilData data);
 
 
 

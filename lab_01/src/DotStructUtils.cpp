@@ -5,19 +5,19 @@
 #include <cmath>
 #include "DotStructUtils.h"
 
-void Move(mainShape_t& shape)
+void Move(mainShape_t& shape, utilData data)
 {
     for (int i = 0; i < shape.coordsNumb; i++)
     {
-        shape.shapeCoords[i].coords.coordX += shape.updateParams.moveCoords.xMove;
-        shape.shapeCoords[i].coords.coordY += shape.updateParams.moveCoords.yMove;
-        shape.shapeCoords[i].coords.coordZ += shape.updateParams.moveCoords.zMove;
+        shape.shapeCoords[i].coords.coordX += data.updateParams.moveCoords.xMove;
+        shape.shapeCoords[i].coords.coordY += data.updateParams.moveCoords.yMove;
+        shape.shapeCoords[i].coords.coordZ += data.updateParams.moveCoords.zMove;
     }
 }
 
-void RotateXAxis(mainShape_t& shape)
+void RotateXAxis(mainShape_t& shape, utilData data)
 {
-    double newDegrees = shape.updateParams.rotateCoords.xRotateDegrees * 3.14 / 180;
+    double newDegrees = data.updateParams.rotateCoords.xRotateDegrees * 3.14 / 180;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
         shapeDot curDot = shape.shapeCoords[i];
@@ -26,9 +26,9 @@ void RotateXAxis(mainShape_t& shape)
     }
 }
 
-void RotateYAxis(mainShape_t& shape)
+void RotateYAxis(mainShape_t& shape, utilData data)
 {
-    double newDegrees = shape.updateParams.rotateCoords.yRotateDegrees * 3.14 / 180;
+    double newDegrees = data.updateParams.rotateCoords.yRotateDegrees * 3.14 / 180;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
         shapeDot curDot = shape.shapeCoords[i];
@@ -37,9 +37,9 @@ void RotateYAxis(mainShape_t& shape)
     }
 }
 
-void RotateZAxis(mainShape_t& shape)
+void RotateZAxis(mainShape_t& shape, utilData data)
 {
-    double newDegrees = shape.updateParams.rotateCoords.zRotateDegrees * 3.14 / 180;
+    double newDegrees = data.updateParams.rotateCoords.zRotateDegrees * 3.14 / 180;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
         shapeDot curDot = shape.shapeCoords[i];
@@ -48,19 +48,22 @@ void RotateZAxis(mainShape_t& shape)
     }
 }
 
-void Rotate(mainShape_t& shape)
+void Rotate(mainShape_t& shape, utilData data)
 {
-    RotateXAxis(shape);
-    RotateYAxis(shape);
-    RotateZAxis(shape);
+    RotateXAxis(shape, data);
+    RotateYAxis(shape, data);
+    RotateZAxis(shape, data);
 }
 
-void Zoom(mainShape_t& shape, dot zoomCenter)
+void Zoom(mainShape_t& shape, utilData data)
 {
     for (int i = 0; i < shape.coordsNumb; i++)
     {
-        shape.shapeCoords[i].coords.coordX = zoomCenter.coordX + (shape.shapeCoords[i].coords.coordX - zoomCenter.coordX) * shape.updateParams.scaleCoords.xScaleKoef;
-        shape.shapeCoords[i].coords.coordY = zoomCenter.coordY + (shape.shapeCoords[i].coords.coordY - zoomCenter.coordY) * shape.updateParams.scaleCoords.yScaleKoef;
-        shape.shapeCoords[i].coords.coordZ = zoomCenter.coordZ + (shape.shapeCoords[i].coords.coordZ - zoomCenter.coordZ) * shape.updateParams.scaleCoords.zScaleKoef;
+        shape.shapeCoords[i].coords.coordX = data.centerDot.coordX +
+                (shape.shapeCoords[i].coords.coordX - data.centerDot.coordX) * data.updateParams.scaleCoords.xScaleKoef;
+        shape.shapeCoords[i].coords.coordY = data.centerDot.coordY +
+                (shape.shapeCoords[i].coords.coordY - data.centerDot.coordY) * data.updateParams.scaleCoords.yScaleKoef;
+        shape.shapeCoords[i].coords.coordZ = data.centerDot.coordZ +
+                (shape.shapeCoords[i].coords.coordZ - data.centerDot.coordZ) * data.updateParams.scaleCoords.zScaleKoef;
     }
 }

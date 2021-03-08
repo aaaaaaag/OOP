@@ -31,8 +31,6 @@ typedef struct mainShape
 {
     unsigned int coordsNumb;
     shapeDot* shapeCoords;
-
-    DotActionStruct updateParams;
 } mainShape_t;
 
 #endif //LAB_01_DOTSTRUCT_H

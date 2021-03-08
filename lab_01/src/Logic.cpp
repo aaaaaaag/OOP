@@ -2,24 +2,26 @@
 // Created by denis on 04.03.2021.
 //
 
+#include <Errors.h>
 #include "Logic.h"
 #include "DotFileIO.h"
 #include "DotStructUtils.h"
 
 
 
-int applyAction(choose userChoose)
+int applyAction(choose userChoose, mainShape_t& mainShape)
 {
+    int error = OK;
     switch (userChoose) {
         case GetShapeFromFile:
-            GetDotsFromFile()
+            mainShape = GetDotsFromFile("123", error);
         case SetShapeToFile:
             break;
         case MoveShape:
-            break;
+            Move(mainShape);
         case RotateShape:
-            break;
+            Rotate(mainShape);
         case ScaleShape:
-            break;
+            Zoom(mainShape);
     }
 }
