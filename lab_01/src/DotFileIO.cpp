@@ -39,20 +39,20 @@ void GetDotsCountFromFile(FILE *file, mainShape_t &mainShape, int &error)
         return;
 
     mainShape.coordsNumb = dotsNumb;
-    mainShape.shapeCoords = static_cast<dot *>(malloc(dotsNumb * sizeof(dot)));
+    mainShape.shapeCoords = static_cast<shapeDot *>(malloc(dotsNumb * sizeof(shapeDot)));
     if (!mainShape.shapeCoords)
         error = ALLOC_ERROR;
 }
 
-void ReadDotFromFile(FILE *file, dot &readDot, int &error)
+void ReadDotFromFile(FILE *file, shapeDot &readDot, int &error)
 {
-    readDot.coordX = ReadIntFromFile(file, error);
+    readDot.coords.coordX = ReadIntFromFile(file, error);
     if (error != OK)
         return;
-    readDot.coordY = ReadIntFromFile(file, error);
+    readDot.coords.coordY = ReadIntFromFile(file, error);
     if (error != OK)
         return;
-    readDot.coordZ = ReadIntFromFile(file, error);
+    readDot.coords.coordZ = ReadIntFromFile(file, error);
     if (error != OK)
         return;
 }

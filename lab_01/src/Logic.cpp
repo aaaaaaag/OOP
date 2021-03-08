@@ -7,6 +7,7 @@
 #include "DotStructUtils.h"
 
 
+
 int applyAction(choose userChoose)
 {
     switch (userChoose) {

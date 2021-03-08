@@ -8,11 +8,11 @@
 #include "map"
 #include "DotStruct.h"
 
-void Move(allDots& vDots, int moveX, int moveY, int moveZ);
+void Move(mainShape_t& shape);
 
-void Rotate(allDots& vDots, int rotateX, int rotateY, int rotateZ);
+void Rotate(mainShape_t& shape);
 
-void Zoom(allDots& vDots, dotCoords zoomCenter, double kX, double kY, double kZ);
+void Zoom(mainShape_t& shape, dot zoomCenter);
 
 
 

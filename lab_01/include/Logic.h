@@ -5,6 +5,8 @@
 #ifndef LAB_01_OOP_LOGIC_H
 #define LAB_01_OOP_LOGIC_H
 
+#include "DotStruct.h"
+
 enum choose
 {
     GetShapeFromFile = 0,
@@ -14,7 +16,7 @@ enum choose
     ScaleShape = 4
 };
 
-int applyAction(choose userChoose);
+int applyAction(choose userChoose, mainShape_t& mainShape);
 
 
 #endif //LAB_01_OOP_LOGIC_H

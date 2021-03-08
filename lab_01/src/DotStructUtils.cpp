@@ -5,62 +5,62 @@
 #include <cmath>
 #include "DotStructUtils.h"
 
-void Move(allDots& vDots, int moveX, int moveY, int moveZ)
+void Move(mainShape_t& shape)
 {
-    for (auto &elem: vDots)
+    for (int i = 0; i < shape.coordsNumb; i++)
     {
-        elem.second.coords.coordX += moveX;
-        elem.second.coords.coordY += moveY;
-        elem.second.coords.coordZ += moveZ;
+        shape.shapeCoords[i].coords.coordX += shape.updateParams.moveCoords.xMove;
+        shape.shapeCoords[i].coords.coordY += shape.updateParams.moveCoords.yMove;
+        shape.shapeCoords[i].coords.coordZ += shape.updateParams.moveCoords.zMove;
     }
 }
 
-void RotateXAxis(allDots& vDots, int rotateAngle)
+void RotateXAxis(mainShape_t& shape)
 {
-    double newDegrees = rotateAngle * 3.14 / 180;
-    for(auto &dot: vDots)
+    double newDegrees = shape.updateParams.rotateCoords.xRotateDegrees * 3.14 / 180;
+    for (int i = 0; i < shape.coordsNumb; i++)
     {
-        const auto& tmpDot = dot;
-        dot.second.coords.coordY = tmpDot.second.coords.coordY * cos(newDegrees) + tmpDot.second.coords.coordZ * sin(newDegrees);
-        dot.second.coords.coordZ = -tmpDot.second.coords.coordY * sin(newDegrees) + tmpDot.second.coords.coordZ * cos(newDegrees);
+        shapeDot curDot = shape.shapeCoords[i];
+        shape.shapeCoords[i].coords.coordY = curDot.coords.coordY * cos(newDegrees) + curDot.coords.coordZ * sin(newDegrees);
+        shape.shapeCoords[i].coords.coordZ = -curDot.coords.coordY * sin(newDegrees) + curDot.coords.coordZ * cos(newDegrees);
     }
 }
 
-void RotateYAxis(allDots& vDots, int rotateAngle)
+void RotateYAxis(mainShape_t& shape)
 {
-    double newDegrees = rotateAngle * 3.14 / 180;
-    for(auto &dot: vDots)
+    double newDegrees = shape.updateParams.rotateCoords.yRotateDegrees * 3.14 / 180;
+    for (int i = 0; i < shape.coordsNumb; i++)
     {
-        const auto& tmpDot = dot;
-        dot.second.coords.coordX = tmpDot.second.coords.coordX * cos(newDegrees) + tmpDot.second.coords.coordZ * sin(newDegrees);
-        dot.second.coords.coordZ = -tmpDot.second.coords.coordX * sin(newDegrees) + tmpDot.second.coords.coordZ * cos(newDegrees);
+        shapeDot curDot = shape.shapeCoords[i];
+        shape.shapeCoords[i].coords.coordX = curDot.coords.coordX * cos(newDegrees) + curDot.coords.coordZ * sin(newDegrees);
+        shape.shapeCoords[i].coords.coordZ = -curDot.coords.coordX * sin(newDegrees) + curDot.coords.coordZ * cos(newDegrees);
     }
 }
 
-void RotateZAxis(allDots& vDots, int rotateAngle)
+void RotateZAxis(mainShape_t& shape)
 {
-    double newDegrees = rotateAngle * 3.14 / 180;
-    for(auto &dot: vDots)
+    double newDegrees = shape.updateParams.rotateCoords.zRotateDegrees * 3.14 / 180;
+    for (int i = 0; i < shape.coordsNumb; i++)
     {
-        const auto& tmpDot = dot;
-        dot.second.coords.coordX = tmpDot.second.coords.coordX * cos(newDegrees) + tmpDot.second.coords.coordY * sin(newDegrees);
-        dot.second.coords.coordY = -tmpDot.second.coords.coordX * sin(newDegrees) + tmpDot.second.coords.coordY * cos(newDegrees);
+        shapeDot curDot = shape.shapeCoords[i];
+        shape.shapeCoords[i].coords.coordX = curDot.coords.coordX * cos(newDegrees) + curDot.coords.coordY * sin(newDegrees);
+        shape.shapeCoords[i].coords.coordY = -curDot.coords.coordX * sin(newDegrees) + curDot.coords.coordY * cos(newDegrees);
     }
 }
 
-void Rotate(allDots& vDots, int rotateX, int rotateY, int rotateZ)
+void Rotate(mainShape_t& shape)
 {
-    RotateXAxis(vDots, rotateX);
-    RotateYAxis(vDots, rotateY);
-    RotateZAxis(vDots, rotateZ);
+    RotateXAxis(shape);
+    RotateYAxis(shape);
+    RotateZAxis(shape);
 }
 
-void Zoom(allDots& vDots, dotCoords zoomCenter, double kX, double kY, double kZ)
+void Zoom(mainShape_t& shape, dot zoomCenter)
 {
-    for (auto &dot: vDots)
+    for (int i = 0; i < shape.coordsNumb; i++)
     {
-        dot.second.coords.coordX = zoomCenter.coordX + (dot.second.coords.coordX - zoomCenter.coordX) * kX;
-        dot.second.coords.coordY = zoomCenter.coordY + (dot.second.coords.coordY - zoomCenter.coordY) * kY;
-        dot.second.coords.coordZ = zoomCenter.coordZ + (dot.second.coords.coordZ - zoomCenter.coordZ) * kZ;
+        shape.shapeCoords[i].coords.coordX = zoomCenter.coordX + (shape.shapeCoords[i].coords.coordX - zoomCenter.coordX) * shape.updateParams.scaleCoords.xScaleKoef;
+        shape.shapeCoords[i].coords.coordY = zoomCenter.coordY + (shape.shapeCoords[i].coords.coordY - zoomCenter.coordY) * shape.updateParams.scaleCoords.yScaleKoef;
+        shape.shapeCoords[i].coords.coordZ = zoomCenter.coordZ + (shape.shapeCoords[i].coords.coordZ - zoomCenter.coordZ) * shape.updateParams.scaleCoords.zScaleKoef;
     }
 }
