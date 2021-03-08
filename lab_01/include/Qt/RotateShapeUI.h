@@ -10,7 +10,6 @@
 #include "QWidget"
 #include "QVBoxLayout"
 #include "ActionSlots.h"
-#include "PaintHouse.h"
 
 class RotateShapeUI: public QVBoxLayout {
 public:

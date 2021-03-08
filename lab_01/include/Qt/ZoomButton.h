@@ -7,28 +7,21 @@
 
 #include "QPushButton"
 #include "QLineEdit"
-#include "MyHouse.h"
 #include "PaintHouse.h"
+#include "ActionSlots.h"
+#include "ZoomShapeUI.h"
 
 class ZoomButton: public QPushButton {
 public:
 
-    ZoomButton(std::shared_ptr<MyHouse> inHouse, QLineEdit *editLineX,
-               QLineEdit *editLineY, QLineEdit *xZoomCenter,
-               QLineEdit *yZoomCenter, PaintHouse *painter);
-
-private slots:
-
-    void ZoomHouse();
+    ZoomButton(std::shared_ptr<ActionSlots> inActionSlots, ZoomShapeUI* inShape);
 
 private:
+    void UpdateUtilData();
 
-    QLineEdit *m_pXCenter;
-    QLineEdit *m_pYCenter;
-    PaintHouse *m_pPainter;
-    std::shared_ptr<MyHouse> m_pHouse;
-    QLineEdit *m_pLineZoomX;
-    QLineEdit *m_pLineZoomY;
+    std::shared_ptr<ActionSlots> m_pActionSlots;
+    ZoomShapeUI *m_pShapeUI;
+
 };
 
 

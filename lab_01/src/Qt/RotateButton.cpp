@@ -10,6 +10,7 @@ RotateButton::RotateButton(std::shared_ptr<ActionSlots> inActionSlots, RotateSha
     m_pActionSlots = std::move(inActionSlots);
     m_pShapeUI = inShape;
     setText("Rotate");
+    UpdateUtilData();
     connect(this, &QPushButton::clicked, m_pActionSlots.get(), &ActionSlots::Rotate);
 }
 
@@ -24,7 +25,7 @@ void RotateButton::UpdateUtilData() {
     }
     catch (std::invalid_argument)
     {
-        QMessageBox::critical(this, "Ошибка ", "Поле смещения координаты содержит не целое число.", QMessageBox::Ok);
+        QMessageBox::critical(this, "Ошибка ", "Поле поворота координат содержит не целое число.", QMessageBox::Ok);
         return;
     }
     auto utilData = m_pActionSlots->GetUtilData();

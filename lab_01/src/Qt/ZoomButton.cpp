@@ -3,64 +3,36 @@
 //
 
 #include "Qt/ZoomButton.h"
+
+#include <utility>
 #include "QMessageBox"
 
-ZoomButton::ZoomButton(std::shared_ptr<MyHouse> inHouse, QLineEdit *editLineX, QLineEdit *editLineY, QLineEdit *xZoomCenter, QLineEdit *yZoomCenter, PaintHouse *painter)
+ZoomButton::ZoomButton(std::shared_ptr<ActionSlots> inActionSlots, ZoomShapeUI* inShape)
 {
-    m_pHouse = std::move(inHouse);
-    m_pLineZoomX = editLineX;
-    m_pLineZoomY = editLineY;
-    m_pPainter = painter;
-    m_pXCenter = xZoomCenter;
-    m_pYCenter = yZoomCenter;
+    m_pActionSlots = std::move(inActionSlots);
+    m_pShapeUI = inShape;
     setText("Zoom");
-    connect(this, &QPushButton::clicked, this, &ZoomButton::ZoomHouse);
+    UpdateUtilData()
+    connect(this, &QPushButton::clicked, m_pActionSlots.get(), &ActionSlots::Scale);
 }
 
-void ZoomButton::ZoomHouse() {
-    auto zoomX = m_pLineZoomX->text().toStdString();
-    auto zoomY = m_pLineZoomY->text().toStdString();
-    auto xLine = m_pXCenter->text().toStdString();
-    auto yLine = m_pYCenter->text().toStdString();
-
-
-    if (m_pHouse) {
-        try {
-            std::stof(zoomX);
-        }
-        catch (std::invalid_argument) {
-            QMessageBox::critical(this, "Ошибка ", "Неверный ввод коэффициента масштабирования по X", QMessageBox::Ok);
-            return;
-        }
-        try {
-            std::stof(zoomY);
-        }
-        catch (std::invalid_argument) {
-            QMessageBox::critical(this, "Ошибка ", "Неверный ввод коэффициента масштабирования по Y", QMessageBox::Ok);
-            return;
-        }
-        try {
-            std::stof(xLine);
-        }
-        catch (std::invalid_argument) {
-            QMessageBox::critical(this, "Ошибка ", "Поле центра масштабирования координаты Х не содержит целое число", QMessageBox::Ok);
-            return;
-        }
-        try {
-            std::stof(yLine);
-        }
-        catch (std::invalid_argument) {
-            QMessageBox::critical(this, "Ошибка ", "Поле центра масштабирования координаты Y не содержит целое число", QMessageBox::Ok);
-            return;
-        }
-        auto dot = std::pair<float, float>(std::stof(xLine), std::stof(yLine));
-        m_pHouse->Zoom(std::stof(zoomX), std::stof(zoomY), dot);
-        if (m_pHouse->GetMaxWindowSize().first - m_pHouse->GetMinWindowSize().first < 10 || m_pHouse->GetMaxWindowSize().second - m_pHouse->GetMinWindowSize().second <= 10)
-        {
-            m_pHouse->GetPreviousData();
-            QMessageBox::critical(this, "Ошибка ", "Невозможно отобразить такой маленький объект", QMessageBox::Ok);
-            return;
-        }
-        m_pPainter->setHouse(m_pHouse);
+void ZoomButton::UpdateUtilData() {
+    auto xLine = m_pShapeUI->GetXLine()->text().toStdString();
+    auto yLine = m_pShapeUI->GetYLine()->text().toStdString();
+    auto zLine = m_pShapeUI->GetZLine()->text().toStdString();
+    try {
+        std::stoi(xLine);
+        std::stoi(yLine);
+        std::stoi(zLine);
     }
+    catch (std::invalid_argument)
+    {
+        QMessageBox::critical(this, "Ошибка ", "Поле коэфециентов масштабирования не содержит целое число.", QMessageBox::Ok);
+        return;
+    }
+    auto utilData = m_pActionSlots->GetUtilData();
+    utilData->updateParams.scaleCoords.xScaleKoef = std::stoi(xLine);
+    utilData->updateParams.scaleCoords.yScaleKoef = std::stoi(yLine);
+    utilData->updateParams.scaleCoords.zScaleKoef = std::stoi(zLine);
+    m_pActionSlots->SetUtilsData(utilData);
 }
