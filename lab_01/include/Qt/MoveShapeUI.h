@@ -14,7 +14,7 @@
 class MoveShapeUI: public QVBoxLayout{
 public:
 
-    MoveShapeUI(const std::shared_ptr<ActionSlots>& inActionSlots, PaintHouse *painter);
+    MoveShapeUI(const std::shared_ptr<ActionSlots>& inActionSlots);
 
     QLineEdit* GetXLine();
 

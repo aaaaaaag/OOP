@@ -3,10 +3,10 @@
 //
 
 #include <QtWidgets/QFormLayout>
-#include "RotateShapeUI.h"
-#include "RotateButton.h"
+#include "Qt/RotateShapeUI.h"
+#include "Qt/RotateButton.h"
 
-RotateShapeUI::RotateShapeUI(const std::shared_ptr<ActionSlots> &inActionSlots, PaintHouse *painter) {
+RotateShapeUI::RotateShapeUI(const std::shared_ptr<ActionSlots> &inActionSlots) {
     m_pXRotateLine = new QLineEdit;
     m_pYRotateLine = new QLineEdit;
     m_pZRotateLine = new QLineEdit;

@@ -7,7 +7,7 @@ add_library(${PROJECT_NAME} include/DotStruct.h include/DotFileIO.h src/DotFileI
         src/StringAnalizator.cpp include/Errors.h include/DotStructUtils.h src/DotStructUtils.cpp
         src/Qt/MainMenu.cpp include/Qt/MainMenu.h src/Qt/MoveButton.cpp include/Qt/MoveButton.h
         src/Qt/ZoomButton.cpp include/Qt/ZoomButton.h src/Qt/RotateButton.cpp include/Qt/RotateButton.h src/Qt/PaintHouse.cpp
-        include/Qt/PaintHouse.h src/Qt/BackButton.cpp include/Qt/BackButton.h src/Qt/LoadFileButton.cpp include/Qt/LoadFileButton.h include/Logic.h src/Logic.cpp include/DotActionStruct.h include/UtilStruct.h src/Qt/ActionSlots.cpp include/Qt/ActionSlots.h src/Qt/MoveShapeUI.cpp include/Qt/MoveShapeUI.h include/Qt/RotateShapeUI.cpp include/Qt/RotateShapeUI.h)
+        include/Qt/PaintHouse.h src/Qt/BackButton.cpp include/Qt/BackButton.h src/Qt/LoadFileButton.cpp include/Qt/LoadFileButton.h include/Logic.h src/Logic.cpp include/DotActionStruct.h include/UtilStruct.h src/Qt/ActionSlots.cpp include/Qt/ActionSlots.h src/Qt/MoveShapeUI.cpp include/Qt/MoveShapeUI.h src/Qt/RotateShapeUI.cpp include/Qt/RotateShapeUI.h)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} -std=c++1y")
 find_package(Qt5Widgets REQUIRED)

@@ -15,7 +15,7 @@
 class RotateShapeUI: public QVBoxLayout {
 public:
 
-    RotateShapeUI(const std::shared_ptr<ActionSlots>& inActionSlots, PaintHouse *painter);
+    explicit RotateShapeUI(const std::shared_ptr<ActionSlots>& inActionSlots);
 
     QLineEdit* GetXLine();
 

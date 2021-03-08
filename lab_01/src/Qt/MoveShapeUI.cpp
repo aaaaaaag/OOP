@@ -8,7 +8,7 @@
 #include "Qt/MoveButton.h"
 
 
-MoveShapeUI::MoveShapeUI(const std::shared_ptr<ActionSlots>& inActionSlots, PaintHouse *painter) {
+MoveShapeUI::MoveShapeUI(const std::shared_ptr<ActionSlots>& inActionSlots) {
     m_pXMoveLine = new QLineEdit;
     m_pYMoveLine = new QLineEdit;
     m_pZMoveLine = new QLineEdit;
