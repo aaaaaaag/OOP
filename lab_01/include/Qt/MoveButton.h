@@ -7,23 +7,22 @@
 
 #include "QPushButton"
 #include "QLineEdit"
-#include "MyHouse.h"
 #include "PaintHouse.h"
+#include "ActionSlots.h"
+#include "MoveShapeUI.h"
+#include "memory"
 
 class MoveButton: public QPushButton {
 public:
 
-    MoveButton(std::shared_ptr<MyHouse> inHouse, QLineEdit *editLineX, QLineEdit *editLineY, PaintHouse *painter);
-
-private slots:
-
-    void MoveHouse();
+    MoveButton(std::shared_ptr<ActionSlots> inActionSlots, MoveShapeUI* inShape);
 
 private:
 
-    std::shared_ptr<MyHouse> m_pHouse;
-    QLineEdit *m_pLineX;
-    QLineEdit *m_pLineY;
+    void UpdateUtilData();
+
+    std::shared_ptr<ActionSlots> m_pActionSlots;
+    MoveShapeUI *m_pShapeUI;
     PaintHouse *m_pPainter;
 };
 

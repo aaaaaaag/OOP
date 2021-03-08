@@ -16,10 +16,6 @@ public:
 
     MainMenu();
 
-private:
-
-    allDots dots;
-
 };
 
 

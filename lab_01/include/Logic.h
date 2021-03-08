@@ -16,7 +16,7 @@ enum choose
     ScaleShape = 4
 };
 
-int applyAction(choose userChoose, mainShape_t& mainShape, utilData data);
+int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data);
 
 
 #endif //LAB_01_OOP_LOGIC_H

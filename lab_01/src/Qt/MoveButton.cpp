@@ -7,35 +7,32 @@
 #include <utility>
 #include <QtWidgets/QMessageBox>
 
-MoveButton::MoveButton(std::shared_ptr<MyHouse> inHouse, QLineEdit *editLineX, QLineEdit *editLineY, PaintHouse *painter) {
-    m_pHouse = std::move(inHouse);
-    m_pLineX = editLineX;
-    m_pLineY = editLineY;
+MoveButton::MoveButton(std::shared_ptr<ActionSlots> inActionSlots, MoveShapeUI* inShape) {
+    m_pActionSlots = std::move(inActionSlots);
+    m_pShapeUI = inShape;
     m_pPainter = painter;
     setText("Move");
-    connect(this, &QPushButton::clicked, this, &MoveButton::MoveHouse);
+    UpdateUtilData();
+    connect(this, &QPushButton::clicked, m_pActionSlots.get(), &ActionSlots::Move);
 }
 
-void MoveButton::MoveHouse() {
-    auto xLine = m_pLineX->text().toStdString();
-    auto yLine = m_pLineY->text().toStdString();
-
-    if (m_pHouse) {
-        try {
-            std::stoi(xLine);
-        }
-        catch (std::invalid_argument) {
-            QMessageBox::critical(this, "Ошибка ", "Поле смещения координаты Х содержит не целое число.", QMessageBox::Ok);
-            return;
-        }
-        try {
-            std::stoi(yLine);
-        }
-        catch (std::invalid_argument) {
-            QMessageBox::critical(this, "Ошибка ", "Поле смещения координаты Y содержит не целое число.", QMessageBox::Ok);
-            return;
-        }
-        m_pHouse->Move(std::stoi(xLine), std::stoi(yLine));
-        m_pPainter->setHouse(m_pHouse);
+void MoveButton::UpdateUtilData() {
+    auto xLine = m_pShapeUI->GetXLine()->text().toStdString();
+    auto yLine = m_pShapeUI->GetYLine()->text().toStdString();
+    auto zLine = m_pShapeUI->GetZLine()->text().toStdString();
+    try {
+        std::stoi(xLine);
+        std::stoi(yLine);
+        std::stoi(zLine);
     }
+    catch (std::invalid_argument)
+    {
+        QMessageBox::critical(this, "Ошибка ", "Поле смещения координаты содержит не целое число.", QMessageBox::Ok);
+        return;
+    }
+    auto utilData = m_pActionSlots->GetUtilData();
+    utilData->updateParams.moveCoords.xMove = std::stoi(xLine);
+    utilData->updateParams.moveCoords.yMove = std::stoi(yLine);
+    utilData->updateParams.moveCoords.zMove = std::stoi(zLine);
+    m_pActionSlots->SetUtilsData(utilData);
 }

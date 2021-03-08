@@ -9,7 +9,7 @@
 
 
 
-int applyAction(choose userChoose, mainShape_t& mainShape, utilData data)
+int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data)
 {
     int error = OK;
     switch (userChoose) {
