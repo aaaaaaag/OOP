@@ -8,6 +8,7 @@
 #include <vector>
 #include "string"
 #include "map"
+#include "DotActionStruct.h"
 
 typedef struct coord
 {
@@ -20,11 +21,17 @@ typedef struct dot
 {
     dotCoords coords;
 
-    std::string dotName;
-    std::vector<std::string> m_vLinkNodes;
+    char* dotName;
+    char** m_vLinkNodes;
 } myDots;
 
-typedef std::map<std::string, myDots> allDots;
 
+typedef struct mainShape
+{
+    dot* shapeCoords;
+    unsigned int coordsNumb;
+
+    DotActionStruct updateParams;
+} mainShape_t;
 
 #endif //LAB_01_DOTSTRUCT_H
