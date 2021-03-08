@@ -4,6 +4,7 @@
 
 #include <QtWidgets/QFormLayout>
 #include "Qt/ZoomShapeUI.h"
+#include "Qt/ZoomButton.h"
 
 ZoomShapeUI::ZoomShapeUI(const std::shared_ptr<ActionSlots> &inActionSlots) {
     m_pXZoomLine = new QLineEdit;
@@ -22,7 +23,7 @@ ZoomShapeUI::ZoomShapeUI(const std::shared_ptr<ActionSlots> &inActionSlots) {
     this->addLayout(formY);
     this->addLayout(formZ);
 
-    auto button = std::make_shared<RotateButton>(inActionSlots, this);
+    auto button = std::make_shared<ZoomButton>(inActionSlots, this);
 }
 
 QLineEdit *ZoomShapeUI::GetXLine() {
