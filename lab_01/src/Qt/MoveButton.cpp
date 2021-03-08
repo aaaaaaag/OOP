@@ -10,7 +10,6 @@
 MoveButton::MoveButton(std::shared_ptr<ActionSlots> inActionSlots, MoveShapeUI* inShape) {
     m_pActionSlots = std::move(inActionSlots);
     m_pShapeUI = inShape;
-    m_pPainter = painter;
     setText("Move");
     UpdateUtilData();
     connect(this, &QPushButton::clicked, m_pActionSlots.get(), &ActionSlots::Move);

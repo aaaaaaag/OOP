@@ -23,7 +23,6 @@ private:
 
     std::shared_ptr<ActionSlots> m_pActionSlots;
     MoveShapeUI *m_pShapeUI;
-    PaintHouse *m_pPainter;
 };
 
 
