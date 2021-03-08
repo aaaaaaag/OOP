@@ -23,7 +23,9 @@ ZoomShapeUI::ZoomShapeUI(const std::shared_ptr<ActionSlots> &inActionSlots) {
     this->addLayout(formY);
     this->addLayout(formZ);
 
-    auto button = std::make_shared<ZoomButton>(inActionSlots, this);
+    auto button = new ZoomButton(inActionSlots, this);
+    this->addWidget(button);
+
 }
 
 QLineEdit *ZoomShapeUI::GetXLine() {

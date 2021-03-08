@@ -25,7 +25,8 @@ MoveShapeUI::MoveShapeUI(const std::shared_ptr<ActionSlots>& inActionSlots) {
     this->addLayout(formY);
     this->addLayout(formZ);
 
-    auto button = std::make_shared<MoveButton>(inActionSlots, this);
+    auto button = new MoveButton(inActionSlots, this);\
+    this->addWidget(button);
 }
 
 QLineEdit *MoveShapeUI::GetXLine() {

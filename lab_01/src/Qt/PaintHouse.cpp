@@ -12,7 +12,7 @@
 
 #define MAX_WINDOW_WIDE 1400
 #define MAX_WINDOW_HEIGHT 900
-
+/*
 void PaintHouse::paintEvent(QPaintEvent *event) {
     Q_UNUSED(event)
     QPainter paint(this);
@@ -129,4 +129,4 @@ void PaintHouse::setPreviousHouse() {
     m_pCurrentHouse->GetPreviousData();
     this->repaint();
 }
-
+*/

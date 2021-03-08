@@ -7,14 +7,15 @@
 
 #include "QWidget"
 #include "DotStruct.h"
-
+#include "ActionSlots.h"
+#include "memory"
 #define MAX_MENU_WIDE 200
 #define MAX_MENU_HEIGHT 300
 
 class MainMenu: public QWidget {
 public:
 
-    MainMenu();
+    explicit MainMenu(const std::shared_ptr<ActionSlots>& inActionSlots);
 
 };
 

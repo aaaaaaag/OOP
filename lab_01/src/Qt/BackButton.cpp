@@ -7,7 +7,7 @@
 #include <utility>
 
 
-
+/*
 BackButton::BackButton(PaintHouse *painter) {
     m_pPainter = painter;
     setText("Back");
@@ -16,3 +16,4 @@ BackButton::BackButton(PaintHouse *painter) {
 void BackButton::MoveHouse() {
     m_pPainter->setPreviousHouse();
 }
+ */

@@ -10,7 +10,7 @@
 #include "UtilStruct.h"
 #include "QPainter"
 
-class ActionSlots {
+class ActionSlots: public QObject {
 public slots:
 
     ActionSlots(mainShape_t& shape, utilData &data, QWidget *paint);

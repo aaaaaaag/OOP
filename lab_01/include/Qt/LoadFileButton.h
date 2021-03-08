@@ -8,7 +8,7 @@
 #include "QWidget"
 #include "QPushButton"
 #include "DotStruct.h"
-
+/*
 class LoadFileButton: public QPushButton {
 public:
 
@@ -24,6 +24,7 @@ private:
     QWidget *m_pPaintWidget{};
 
 };
+ */
 
 
 #endif //LAB_01_OOP_LOADFILEBUTTON_H

@@ -7,7 +7,7 @@
 
 #include "QPushButton"
 #include "PaintHouse.h"
-
+/*
 class BackButton: public QPushButton {
 public:
 
@@ -20,6 +20,6 @@ private slots:
 private:
     PaintHouse *m_pPainter;
 };
-
+*/
 
 #endif //LAB_01_BACKBUTTON_H

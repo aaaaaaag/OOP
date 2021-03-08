@@ -4,7 +4,7 @@
 
 #ifndef LAB_01_PAINTHOUSE_H
 #define LAB_01_PAINTHOUSE_H
-
+/*
 #include "QWidget"
 #include "MyHouse.h"
 
@@ -26,6 +26,6 @@ private:
     QWidget *m_pParent;
     std::shared_ptr<MyHouse> m_pCurrentHouse;
 };
-
+*/
 
 #endif //LAB_01_PAINTHOUSE_H

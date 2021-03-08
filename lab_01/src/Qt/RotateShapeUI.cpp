@@ -23,7 +23,8 @@ RotateShapeUI::RotateShapeUI(const std::shared_ptr<ActionSlots> &inActionSlots) 
     this->addLayout(formY);
     this->addLayout(formZ);
 
-    auto button = std::make_shared<RotateButton>(inActionSlots, this);
+    auto button = new RotateButton(inActionSlots, this);
+    this->addWidget(button);
 }
 
 QLineEdit *RotateShapeUI::GetXLine() {

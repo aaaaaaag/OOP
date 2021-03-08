@@ -6,7 +6,7 @@
 #include "Qt/LoadFileButton.h"
 #include "DotFileIO.h"
 
-
+/*
 LoadFileButton::LoadFileButton(QWidget *paintWidget, allDots& getDots) {
     setText("Load file");
     m_pDots = &getDots;
@@ -22,3 +22,4 @@ void LoadFileButton::Load() {
     int err;
     *m_pDots = GetDotsFromFile(fileName.toStdString(), err);
 }
+*/
