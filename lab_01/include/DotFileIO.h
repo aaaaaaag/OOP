@@ -5,11 +5,9 @@
 #ifndef LAB_01_DOTFILEIO_H
 #define LAB_01_DOTFILEIO_H
 
-#include "vector"
 #include "DotStruct.h"
-#include "map"
 
-std::map<std::string, myDots> GetDotsFromFile(const std::string& fileName, int &error);
+mainShape_t GetDotsFromFile(char* fileName, int &error);
 
 int setDotsToFile(std::string fileName, std::vector<myDots> inVDots);
 

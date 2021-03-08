@@ -10,26 +10,21 @@
 #include "map"
 #include "DotActionStruct.h"
 
-typedef struct coord
+typedef struct dot
 {
     double coordX;
     double coordY;
     double coordZ;
-} dotCoords;
 
-typedef struct dot
-{
-    dotCoords coords;
-
-    char* dotName;
-    char** m_vLinkNodes;
-} myDots;
+    unsigned int linksNumb;
+    int* linkNodesNumbers;
+} myDot;
 
 
 typedef struct mainShape
 {
-    dot* shapeCoords;
     unsigned int coordsNumb;
+    dot* shapeCoords;
 
     DotActionStruct updateParams;
 } mainShape_t;

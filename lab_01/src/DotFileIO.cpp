@@ -2,96 +2,146 @@
 // Created by denis on 28.02.2021.
 //
 
-#include <fstream>
 #include "DotFileIO.h"
 #include "StringAnalizator.h"
 #include "Errors.h"
-#include "iostream"
+#include "cstdio"
 
-std::ifstream GetLink(std::ifstream file, std::pair<std::string, std::string>& link, int &error)
-{
-    std::string from, to;
-    file >> from;
-    if (file.eof()) {
-        error = INCORRECT_FILE_DATA;
-        return file;
-    }
-    file >> to;
-    link.first = from;
-    link.second = to;
-    return file;
-}
-
-
-std::ifstream GetDotBaseInfoFromFile(std::ifstream file, myDots &dot, int &error)
-{
-    std::string dotName;
-    file >> dotName;
-    std::vector<int> vCoords;
-    vCoords.reserve(3);
-    for (int i = 0; i < 3; i++)
-    {
-        std::string coord;
-        file >> coord;
-        if (!IsInt(coord))
-        {
-            error = FAIL_READ_FILE_DATA;
-            return file;
-        }
-        vCoords[i] = std::stoi(coord);
-    }
-    dot = myDots {vCoords[0], vCoords[1], vCoords[2], dotName};
-    error = OK;
-    return file;
-}
-
-
-std::map<std::string, myDots> GetDotsFromFile(const std::string& fileName, int &error)
+void SetErrorCodeSuccess(int &error)
 {
     error = OK;
-    std::map<std::string, myDots> vResDots;
-    std::ifstream dotFile(fileName);
-    if (!dotFile) {
+}
+
+FILE* OpenFile(char* fileName, int& error)
+{
+    SetErrorCodeSuccess(error);
+    auto file = fopen(fileName, "r");
+    if (!file)
         error = FAIL_OPEN_FILE;
-        return vResDots;
-    }
-    std::string coordCount, linkCount;
-    dotFile >> coordCount;
-    dotFile >> linkCount;
-    if (!IsInt(coordCount) || !IsInt(coordCount)) {
-        error = FAIL_READ_FILE_DATA;
-        return vResDots;
-    }
+    return file;
+}
 
-    int readCoordsCount = 0;
-    while (!dotFile.eof() && readCoordsCount < std::stoi(coordCount)) {
-        myDots dot;
-        dotFile = GetDotBaseInfoFromFile(std::move(dotFile), dot, error);
-        if (error != OK)
-            return vResDots;
-        vResDots.emplace(dot.dotName, dot);
-        readCoordsCount++;
+int ReadIntFromFile(FILE *file, int &error)
+{
+    SetErrorCodeSuccess(error);
+    int readInt = 0;
+    if (feof(file))
+        error = INCORRECT_FILE_DATA_STRUCTURE;
+    else if (fscanf(file, "%d", &readInt) != 1)
+        error = FAIL_READ_FILE_DATA;
+    return readInt;
+}
+
+void GetDotsCountFromFile(FILE *file, mainShape_t &mainShape, int &error)
+{
+    auto dotsNumb = ReadIntFromFile(file, error);
+    if (error != OK)
+        return;
+
+    mainShape.coordsNumb = dotsNumb;
+    mainShape.shapeCoords = static_cast<dot *>(malloc(dotsNumb * sizeof(dot)));
+    if (!mainShape.shapeCoords)
+        error = ALLOC_ERROR;
+}
+
+void ReadDotFromFile(FILE *file, dot &readDot, int &error)
+{
+    readDot.coordX = ReadIntFromFile(file, error);
+    if (error != OK)
+        return;
+    readDot.coordY = ReadIntFromFile(file, error);
+    if (error != OK)
+        return;
+    readDot.coordZ = ReadIntFromFile(file, error);
+    if (error != OK)
+        return;
+}
+
+void FillShapeLinksWithNegativeUnits(mainShape_t &mainShape)
+{
+    for(int i = 0; i < mainShape.coordsNumb; i++)
+    {
+        for (int link = 0; link < mainShape.shapeCoords[i].linksNumb; link++)
+            mainShape.shapeCoords[i].linkNodesNumbers[link] = -1;
     }
-    if (readCoordsCount != std::stoi(coordCount)) {
-        error = INCORRECT_FILE_DATA;
-        return vResDots;
+}
+
+void GetLinksCountFromFile(FILE *file, mainShape_t &mainShape, int &error)
+{
+    auto linksCount = ReadIntFromFile(file, error);
+    if (error)
+        return;
+
+    for (int i = 0; i < mainShape.coordsNumb; i++) {
+        mainShape.shapeCoords[i].linksNumb = linksCount;
+        mainShape.shapeCoords[i].linkNodesNumbers = static_cast<int *>(malloc(linksCount * sizeof(int)));
     }
-    int readCoordsLinks = 0;
-    while (!dotFile.eof() && readCoordsLinks < std::stoi(linkCount)) {
-        std::pair<std::string, std::string> pLink;
-        dotFile = GetLink(std::move(dotFile), pLink, error);
-        if (error == OK) {
-            auto indexFrom = vResDots.find(pLink.first);
-            auto indexTo = vResDots.find(pLink.second);
-            if (indexFrom == vResDots.end() || indexTo == vResDots.end())
-                error = INCORRECT_FILE_DATA;
-            else
-                indexFrom->second.m_vLinkNodes.push_back(pLink.second);
+}
+
+void ReadLinkFromFile(FILE *file, mainShape_t &mainShape, int &error)
+{
+    auto dotLinkFrom = ReadIntFromFile(file, error);
+    if (error != OK)
+        return;
+    auto dotLinkTo = ReadIntFromFile(file, error);
+    if (error != OK)
+        return;
+    else if (dotLinkFrom > mainShape.coordsNumb || dotLinkTo > mainShape.coordsNumb)
+    {
+        error = INCORRECT_LINK_DOT_INDEX;
+        return;
+    }
+    auto dotFrom = mainShape.shapeCoords[dotLinkFrom];
+    int i;
+    for (i = 0; i < dotFrom.linksNumb; i++)
+    {
+        if (dotFrom.linkNodesNumbers[i] != -1) {
+            dotFrom.linkNodesNumbers[i] = dotLinkTo;
+            break;
         }
-        if (error != OK)
-            return vResDots;
     }
-    return vResDots;
+    if (i == dotFrom.linksNumb)
+        error = INCORRECT_FILE_DATA_STRUCTURE;
+}
+
+void ReadAllLinksFromFile(FILE *file, mainShape_t &mainShape, int &error)
+{
+    GetLinksCountFromFile(file, mainShape, error);
+    if (error != OK)
+        return;
+    FillShapeLinksWithNegativeUnits(mainShape);
+    for (int i = 0; i < mainShape.shapeCoords[0].linksNumb; i++) {
+        ReadLinkFromFile(file, mainShape, error);
+        if (error != OK)
+            break;
+    }
+}
+
+
+void ReadAllDotsFromFile(FILE *file, mainShape_t &mainShape, int &error)
+{
+    GetDotsCountFromFile(file, mainShape, error);
+    if (error != OK)
+        return;
+
+    for (int i = 0; i < mainShape.coordsNumb; i++)
+        ReadDotFromFile(file, mainShape.shapeCoords[i], error);
+}
+
+
+mainShape_t GetDotsFromFile(char* fileName, int &error)
+{
+    mainShape_t mainShape;
+    auto file = OpenFile(fileName, error);
+    if (error != OK)
+        return mainShape;
+
+    ReadAllDotsFromFile(file, mainShape, error);
+    if (error != OK)
+        return mainShape;
+
+    ReadAllLinksFromFile(file, mainShape, error);
+    return mainShape;
 }
 
 
