@@ -14,7 +14,7 @@
 MainMenu::MainMenu(const std::shared_ptr<ActionSlots>& inActionSlots) {
 
     resize(1200, 800);
-
+    auto mainHBox = new QHBoxLayout;
     auto menuVBox = new QVBoxLayout;
 
     auto loadButton = new LoadFileButton(inActionSlots);
@@ -27,7 +27,10 @@ MainMenu::MainMenu(const std::shared_ptr<ActionSlots>& inActionSlots) {
     menuVBox->addLayout(RotateUIPart);
     menuVBox->addLayout(ZoomUIPart);
 
+    mainHBox->addLayout(menuVBox);
+    mainHBox->addWidget(inActionSlots->GetCanvas());
+
     //mainHBox->addWidget();
     //mainHBox->addWidget(PaintWidget);
-    setLayout(menuVBox);
+    setLayout(mainHBox);
 }

@@ -8,8 +8,7 @@
 #include "DotStructUtils.h"
 
 
-
-int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data)
+int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data, CanvasWidget *widget)
 {
     int error = OK;
     switch (userChoose) {
@@ -28,5 +27,6 @@ int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data)
             Zoom(mainShape, data);
             break;
     }
+    FillGraphicsWidget(widget, &mainShape);
     return error;
 }

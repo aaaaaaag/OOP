@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 
     mainShape_t shape;
     utilData data;
-    auto wid = new QWidget;
+    auto wid = new CanvasWidget;
 
     auto pActionSlots = std::make_shared<ActionSlots>(shape, data, wid);
 
