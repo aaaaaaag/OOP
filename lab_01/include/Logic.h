@@ -12,10 +12,9 @@
 enum choose
 {
     GetShapeFromFile = 0,
-    SetShapeToFile = 1,
-    MoveShape = 2,
-    RotateShape = 3,
-    ScaleShape = 4
+    MoveShape = 1,
+    RotateShape = 2,
+    ScaleShape = 3
 };
 
 int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data, CanvasWidget *widget);

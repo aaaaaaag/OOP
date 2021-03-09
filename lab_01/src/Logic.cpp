@@ -15,8 +15,6 @@ int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data, Canvas
         case GetShapeFromFile:
             mainShape = GetDotsFromFile(data.filename, error);
             break;
-        case SetShapeToFile:
-            break;
         case MoveShape:
             Move(mainShape, data);
             break;

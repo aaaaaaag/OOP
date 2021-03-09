@@ -23,19 +23,6 @@ void ActionSlots::Scale() {
 
 void ActionSlots::Load() {
     ApplyAction(choose::GetShapeFromFile, *m_shape, *m_data, m_pPaint);
-    for (int i = 0; i < m_shape->coordsNumb; i++)
-    {
-        auto dot = m_shape->shapeCoords[i];
-        std::cout << "Dot coords" << std::endl;
-        std::cout << "X: " << dot.coords.coordX << std::endl;
-        std::cout << "Y: " << dot.coords.coordY << std::endl;
-        std::cout << "Z: " << dot.coords.coordZ << std::endl;
-        std::cout << "Links" << std::endl;
-        for (int j = 0; j < dot.linksNumb; j++)
-        {
-            std::cout << dot.linkNodesNumbers[j] << std::endl;
-        }
-    }
 }
 
 utilData *ActionSlots::GetUtilData() {
