@@ -15,9 +15,9 @@ ZoomShapeUI::ZoomShapeUI(const std::shared_ptr<ActionSlots> &inActionSlots) {
     auto *formY = new QFormLayout();
     auto *formZ = new QFormLayout();
 
-    formX->addRow("X degrees: ", m_pXZoomLine);
-    formY->addRow("Y degrees: ", m_pYZoomLine);
-    formZ->addRow("Z degrees: ", m_pZZoomLine);
+    formX->addRow("X koef: ", m_pXZoomLine);
+    formY->addRow("Y koef: ", m_pYZoomLine);
+    formZ->addRow("Z koef: ", m_pZZoomLine);
 
     this->addLayout(formX);
     this->addLayout(formY);

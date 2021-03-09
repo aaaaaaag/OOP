@@ -34,6 +34,9 @@ void ZoomButton::UpdateUtilData() {
     utilData->updateParams.scaleCoords.xScaleKoef = std::stoi(xLine);
     utilData->updateParams.scaleCoords.yScaleKoef = std::stoi(yLine);
     utilData->updateParams.scaleCoords.zScaleKoef = std::stoi(zLine);
+    utilData->centerDot.coordX = 0;
+    utilData->centerDot.coordY = 0;
+    utilData->centerDot.coordZ = 0;
     m_pActionSlots->SetUtilsData(utilData);
     m_pActionSlots->Scale();
 }

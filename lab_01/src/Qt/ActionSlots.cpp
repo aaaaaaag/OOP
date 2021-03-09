@@ -11,22 +11,18 @@ ActionSlots::ActionSlots(mainShape_t &shape, utilData &data, CanvasWidget *paint
 
 void ActionSlots::Move() {
     ApplyAction(choose::MoveShape, *m_shape, *m_data, m_pPaint);
-    m_pPaint->repaint();
 }
 
 void ActionSlots::Rotate() {
     ApplyAction(choose::RotateShape, *m_shape, *m_data, m_pPaint);
-    m_pPaint->repaint();
 }
 
 void ActionSlots::Scale() {
-    ApplyAction(choose::RotateShape, *m_shape, *m_data, m_pPaint);
-    m_pPaint->repaint();
+    ApplyAction(choose::ScaleShape, *m_shape, *m_data, m_pPaint);
 }
 
 void ActionSlots::Load() {
     ApplyAction(choose::GetShapeFromFile, *m_shape, *m_data, m_pPaint);
-    m_pPaint->repaint();
     for (int i = 0; i < m_shape->coordsNumb; i++)
     {
         auto dot = m_shape->shapeCoords[i];
