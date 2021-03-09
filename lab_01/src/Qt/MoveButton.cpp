@@ -11,8 +11,8 @@ MoveButton::MoveButton(std::shared_ptr<ActionSlots> inActionSlots, MoveShapeUI* 
     m_pActionSlots = std::move(inActionSlots);
     m_pShapeUI = inShape;
     setText("Move");
-    UpdateUtilData();
-    connect(this, &QPushButton::clicked, m_pActionSlots.get(), &ActionSlots::Move);
+    //UpdateUtilData();
+    connect(this, &QPushButton::clicked, this, &MoveButton::UpdateUtilData);
 }
 
 void MoveButton::UpdateUtilData() {
@@ -34,4 +34,5 @@ void MoveButton::UpdateUtilData() {
     utilData->updateParams.moveCoords.yMove = std::stoi(yLine);
     utilData->updateParams.moveCoords.zMove = std::stoi(zLine);
     m_pActionSlots->SetUtilsData(utilData);
+    m_pActionSlots->Move();
 }

@@ -12,8 +12,8 @@ ZoomButton::ZoomButton(std::shared_ptr<ActionSlots> inActionSlots, ZoomShapeUI* 
     m_pActionSlots = std::move(inActionSlots);
     m_pShapeUI = inShape;
     setText("Zoom");
-    UpdateUtilData();
-    connect(this, &QPushButton::clicked, m_pActionSlots.get(), &ActionSlots::Scale);
+    //UpdateUtilData();
+    connect(this, &QPushButton::clicked, this, &ZoomButton::UpdateUtilData);
 }
 
 void ZoomButton::UpdateUtilData() {
@@ -35,4 +35,5 @@ void ZoomButton::UpdateUtilData() {
     utilData->updateParams.scaleCoords.yScaleKoef = std::stoi(yLine);
     utilData->updateParams.scaleCoords.zScaleKoef = std::stoi(zLine);
     m_pActionSlots->SetUtilsData(utilData);
+    m_pActionSlots->Scale();
 }

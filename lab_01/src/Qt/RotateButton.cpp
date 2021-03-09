@@ -10,8 +10,8 @@ RotateButton::RotateButton(std::shared_ptr<ActionSlots> inActionSlots, RotateSha
     m_pActionSlots = std::move(inActionSlots);
     m_pShapeUI = inShape;
     setText("Rotate");
-    UpdateUtilData();
-    connect(this, &QPushButton::clicked, m_pActionSlots.get(), &ActionSlots::Rotate);
+    //UpdateUtilData();
+    connect(this, &QPushButton::clicked, this, &RotateButton::UpdateUtilData);
 }
 
 void RotateButton::UpdateUtilData() {
@@ -33,6 +33,7 @@ void RotateButton::UpdateUtilData() {
     utilData->updateParams.rotateCoords.yRotateDegrees = std::stoi(yLine);
     utilData->updateParams.rotateCoords.zRotateDegrees = std::stoi(zLine);
     m_pActionSlots->SetUtilsData(utilData);
+    m_pActionSlots->Rotate();
 }
 
 

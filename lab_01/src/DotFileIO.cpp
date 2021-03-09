@@ -95,7 +95,7 @@ void ReadLinkFromFile(FILE *file, mainShape_t &mainShape, int &error)
     int i;
     for (i = 0; i < dotFrom.linksNumb; i++)
     {
-        if (dotFrom.linkNodesNumbers[i] != -1) {
+        if (dotFrom.linkNodesNumbers[i] == -1) {
             dotFrom.linkNodesNumbers[i] = dotLinkTo;
             break;
         }
