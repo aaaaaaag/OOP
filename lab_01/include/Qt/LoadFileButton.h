@@ -8,11 +8,13 @@
 #include "QWidget"
 #include "QPushButton"
 #include "DotStruct.h"
-/*
+#include "memory"
+#include "ActionSlots.h"
+
 class LoadFileButton: public QPushButton {
 public:
 
-    LoadFileButton(QWidget *paintWidget, allDots &getDots);
+    LoadFileButton(std::shared_ptr<ActionSlots> actionsDot);
 
 private slots:
 
@@ -20,11 +22,10 @@ private slots:
 
 private:
 
-    allDots *m_pDots;
-    QWidget *m_pPaintWidget{};
+    std::shared_ptr<ActionSlots> m_pActionsDot;
 
 };
- */
+
 
 
 #endif //LAB_01_OOP_LOADFILEBUTTON_H

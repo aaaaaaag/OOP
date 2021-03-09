@@ -21,6 +21,8 @@ public slots:
 
     void Scale();
 
+    void Load();
+
     utilData* GetUtilData();
 
     void SetUtilsData(utilData *inData);
