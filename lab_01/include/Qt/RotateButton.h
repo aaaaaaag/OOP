@@ -8,7 +8,6 @@
 #include <memory>
 #include <QtWidgets/QLineEdit>
 #include "QPushButton"
-#include "PaintHouse.h"
 #include "ActionSlots.h"
 #include "RotateShapeUI.h"
 

@@ -7,7 +7,6 @@
 
 #include "QPushButton"
 #include "QLineEdit"
-#include "PaintHouse.h"
 #include "ActionSlots.h"
 #include "ZoomShapeUI.h"
 

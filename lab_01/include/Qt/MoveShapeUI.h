@@ -9,7 +9,6 @@
 #include "QWidget"
 #include "QVBoxLayout"
 #include "ActionSlots.h"
-#include "PaintHouse.h"
 
 class MoveShapeUI: public QVBoxLayout{
 public:

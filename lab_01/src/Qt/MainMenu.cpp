@@ -5,7 +5,6 @@
 #include "Qt/MainMenu.h"
 #include "QHBoxLayout"
 #include "Qt/MoveButton.h"
-#include "Qt/BackButton.h"
 #include "Qt/MoveShapeUI.h"
 #include "Qt/RotateShapeUI.h"
 #include "Qt/ZoomShapeUI.h"
@@ -30,7 +29,5 @@ MainMenu::MainMenu(const std::shared_ptr<ActionSlots>& inActionSlots) {
     mainHBox->addLayout(menuVBox);
     mainHBox->addWidget(inActionSlots->GetCanvas());
 
-    //mainHBox->addWidget();
-    //mainHBox->addWidget(PaintWidget);
     setLayout(mainHBox);
 }

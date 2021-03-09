@@ -2,7 +2,7 @@
 // Created by denis on 09.03.2021.
 //
 
-#include "CanvasWidget.h"
+#include "Qt/CanvasWidget.h"
 
 CanvasWidget::CanvasWidget() {
     setMaximumSize(600, 600);
