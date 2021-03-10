@@ -7,6 +7,8 @@
 
 void Move(mainShape_t& shape, utilData data)
 {
+    if (shape.shapeCoords == nullptr)
+        return;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
         shape.shapeCoords[i].coords.coordX += data.updateParams.moveCoords.xMove;
@@ -17,6 +19,8 @@ void Move(mainShape_t& shape, utilData data)
 
 void RotateXAxis(mainShape_t& shape, utilData data)
 {
+    if (shape.shapeCoords == nullptr)
+        return;
     double newDegrees = data.updateParams.rotateCoords.xRotateDegrees * 3.14 / 180;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
@@ -39,6 +43,8 @@ void RotateYAxis(mainShape_t& shape, utilData data)
 
 void RotateZAxis(mainShape_t& shape, utilData data)
 {
+    if (shape.shapeCoords == nullptr)
+        return;
     double newDegrees = data.updateParams.rotateCoords.zRotateDegrees * 3.14 / 180;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
@@ -57,6 +63,8 @@ void Rotate(mainShape_t& shape, utilData data)
 
 void Zoom(mainShape_t& shape, utilData data)
 {
+    if (shape.shapeCoords == nullptr)
+        return;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
         shape.shapeCoords[i].coords.coordX = data.centerDot.coordX +

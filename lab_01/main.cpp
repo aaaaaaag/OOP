@@ -9,12 +9,15 @@ int main(int argc, char *argv[]) {
 
     mainShape_t shape;
     utilData data;
-    auto wid = new CanvasWidget;
 
+    auto wid = new CanvasWidget;
     auto pActionSlots = std::make_shared<ActionSlots>(shape, data, wid);
 
     auto menu = new MainMenu(pActionSlots);
     menu->show();
 
-    return app.exec();
+    app.exec();
+
+    freeAll(shape);
+    return 0;
 }

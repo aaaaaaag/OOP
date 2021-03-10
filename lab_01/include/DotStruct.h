@@ -22,15 +22,17 @@ typedef struct shapeDot
 {
     dot coords;
 
-    unsigned int linksNumb;
-    int* linkNodesNumbers;
+    unsigned int linksNumb = 0;
+    int* linkNodesNumbers = nullptr;
 } myDot;
 
 
 typedef struct mainShape
 {
-    unsigned int coordsNumb;
-    shapeDot* shapeCoords;
+    unsigned int coordsNumb = 0;
+    shapeDot* shapeCoords = nullptr;
 } mainShape_t;
+
+void freeAll(mainShape_t& shape);
 
 #endif //LAB_01_DOTSTRUCT_H

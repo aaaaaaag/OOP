@@ -3,7 +3,6 @@
 //
 
 #include "DotFileIO.h"
-#include "StringAnalizator.h"
 #include "Errors.h"
 #include "cstdio"
 
@@ -23,6 +22,10 @@ FILE* OpenFile(char* fileName, int& error)
 
 int ReadIntFromFile(FILE *file, int &error)
 {
+    if (!file) {
+        error = FAIL_OPEN_FILE;
+        return 0;
+    }
     SetErrorCodeSuccess(error);
     int readInt = 0;
     if (feof(file))
@@ -34,6 +37,10 @@ int ReadIntFromFile(FILE *file, int &error)
 
 void GetDotsCountFromFile(FILE *file, mainShape_t &mainShape, int &error)
 {
+    if (!file) {
+        error = FAIL_OPEN_FILE;
+        return;
+    }
     auto dotsNumb = ReadIntFromFile(file, error);
     if (error != OK)
         return;
@@ -46,6 +53,10 @@ void GetDotsCountFromFile(FILE *file, mainShape_t &mainShape, int &error)
 
 void ReadDotFromFile(FILE *file, shapeDot &readDot, int &error)
 {
+    if (!file) {
+        error = FAIL_OPEN_FILE;
+        return;
+    }
     readDot.coords.coordX = ReadIntFromFile(file, error);
     if (error != OK)
         return;
@@ -68,6 +79,10 @@ void FillShapeLinksWithNegativeUnits(mainShape_t &mainShape)
 
 void GetLinksCountFromFile(FILE *file, mainShape_t &mainShape, int &error)
 {
+    if (!file) {
+        error = FAIL_OPEN_FILE;
+        return;
+    }
     auto linksCount = ReadIntFromFile(file, error);
     if (error)
         return;
@@ -80,6 +95,10 @@ void GetLinksCountFromFile(FILE *file, mainShape_t &mainShape, int &error)
 
 void ReadLinkFromFile(FILE *file, mainShape_t &mainShape, int &error)
 {
+    if (!file) {
+        error = FAIL_OPEN_FILE;
+        return;
+    }
     auto dotLinkFrom = ReadIntFromFile(file, error);
     if (error != OK)
         return;
@@ -106,6 +125,10 @@ void ReadLinkFromFile(FILE *file, mainShape_t &mainShape, int &error)
 
 void ReadAllLinksFromFile(FILE *file, mainShape_t &mainShape, int &error)
 {
+    if (!file) {
+        error = FAIL_OPEN_FILE;
+        return;
+    }
     GetLinksCountFromFile(file, mainShape, error);
     if (error != OK)
         return;
@@ -120,6 +143,10 @@ void ReadAllLinksFromFile(FILE *file, mainShape_t &mainShape, int &error)
 
 void ReadAllDotsFromFile(FILE *file, mainShape_t &mainShape, int &error)
 {
+    if (!file) {
+        error = FAIL_OPEN_FILE;
+        return;
+    }
     GetDotsCountFromFile(file, mainShape, error);
     if (error != OK)
         return;
@@ -137,10 +164,9 @@ mainShape_t GetDotsFromFile(char* fileName, int &error)
         return mainShape;
 
     ReadAllDotsFromFile(file, mainShape, error);
-    if (error != OK)
-        return mainShape;
-
-    ReadAllLinksFromFile(file, mainShape, error);
+    if (error == OK)
+        ReadAllLinksFromFile(file, mainShape, error);
+    fclose(file);
     return mainShape;
 }
 

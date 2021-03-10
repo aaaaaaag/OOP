@@ -10,6 +10,8 @@
 
 int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data, CanvasWidget *widget)
 {
+    if (!widget)
+        return NULL_POINTER;
     int error = OK;
     switch (userChoose) {
         case GetShapeFromFile:
