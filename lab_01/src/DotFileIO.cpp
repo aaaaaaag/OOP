@@ -159,6 +159,10 @@ void ReadAllDotsFromFile(FILE *file, mainShape_t &mainShape, int &error)
 mainShape_t GetDotsFromFile(char* fileName, int &error)
 {
     mainShape_t mainShape;
+    if (!fileName) {
+        error = FAIL_OPEN_FILE;
+        return mainShape;
+    }
     auto file = OpenFile(fileName, error);
     if (error != OK)
         return mainShape;

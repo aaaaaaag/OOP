@@ -8,14 +8,16 @@
 #include "DotStructUtils.h"
 
 
-int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data, CanvasWidget *widget)
+int ApplyAction(choose userChoose, utilData& data, CanvasWidget *widget)
 {
     if (!widget)
         return NULL_POINTER;
+    static mainShape_t mainShape;
     int error = OK;
     switch (userChoose) {
         case GetShapeFromFile:
             mainShape = GetDotsFromFile(data.filename, error);
+            SetShapeCenter(mainShape, data);
             break;
         case MoveShape:
             Move(mainShape, data);
@@ -26,7 +28,11 @@ int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data, Canvas
         case ScaleShape:
             Zoom(mainShape, data);
             break;
+        case Quit:
+            freeAll(mainShape);
+            break;
     }
-    FillGraphicsWidget(widget, &mainShape);
+    if (error == OK)
+        FillGraphicsWidget(widget, &mainShape);
     return error;
 }

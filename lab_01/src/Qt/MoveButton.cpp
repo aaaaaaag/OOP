@@ -29,10 +29,10 @@ void MoveButton::UpdateUtilData() {
         QMessageBox::critical(this, "Ошибка ", "Поле смещения координаты содержит не целое число.", QMessageBox::Ok);
         return;
     }
-    auto utilData = m_pActionSlots->GetUtilData();
-    utilData->updateParams.moveCoords.xMove = std::stoi(xLine);
-    utilData->updateParams.moveCoords.yMove = std::stoi(yLine);
-    utilData->updateParams.moveCoords.zMove = std::stoi(zLine);
-    m_pActionSlots->SetUtilsData(utilData);
+    //auto utilData = m_pActionSlots->GetUtilData();
+    m_pActionSlots->m_data->updateParams.moveCoords.xMove = std::stoi(xLine);
+    m_pActionSlots->m_data->updateParams.moveCoords.yMove = std::stoi(yLine);
+    m_pActionSlots->m_data->updateParams.moveCoords.zMove = std::stoi(zLine);
+    //m_pActionSlots->SetUtilsData(utilData);
     m_pActionSlots->Move();
 }

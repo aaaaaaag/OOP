@@ -9,13 +9,13 @@
 #include "DotStruct.h"
 #include "UtilStruct.h"
 
-void Move(mainShape_t& shape, utilData data);
+void Move(mainShape_t& shape, utilData& data);
 
 void Rotate(mainShape_t& shape, utilData data);
 
 void Zoom(mainShape_t& shape, utilData data);
 
-
+void SetShapeCenter(mainShape_t shape, utilData& data);
 
 
 

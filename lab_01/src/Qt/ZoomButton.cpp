@@ -3,7 +3,6 @@
 //
 
 #include "Qt/ZoomButton.h"
-
 #include <utility>
 #include "QMessageBox"
 
@@ -30,13 +29,10 @@ void ZoomButton::UpdateUtilData() {
         QMessageBox::critical(this, "Ошибка ", "Поле коэфециентов масштабирования не содержит целое число.", QMessageBox::Ok);
         return;
     }
-    auto utilData = m_pActionSlots->GetUtilData();
-    utilData->updateParams.scaleCoords.xScaleKoef = std::stoi(xLine);
-    utilData->updateParams.scaleCoords.yScaleKoef = std::stoi(yLine);
-    utilData->updateParams.scaleCoords.zScaleKoef = std::stoi(zLine);
-    utilData->centerDot.coordX = 0;
-    utilData->centerDot.coordY = 0;
-    utilData->centerDot.coordZ = 0;
-    m_pActionSlots->SetUtilsData(utilData);
+    //auto utilData = m_pActionSlots->GetUtilData();
+    m_pActionSlots->m_data->updateParams.scaleCoords.xScaleKoef = std::stoi(xLine);
+    m_pActionSlots->m_data->updateParams.scaleCoords.yScaleKoef = std::stoi(yLine);
+    m_pActionSlots->m_data->updateParams.scaleCoords.zScaleKoef = std::stoi(zLine);
+    //m_pActionSlots->SetUtilsData(utilData);
     m_pActionSlots->Scale();
 }

@@ -13,7 +13,7 @@
 class ActionSlots: public QObject {
 public slots:
 
-    ActionSlots(mainShape_t& shape, utilData &data, CanvasWidget *paint);
+    ActionSlots(utilData *data, CanvasWidget *paint);
 
     void Move();
 
@@ -28,12 +28,10 @@ public slots:
     utilData* GetUtilData();
 
     void SetUtilsData(utilData *inData);
+    utilData *m_data;
 
 private:
     CanvasWidget *m_pPaint;
-    mainShape_t *m_shape;
-    utilData *m_data;
-
 
 };
 

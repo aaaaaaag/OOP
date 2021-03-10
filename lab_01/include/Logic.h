@@ -14,10 +14,11 @@ enum choose
     GetShapeFromFile = 0,
     MoveShape = 1,
     RotateShape = 2,
-    ScaleShape = 3
+    ScaleShape = 3,
+    Quit = 4
 };
 
-int ApplyAction(choose userChoose, mainShape_t& mainShape, utilData data, CanvasWidget *widget);
+int ApplyAction(choose userChoose, utilData& data, CanvasWidget *widget);
 
 
 #endif //LAB_01_OOP_LOGIC_H
