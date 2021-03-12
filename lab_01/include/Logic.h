@@ -7,7 +7,7 @@
 
 #include "DotStruct.h"
 #include "UtilStruct.h"
-#include "Qt/CanvasWidget.h"
+#include "Qt/CanvasStruct.h"
 #include "FillGraphicWidget.h"
 enum choose
 {
@@ -18,7 +18,7 @@ enum choose
     Quit = 4
 };
 
-int ApplyAction(utilData& data, CanvasWidget *widget, choose userChoose);
+int ApplyAction(utilData& data, CanvasStruct& canvas, choose userChoose);
 
 
 #endif //LAB_01_OOP_LOGIC_H

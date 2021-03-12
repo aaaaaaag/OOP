@@ -5,9 +5,9 @@
 #ifndef LAB_01_OOP_FILLGRAPHICWIDGET_H
 #define LAB_01_OOP_FILLGRAPHICWIDGET_H
 
-#include "Qt/CanvasWidget.h"
+#include "Qt/CanvasStruct.h"
 #include "DotStruct.h"
 
-int FillGraphicsWidget(CanvasWidget *canvasWidget, mainShape_t *shape);
+int FillGraphicsWidget(CanvasStruct& canvasWidget, mainShape_t shape);
 
 #endif //LAB_01_OOP_FILLGRAPHICWIDGET_H

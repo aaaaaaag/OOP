@@ -7,13 +7,14 @@ int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     utilData data;
-    auto wid = new CanvasWidget;
-    auto pActionSlots = std::make_shared<ActionSlots>(&data, wid);
+    CanvasStruct canvasStruct{};
+    initCanvas(canvasStruct);
+    auto pActionSlots = std::make_shared<ActionSlots>(&data, canvasStruct);
 
     auto menu = new MainMenu(pActionSlots);
     menu->show();
 
     app.exec();
-    ApplyAction(choose::Quit, data, wid);
+    ApplyAction(data, canvasStruct, choose::Quit);
     return 0;
 }

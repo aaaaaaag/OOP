@@ -102,7 +102,7 @@ int Zoom(mainShape_t& shape, utilData data)
 
 int SetShapeCenter(mainShape_t shape, utilData& data)
 {
-    if (shape.coordsNumb != 0 || shape.shapeCoords == nullptr)
+    if (shape.coordsNumb != 0 && shape.shapeCoords == nullptr)
         return INCORRECT_ARG;
     dot maxDot = shape.shapeCoords[0].coords;
     dot minDot = shape.shapeCoords[0].coords;

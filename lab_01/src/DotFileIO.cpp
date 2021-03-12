@@ -187,11 +187,13 @@ int GetDotsFromFile(char* fileName, mainShape_t& mainShape)
 {
     if (!fileName)
         return FAIL_OPEN_FILE;
-    FILE *file = nullptr;
+    FILE *file = fopen(fileName, "r");
+    if (!file)
+        return FAIL_OPEN_FILE;
     int error = OK;
-    error = OpenFile(fileName, file);
-    if (error != OK)
-        return error;
+//    error = OpenFile(fileName, file);
+//    if (error != OK)
+//        return error;
 
     if ((error = ReadAllDotsFromFile(file, mainShape)) != OK) {
         fclose(file);

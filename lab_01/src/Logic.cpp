@@ -7,10 +7,9 @@
 #include "DotFileIO.h"
 #include "DotStructUtils.h"
 
-
-int ApplyAction(utilData& data, CanvasWidget *widget, choose userChoose)
+int ApplyAction(utilData& data, CanvasStruct& canvas, choose userChoose)
 {
-    if (!widget)
+    if (!canvas.canvas)
         return NULL_POINTER;
     static mainShape_t mainShape;
     int error = OK;
@@ -37,6 +36,6 @@ int ApplyAction(utilData& data, CanvasWidget *widget, choose userChoose)
             break;
     }
     if (error == OK)
-        error = FillGraphicsWidget(widget, &mainShape);
+        error = FillGraphicsWidget(canvas, mainShape);
     return error;
 }

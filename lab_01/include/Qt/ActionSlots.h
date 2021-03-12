@@ -8,12 +8,12 @@
 #include "QWidget"
 #include "DotStruct.h"
 #include "UtilStruct.h"
-#include "Qt/CanvasWidget.h"
+#include "Qt/CanvasStruct.h"
 
 class ActionSlots: public QObject {
 public slots:
 
-    ActionSlots(utilData *data, CanvasWidget *paint);
+    ActionSlots(utilData *data, CanvasStruct& paint);
 
     void Move();
 
@@ -23,15 +23,12 @@ public slots:
 
     void Load();
 
-    CanvasWidget *GetCanvas();
+    CanvasStruct *GetCanvas();
 
-    utilData* GetUtilData();
-
-    void SetUtilsData(utilData *inData);
     utilData *m_data;
 
 private:
-    CanvasWidget *m_pPaint;
+    CanvasStruct m_pPaint;
 
 };
 

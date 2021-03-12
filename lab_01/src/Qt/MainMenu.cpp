@@ -27,7 +27,7 @@ MainMenu::MainMenu(const std::shared_ptr<ActionSlots>& inActionSlots) {
     menuVBox->addLayout(ZoomUIPart);
 
     mainHBox->addLayout(menuVBox);
-    mainHBox->addWidget(inActionSlots->GetCanvas());
+    mainHBox->addWidget(inActionSlots->GetCanvas()->canvas);
 
     setLayout(mainHBox);
 }
