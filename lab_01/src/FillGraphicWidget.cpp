@@ -4,14 +4,13 @@
 
 #include <QMessageBox>
 #include "FillGraphicWidget.h"
+#include "Errors.h"
 
-void FillGraphicsWidget(CanvasWidget *canvasWidget, mainShape_t *shape)
+int FillGraphicsWidget(CanvasWidget *canvasWidget, mainShape_t *shape)
 {
+    //QMessageBox::critical(nullptr, "Ошибка ", "Нет фигуры для совершения действий. Загрузите ее", QMessageBox::Ok);
     if (shape->coordsNumb <= 0 || shape->shapeCoords == nullptr || !canvasWidget)
-    {
-        QMessageBox::critical(nullptr, "Ошибка ", "Нет фигуры для совершения действий. Загрузите ее", QMessageBox::Ok);
-        return;
-    }
+        return INCORRECT_ARG;
     canvasWidget->Clear();
     for (int i = 0; i < shape->coordsNumb; i++)
     {
@@ -23,4 +22,5 @@ void FillGraphicsWidget(CanvasWidget *canvasWidget, mainShape_t *shape)
                                    shape->shapeCoords[curDot.linkNodesNumbers[j]].coords.coordX, shape->shapeCoords[curDot.linkNodesNumbers[j]].coords.coordY);
         }
     }
+    return OK;
 }

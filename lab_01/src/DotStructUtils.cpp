@@ -4,11 +4,12 @@
 
 #include <cmath>
 #include "DotStructUtils.h"
+#include "Errors.h"
 
-void Move(mainShape_t& shape, utilData& data)
+int Move(mainShape_t& shape, utilData& data)
 {
-    if (shape.shapeCoords == nullptr)
-        return;
+    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
+        return INCORRECT_ARG;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
         shape.shapeCoords[i].coords.coordX += data.updateParams.moveCoords.xMove;
@@ -18,12 +19,13 @@ void Move(mainShape_t& shape, utilData& data)
     data.centerDot.coordX += data.updateParams.moveCoords.xMove;
     data.centerDot.coordY += data.updateParams.moveCoords.yMove;
     data.centerDot.coordZ += data.updateParams.moveCoords.zMove;
+    return OK;
 }
 
-void RotateXAxis(mainShape_t& shape, utilData data)
+int RotateXAxis(mainShape_t& shape, utilData data)
 {
-    if (shape.shapeCoords == nullptr)
-        return;
+    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
+        return INCORRECT_ARG;
     double newDegrees = data.updateParams.rotateCoords.xRotateDegrees * 3.14 / 180;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
@@ -33,10 +35,13 @@ void RotateXAxis(mainShape_t& shape, utilData data)
         shape.shapeCoords[i].coords.coordZ = data.centerDot.coordZ + (curDot.coords.coordY - data.centerDot.coordY) * sin(newDegrees)
                 + (curDot.coords.coordZ - data.centerDot.coordZ) * cos(newDegrees);
     }
+    return OK;
 }
 
-void RotateYAxis(mainShape_t& shape, utilData data)
+int RotateYAxis(mainShape_t& shape, utilData data)
 {
+    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
+        return INCORRECT_ARG;
     double newDegrees = data.updateParams.rotateCoords.yRotateDegrees * 3.14 / 180;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
@@ -46,12 +51,13 @@ void RotateYAxis(mainShape_t& shape, utilData data)
         shape.shapeCoords[i].coords.coordZ = data.centerDot.coordZ + (curDot.coords.coordX - data.centerDot.coordX) * sin(newDegrees)
                                              + (curDot.coords.coordZ - data.centerDot.coordZ) * cos(newDegrees);
     }
+    return OK;
 }
 
-void RotateZAxis(mainShape_t& shape, utilData data)
+int RotateZAxis(mainShape_t& shape, utilData data)
 {
-    if (shape.shapeCoords == nullptr)
-        return;
+    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
+        return INCORRECT_ARG;
     double newDegrees = data.updateParams.rotateCoords.zRotateDegrees * 3.14 / 180;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
@@ -61,19 +67,27 @@ void RotateZAxis(mainShape_t& shape, utilData data)
         shape.shapeCoords[i].coords.coordY = data.centerDot.coordY + (curDot.coords.coordX - data.centerDot.coordX) * sin(newDegrees)
                                              + (curDot.coords.coordY - data.centerDot.coordY) * cos(newDegrees);
     }
+    return OK;
 }
 
-void Rotate(mainShape_t& shape, utilData data)
+int Rotate(mainShape_t& shape, utilData data)
 {
-    RotateXAxis(shape, data);
-    RotateYAxis(shape, data);
-    RotateZAxis(shape, data);
+    int error = OK;
+    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
+        return INCORRECT_ARG;
+    error = RotateXAxis(shape, data);
+    if (error == OK) {
+        error = RotateYAxis(shape, data);
+        if (error == OK)
+            error = RotateZAxis(shape, data);
+    }
+    return error;
 }
 
-void Zoom(mainShape_t& shape, utilData data)
+int Zoom(mainShape_t& shape, utilData data)
 {
-    if (shape.shapeCoords == nullptr)
-        return;
+    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
+        return INCORRECT_ARG;
     for (int i = 0; i < shape.coordsNumb; i++)
     {
         shape.shapeCoords[i].coords.coordX = data.centerDot.coordX +
@@ -83,13 +97,13 @@ void Zoom(mainShape_t& shape, utilData data)
         shape.shapeCoords[i].coords.coordZ = data.centerDot.coordZ +
                 (shape.shapeCoords[i].coords.coordZ - data.centerDot.coordZ) * data.updateParams.scaleCoords.zScaleKoef;
     }
+    return OK;
 }
 
-
-void SetShapeCenter(mainShape_t shape, utilData& data)
+int SetShapeCenter(mainShape_t shape, utilData& data)
 {
-    if (shape.coordsNumb < 1 || shape.shapeCoords == nullptr)
-        return;
+    if (shape.coordsNumb != 0 || shape.shapeCoords == nullptr)
+        return INCORRECT_ARG;
     dot maxDot = shape.shapeCoords[0].coords;
     dot minDot = shape.shapeCoords[0].coords;
     for (int i = 0; i < shape.coordsNumb; i++)
@@ -111,4 +125,5 @@ void SetShapeCenter(mainShape_t shape, utilData& data)
     data.centerDot.coordX = (maxDot.coordX - minDot.coordX) / 2;
     data.centerDot.coordY = (maxDot.coordY - minDot.coordY) / 2;
     data.centerDot.coordZ = (maxDot.coordZ - minDot.coordZ) / 2;
+    return OK;
 }

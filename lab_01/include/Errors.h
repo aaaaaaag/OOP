@@ -12,5 +12,6 @@
 #define ALLOC_ERROR 4
 #define INCORRECT_LINK_DOT_INDEX 5
 #define NULL_POINTER 6
+#define INCORRECT_ARG 7
 
 #endif //LAB_01_OOP_ERRORS_H

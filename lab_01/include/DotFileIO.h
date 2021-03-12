@@ -7,6 +7,6 @@
 
 #include "DotStruct.h"
 
-mainShape_t GetDotsFromFile(char* fileName, int &error);
+int GetDotsFromFile(char* fileName, mainShape_t& mainShape);
 
 #endif //LAB_01_DOTFILEIO_H

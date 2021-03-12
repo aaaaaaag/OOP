@@ -8,6 +8,6 @@
 #include "Qt/CanvasWidget.h"
 #include "DotStruct.h"
 
-void FillGraphicsWidget(CanvasWidget *canvasWidget, mainShape_t *shape);
+int FillGraphicsWidget(CanvasWidget *canvasWidget, mainShape_t *shape);
 
 #endif //LAB_01_OOP_FILLGRAPHICWIDGET_H

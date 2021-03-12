@@ -18,7 +18,7 @@ enum choose
     Quit = 4
 };
 
-int ApplyAction(choose userChoose, utilData& data, CanvasWidget *widget);
+int ApplyAction(utilData& data, CanvasWidget *widget, choose userChoose);
 
 
 #endif //LAB_01_OOP_LOGIC_H
