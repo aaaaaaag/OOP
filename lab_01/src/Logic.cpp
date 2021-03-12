@@ -14,6 +14,9 @@ int ApplyAction(utilData& data, CanvasWidget *widget, choose userChoose)
         return NULL_POINTER;
     static mainShape_t mainShape;
     int error = OK;
+    if (mainShape.shapeCoords == nullptr)
+        error = initShape(mainShape);
+
     switch (userChoose) {
         case GetShapeFromFile:
             error = GetDotsFromFile(data.filename, mainShape);
