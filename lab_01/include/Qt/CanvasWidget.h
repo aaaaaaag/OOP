@@ -7,13 +7,14 @@
 
 #include "QGraphicsScene"
 #include "QGraphicsView"
+#include "DotStruct.h"
 
 class CanvasWidget: public QGraphicsView {
 public:
 
     CanvasWidget();
 
-    void DrawLine(double x1, double y1, double x2, double y2);
+    void DrawLine(dot from, dot to);
 
     void Clear();
 

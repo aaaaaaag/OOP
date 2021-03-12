@@ -18,8 +18,7 @@ int FillGraphicsWidget(CanvasWidget *canvasWidget, mainShape_t *shape)
         for (int j = 0; j < curDot.linksNumb; j++)
         {
             if (curDot.linkNodesNumbers[j] != -1)
-                canvasWidget->DrawLine(curDot.coords.coordX, curDot.coords.coordY,
-                                   shape->shapeCoords[curDot.linkNodesNumbers[j]].coords.coordX, shape->shapeCoords[curDot.linkNodesNumbers[j]].coords.coordY);
+                canvasWidget->DrawLine(curDot.coords, shape->shapeCoords[curDot.linkNodesNumbers[j]].coords);
         }
     }
     return OK;

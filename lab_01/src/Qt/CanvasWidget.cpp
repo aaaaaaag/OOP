@@ -12,8 +12,8 @@ CanvasWidget::CanvasWidget() {
     setScene(scene);
 }
 
-void CanvasWidget::DrawLine(double x1, double y1, double x2, double y2) {
-    this->scene->addLine(x1, y1, x2, y2, *mainPen);
+void CanvasWidget::DrawLine(dot from, dot to) {
+    this->scene->addLine(from.coordX, from.coordY, to.coordX, to.coordY, *mainPen);
 }
 
 void CanvasWidget::Clear() {
