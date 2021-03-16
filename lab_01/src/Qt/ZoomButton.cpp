@@ -5,6 +5,7 @@
 #include "Qt/ZoomButton.h"
 #include <utility>
 #include "QMessageBox"
+#include "Errors.h"
 
 ZoomButton::ZoomButton(std::shared_ptr<ActionSlots> inActionSlots, ZoomShapeUI* inShape)
 {
@@ -14,11 +15,12 @@ ZoomButton::ZoomButton(std::shared_ptr<ActionSlots> inActionSlots, ZoomShapeUI* 
     connect(this, &QPushButton::clicked, this, &ZoomButton::UpdateUtilData);
 }
 
-int SetScaleCoords(scaleCoords_t& scaleCoords, int xLine, int yLine, int zLine)
+int SetScaleCoords(ScaleCoords_t& scaleCoords, int xLine, int yLine, int zLine)
 {
     scaleCoords.xScaleKoef = xLine;
     scaleCoords.yScaleKoef = yLine;
     scaleCoords.zScaleKoef = zLine;
+    return OK;
 }
 
 void ZoomButton::UpdateUtilData() {

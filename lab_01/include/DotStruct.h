@@ -11,17 +11,17 @@
 #include "DotActionStruct.h"
 
 
-typedef struct dot
+struct dot
 {
     double coordX;
     double coordY;
     double coordZ;
-} dot;
+};
 
-typedef struct link{
+struct link{
     int from;
     int to;
-} link_t;
+};
 
 typedef struct mainShape
 {
@@ -29,7 +29,7 @@ typedef struct mainShape
     dot* shapeCoords;
 
     unsigned int linksNumb;
-    link_t* linkNodesNumbers;
+    link* linkNodesNumbers;
 } mainShape_t;
 
 int freeAll(mainShape_t& shape);

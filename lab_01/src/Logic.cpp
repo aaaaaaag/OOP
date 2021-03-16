@@ -7,7 +7,7 @@
 #include "DotFileIO.h"
 #include "DotStructUtils.h"
 
-int ApplyAction(utilData& data, CanvasStruct& canvas, choose userChoose)
+int ApplyAction(UtilsStruct& data, CanvasStruct& canvas, choose userChoose)
 {
     if (!canvas.canvas)
         return NULL_POINTER;

@@ -18,7 +18,7 @@ enum choose
     Quit = 4
 };
 
-int ApplyAction(utilData& data, CanvasStruct& canvas, choose userChoose);
+int ApplyAction(UtilsStruct& data, CanvasStruct& canvas, choose userChoose);
 
 
 #endif //LAB_01_OOP_LOGIC_H

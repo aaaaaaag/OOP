@@ -9,11 +9,11 @@
 #include "DotStruct.h"
 #include "UtilStruct.h"
 
-int Move(mainShape_t& shape, dot &centerDot, moveCoords_t moveCoords);
+int Move(mainShape_t& shape, dot &centerDot, MoveCoords_t moveCoords);
 
-int Rotate(mainShape_t& shape, dot centerDot, rotateCoords_t rotateCoords);
+int Rotate(mainShape_t& shape, dot centerDot, RotateCoords_t rotateCoords);
 
-int Zoom(mainShape_t& shape, dot centerDot, scaleCoords_t scaleCoords);
+int Zoom(mainShape_t& shape, dot centerDot, ScaleCoords_t scaleCoords);
 
 int SetShapeCenter(mainShape_t shape, dot& centerDot);
 

@@ -15,7 +15,7 @@ int addDotToDot(dot &first, dot second)
     return OK;
 }
 
-int Move(mainShape_t& shape, dot &centerDot, moveCoords_t moveCoords)
+int Move(mainShape_t& shape, dot &centerDot, MoveCoords_t moveCoords)
 {
     if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
         return INCORRECT_ARG;
@@ -54,7 +54,7 @@ int RotateZ(dot& rotateDot, dot centerDot, double degrees)
     return RotateDot(rotateDot.coordX, rotateDot.coordY, centerDot.coordX, centerDot.coordY, degrees);
 }
 
-int RotateXAxis(mainShape_t& shape, dot centerDot, rotateCoords_t degrees)
+int RotateXAxis(mainShape_t& shape, dot centerDot, RotateCoords_t degrees)
 {
     if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
         return INCORRECT_ARG;
@@ -64,7 +64,7 @@ int RotateXAxis(mainShape_t& shape, dot centerDot, rotateCoords_t degrees)
     return OK;
 }
 
-int RotateYAxis(mainShape_t& shape, dot centerDot, rotateCoords_t degrees)
+int RotateYAxis(mainShape_t& shape, dot centerDot, RotateCoords_t degrees)
 {
     if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
         return INCORRECT_ARG;
@@ -74,7 +74,7 @@ int RotateYAxis(mainShape_t& shape, dot centerDot, rotateCoords_t degrees)
     return OK;
 }
 
-int RotateZAxis(mainShape_t& shape, dot centerDot, rotateCoords_t degrees)
+int RotateZAxis(mainShape_t& shape, dot centerDot, RotateCoords_t degrees)
 {
     if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
         return INCORRECT_ARG;
@@ -84,7 +84,7 @@ int RotateZAxis(mainShape_t& shape, dot centerDot, rotateCoords_t degrees)
     return OK;
 }
 
-int Rotate(mainShape_t& shape, dot centerDot, rotateCoords_t rotateCoords)
+int Rotate(mainShape_t& shape, dot centerDot, RotateCoords_t rotateCoords)
 {
     int error = OK;
     if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
@@ -98,7 +98,7 @@ int Rotate(mainShape_t& shape, dot centerDot, rotateCoords_t rotateCoords)
     return error;
 }
 
-int ZoomDot(dot& zoomDot, dot centerDot, scaleCoords_t scaleCoords)
+int ZoomDot(dot& zoomDot, dot centerDot, ScaleCoords_t scaleCoords)
 {
     zoomDot.coordX = centerDot.coordX + (zoomDot.coordX - centerDot.coordX) * scaleCoords.xScaleKoef;
     zoomDot.coordY = centerDot.coordY + (zoomDot.coordY - centerDot.coordY) * scaleCoords.yScaleKoef;
@@ -107,7 +107,7 @@ int ZoomDot(dot& zoomDot, dot centerDot, scaleCoords_t scaleCoords)
 }
 
 
-int Zoom(mainShape_t& shape, dot centerDot, scaleCoords_t scaleCoords)
+int Zoom(mainShape_t& shape, dot centerDot, ScaleCoords_t scaleCoords)
 {
     if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
         return INCORRECT_ARG;

@@ -7,14 +7,14 @@
 
 #include "DotStruct.h"
 
-typedef struct UtilsStruct
+struct UtilsStruct
 {
     dot centerDot;
-    moveCoords_t moveCoords;
-    rotateCoords_t rotateCoords;
-    scaleCoords_t scaleCoords;
+    MoveCoords_t moveCoords;
+    RotateCoords_t rotateCoords;
+    ScaleCoords_t scaleCoords;
     char *filename;
-} utilData;
+};
 
 
 #endif //LAB_01_OOP_UTILSTRUCT_H

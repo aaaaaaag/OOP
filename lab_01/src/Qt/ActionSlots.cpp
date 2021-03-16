@@ -5,7 +5,7 @@
 #include "Qt/ActionSlots.h"
 #include "Logic.h"
 
-ActionSlots::ActionSlots(utilData *data, CanvasStruct& paint): m_data(data), m_pPaint(paint) {
+ActionSlots::ActionSlots(UtilsStruct *data, CanvasStruct& paint): m_data(data), m_pPaint(paint) {
 }
 
 void ActionSlots::Move() {
@@ -22,7 +22,6 @@ void ActionSlots::Scale() {
 
 void ActionSlots::Load() {
     ApplyAction(*m_data, m_pPaint, choose::GetShapeFromFile);
-    int i = 0;
 }
 
 CanvasStruct *ActionSlots::GetCanvas() {

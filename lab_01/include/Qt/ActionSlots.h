@@ -13,7 +13,7 @@
 class ActionSlots: public QObject {
 public slots:
 
-    ActionSlots(utilData *data, CanvasStruct& paint);
+    ActionSlots(UtilsStruct *data, CanvasStruct& paint);
 
     void Move();
 
@@ -25,7 +25,7 @@ public slots:
 
     CanvasStruct *GetCanvas();
 
-    utilData *m_data;
+    UtilsStruct *m_data;
 
 private:
     CanvasStruct m_pPaint;

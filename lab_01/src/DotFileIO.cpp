@@ -80,15 +80,15 @@ int GetLinksCountFromFile(FILE *file, mainShape_t &mainShape)
     return error;
 }
 
-int AddLink(link_t* link, unsigned int linkCount, int from, int to)
+int AddLink(link* links, unsigned int linkCount, int from, int to)
 {
     int i;
     for (i = 0; i < linkCount; i++)
     {
-        if (link[i].to == -1 && link[i].from == -1)
+        if (links[i].to == -1 && links[i].from == -1)
         {
-            link[i].from = from;
-            link[i].to = to;
+            links[i].from = from;
+            links[i].to = to;
             break;
         }
     }
@@ -114,7 +114,7 @@ int ReadLinkFromFile(FILE *file, mainShape_t &mainShape)
     return AddLink(mainShape.linkNodesNumbers, mainShape.linksNumb, dotLinkFrom, dotLinkTo);
 }
 
-int FillShapeLinksNegativeUnits(link_t* links, unsigned int linksCount)
+int FillShapeLinksNegativeUnits(link* links, unsigned int linksCount)
 {
     for (unsigned int i = 0; i < linksCount; i++)
     {

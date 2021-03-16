@@ -6,7 +6,7 @@
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    utilData data;
+    UtilsStruct data;
     CanvasStruct canvasStruct{};
     initCanvas(canvasStruct);
     auto pActionSlots = std::make_shared<ActionSlots>(&data, canvasStruct);
