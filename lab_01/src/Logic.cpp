@@ -7,35 +7,30 @@
 #include "DotFileIO.h"
 #include "DotStructUtils.h"
 
-int ApplyAction(UtilsStruct& data, CanvasStruct& canvas, choose userChoose)
+int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, choose userChoose)
 {
-    if (!canvas.canvas)
-        return NULL_POINTER;
-    static mainShape_t mainShape;
-    int error = OK;
-    if (mainShape.shapeCoords == nullptr)
-        error = initShape(mainShape);
-
+    if (!graphic.canvas) return NULL_POINTER;
+    static mainShape_t mainShape = initShape();
+    int operationStatus = OK;
+    auto updateCoordData = data.coordChangeData;
     switch (userChoose) {
         case GetShapeFromFile:
-            error = GetDotsFromFile(data.filename, mainShape);
-            if (error == OK)
-                error = SetShapeCenter(mainShape, data.centerDot);
+            operationStatus = LoadShapeFromFile(data.fileData, mainShape);
             break;
         case MoveShape:
-            error = Move(mainShape, data.centerDot, data.moveCoords);
+            operationStatus = Move(mainShape.dots, mainShape.center, updateCoordData.moveCoords);
             break;
         case RotateShape:
-            error = Rotate(mainShape, data.centerDot, data.rotateCoords);
+            operationStatus = Rotate(mainShape.dots, mainShape.center, updateCoordData.rotateCoords);
             break;
         case ScaleShape:
-            error = Zoom(mainShape, data.centerDot, data.scaleCoords);
+            operationStatus = Zoom(mainShape.dots, mainShape.center, updateCoordData.scaleCoords);
             break;
         case Quit:
-            error = freeAll(mainShape);
+            operationStatus = freeAll(mainShape);
             break;
     }
-    if (error == OK)
-        error = FillGraphicsWidget(canvas, mainShape);
-    return error;
+    if (operationStatus == OK)
+        operationStatus = FillGraphicsWidget(graphic, mainShape.dots, mainShape.links);
+    return operationStatus;
 }

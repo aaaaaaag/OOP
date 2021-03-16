@@ -19,6 +19,6 @@ void LoadFileButton::Load() {
                                                     tr("*.txt"));
     auto a = fileName.toStdString();
     auto b = a.data();
-    m_pActionsDot->m_data->filename = b;
+    m_pActionsDot->m_data->fileData.filename = b;
     m_pActionsDot->Load();
 }

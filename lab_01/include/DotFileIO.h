@@ -7,6 +7,11 @@
 
 #include "DotStruct.h"
 
-int GetDotsFromFile(char* fileName, mainShape_t& mainShape);
+struct FileWorkData
+{
+    char *filename;
+};
+
+int LoadShapeFromFile(const FileWorkData& fileData, mainShape_t& mainShape);
 
 #endif //LAB_01_DOTFILEIO_H

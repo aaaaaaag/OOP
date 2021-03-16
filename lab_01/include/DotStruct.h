@@ -22,17 +22,29 @@ struct link{
     int to;
 };
 
-typedef struct mainShape
+struct dotsStruct
 {
     unsigned int coordsNumb;
     dot* shapeCoords;
+};
 
+struct linksStruct
+{
     unsigned int linksNumb;
     link* linkNodesNumbers;
+};
+
+typedef struct mainShape
+{
+    dotsStruct dots;
+    linksStruct links;
+    dot center;
 } mainShape_t;
 
 int freeAll(mainShape_t& shape);
 
-int initShape(mainShape_t& shape);
+mainShape_t& initShape();
+
+int SetShapeCenter(dotsStruct dots, dot& centerDot);
 
 #endif //LAB_01_DOTSTRUCT_H
