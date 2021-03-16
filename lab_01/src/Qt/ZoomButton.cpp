@@ -11,8 +11,14 @@ ZoomButton::ZoomButton(std::shared_ptr<ActionSlots> inActionSlots, ZoomShapeUI* 
     m_pActionSlots = std::move(inActionSlots);
     m_pShapeUI = inShape;
     setText("Zoom");
-    //UpdateUtilData();
     connect(this, &QPushButton::clicked, this, &ZoomButton::UpdateUtilData);
+}
+
+int SetScaleCoords(scaleCoords_t& scaleCoords, int xLine, int yLine, int zLine)
+{
+    scaleCoords.xScaleKoef = xLine;
+    scaleCoords.yScaleKoef = yLine;
+    scaleCoords.zScaleKoef = zLine;
 }
 
 void ZoomButton::UpdateUtilData() {
@@ -29,10 +35,7 @@ void ZoomButton::UpdateUtilData() {
         QMessageBox::critical(this, "Ошибка ", "Поле коэфециентов масштабирования не содержит целое число.", QMessageBox::Ok);
         return;
     }
-    //auto utilData = m_pActionSlots->GetUtilData();
-    m_pActionSlots->m_data->updateParams.scaleCoords.xScaleKoef = std::stoi(xLine);
-    m_pActionSlots->m_data->updateParams.scaleCoords.yScaleKoef = std::stoi(yLine);
-    m_pActionSlots->m_data->updateParams.scaleCoords.zScaleKoef = std::stoi(zLine);
-    //m_pActionSlots->SetUtilsData(utilData);
+    auto data = m_pActionSlots->m_data;
+    SetScaleCoords(data->scaleCoords, std::stoi(xLine), std::stoi(yLine), std::stoi(zLine));
     m_pActionSlots->Scale();
 }

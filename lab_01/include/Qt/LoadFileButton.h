@@ -14,7 +14,7 @@
 class LoadFileButton: public QPushButton {
 public:
 
-    LoadFileButton(std::shared_ptr<ActionSlots> actionsDot);
+    explicit LoadFileButton(std::shared_ptr<ActionSlots> actionsDot);
 
 private slots:
 

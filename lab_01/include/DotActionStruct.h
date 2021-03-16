@@ -26,13 +26,4 @@ typedef struct scaleCoords
     double zScaleKoef;
 } scaleCoords_t;
 
-typedef struct DotActionStruct
-{
-    moveCoords_t moveCoords;
-    rotateCoords_t rotateCoords;
-    scaleCoords_t scaleCoords;
-} dotActionStruct_t;
-
-
-
 #endif //LAB_01_OOP_DOTACTIONSTRUCT_H

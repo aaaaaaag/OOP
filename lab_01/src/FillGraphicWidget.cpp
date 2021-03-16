@@ -12,14 +12,12 @@ int FillGraphicsWidget(CanvasStruct& canvasWidget, mainShape_t shape)
     if (shape.coordsNumb <= 0 || shape.shapeCoords == nullptr || !canvasWidget.canvas)
         return INCORRECT_ARG;
     clear(canvasWidget);
-    for (int i = 0; i < shape.coordsNumb; i++)
+    for (int i = 0; i < shape.linksNumb; i++)
     {
-        auto curDot = shape.shapeCoords[i];
-        for (int j = 0; j < curDot.linksNumb; j++)
-        {
-            if (curDot.linkNodesNumbers[j] != -1 && error == OK)
-                error = drawLine(canvasWidget, curDot.coords, shape.shapeCoords[curDot.linkNodesNumbers[j]].coords);
-        }
+        auto curLink = shape.linkNodesNumbers[i];
+        auto DotFrom = shape.shapeCoords[curLink.from];
+        auto DotTo = shape.shapeCoords[curLink.to];
+        error = drawLine(canvasWidget, DotFrom, DotTo);
     }
     return error;
 }

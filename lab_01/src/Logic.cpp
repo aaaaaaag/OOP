@@ -20,16 +20,16 @@ int ApplyAction(utilData& data, CanvasStruct& canvas, choose userChoose)
         case GetShapeFromFile:
             error = GetDotsFromFile(data.filename, mainShape);
             if (error == OK)
-                error = SetShapeCenter(mainShape, data);
+                error = SetShapeCenter(mainShape, data.centerDot);
             break;
         case MoveShape:
-            error = Move(mainShape, data);
+            error = Move(mainShape, data.centerDot, data.moveCoords);
             break;
         case RotateShape:
-            error = Rotate(mainShape, data);
+            error = Rotate(mainShape, data.centerDot, data.rotateCoords);
             break;
         case ScaleShape:
-            error = Zoom(mainShape, data);
+            error = Zoom(mainShape, data.centerDot, data.scaleCoords);
             break;
         case Quit:
             freeAll(mainShape);

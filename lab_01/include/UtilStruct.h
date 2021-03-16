@@ -10,7 +10,9 @@
 typedef struct UtilsStruct
 {
     dot centerDot;
-    DotActionStruct updateParams;
+    moveCoords_t moveCoords;
+    rotateCoords_t rotateCoords;
+    scaleCoords_t scaleCoords;
     char *filename;
 } utilData;
 

@@ -29,9 +29,9 @@ void RotateButton::UpdateUtilData() {
         return;
     }
     //auto utilData = m_pActionSlots->GetUtilData();
-    m_pActionSlots->m_data->updateParams.rotateCoords.xRotateDegrees = std::stoi(xLine);
-    m_pActionSlots->m_data->updateParams.rotateCoords.yRotateDegrees = std::stoi(yLine);
-    m_pActionSlots->m_data->updateParams.rotateCoords.zRotateDegrees = std::stoi(zLine);
+    m_pActionSlots->m_data->rotateCoords.xRotateDegrees = std::stoi(xLine);
+    m_pActionSlots->m_data->rotateCoords.yRotateDegrees = std::stoi(yLine);
+    m_pActionSlots->m_data->rotateCoords.zRotateDegrees = std::stoi(zLine);
     //m_pActionSlots->SetUtilsData(utilData);
     m_pActionSlots->Rotate();
 }

@@ -18,19 +18,18 @@ typedef struct dot
     double coordZ;
 } dot;
 
-struct shapeDot
-{
-    dot coords;
-
-    unsigned int linksNumb;
-    int* linkNodesNumbers;
-};
-
+typedef struct link{
+    int from;
+    int to;
+} link_t;
 
 typedef struct mainShape
 {
     unsigned int coordsNumb;
-    shapeDot* shapeCoords;
+    dot* shapeCoords;
+
+    unsigned int linksNumb;
+    link_t* linkNodesNumbers;
 } mainShape_t;
 
 int freeAll(mainShape_t& shape);
