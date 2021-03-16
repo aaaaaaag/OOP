@@ -9,7 +9,9 @@ int freeAll(mainShape_t& shape)
 {
     free(shape.linkNodesNumbers);
     free(shape.shapeCoords);
-    return OK;
+    shape.shapeCoords = nullptr;
+    shape.linkNodesNumbers = nullptr;
+    return SUCCESS_FREE;
 }
 
 int initShape(mainShape_t& shape)

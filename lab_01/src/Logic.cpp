@@ -32,7 +32,7 @@ int ApplyAction(utilData& data, CanvasStruct& canvas, choose userChoose)
             error = Zoom(mainShape, data.centerDot, data.scaleCoords);
             break;
         case Quit:
-            freeAll(mainShape);
+            error = freeAll(mainShape);
             break;
     }
     if (error == OK)
