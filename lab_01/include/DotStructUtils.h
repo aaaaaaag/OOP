@@ -7,7 +7,27 @@
 
 #include "map"
 #include "DotStruct.h"
-#include "UtilStruct.h"
+
+struct MoveCoords_t
+{
+    double xMove;
+    double yMove;
+    double zMove;
+};
+
+struct RotateCoords_t
+{
+    double xRotateDegrees;
+    double yRotateDegrees;
+    double zRotateDegrees;
+};
+
+struct ScaleCoords_t
+{
+    double xScaleKoef;
+    double yScaleKoef;
+    double zScaleKoef;
+};
 
 int Move(mainShape_t& shape, dot &centerDot, MoveCoords_t moveCoords);
 

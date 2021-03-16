@@ -6,9 +6,9 @@
 #define LAB_01_OOP_LOGIC_H
 
 #include "DotStruct.h"
-#include "UtilStruct.h"
 #include "Qt/CanvasStruct.h"
 #include "FillGraphicWidget.h"
+#include "DotStructUtils.h"
 enum choose
 {
     GetShapeFromFile = 0,
@@ -17,6 +17,16 @@ enum choose
     ScaleShape = 3,
     Quit = 4
 };
+
+struct UtilsStruct
+{
+    dot centerDot;
+    MoveCoords_t moveCoords;
+    RotateCoords_t rotateCoords;
+    ScaleCoords_t scaleCoords;
+    char *filename;
+};
+
 
 int ApplyAction(UtilsStruct& data, CanvasStruct& canvas, choose userChoose);
 

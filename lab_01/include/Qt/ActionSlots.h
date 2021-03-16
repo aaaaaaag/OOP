@@ -7,8 +7,8 @@
 
 #include "QWidget"
 #include "DotStruct.h"
-#include "UtilStruct.h"
 #include "Qt/CanvasStruct.h"
+#include "Logic.h"
 
 class ActionSlots: public QObject {
 public slots:
