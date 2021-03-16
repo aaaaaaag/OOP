@@ -1,0 +1,18 @@
+//
+// Created by denis on 28.02.2021.
+//
+
+#ifndef LAB_01_OOP_ERRORS_H
+#define LAB_01_OOP_ERRORS_H
+
+#define OK 0
+#define FAIL_OPEN_FILE 1
+#define FAIL_READ_FILE_DATA 2
+#define INCORRECT_FILE_DATA_STRUCTURE 3
+#define ALLOC_ERROR 4
+#define INCORRECT_LINK_DOT_INDEX 5
+#define NULL_POINTER 6
+#define INCORRECT_ARG 7
+#define SUCCESS_FREE 8
+
+#endif //LAB_01_OOP_ERRORS_H
