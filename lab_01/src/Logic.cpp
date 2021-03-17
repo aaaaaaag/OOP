@@ -7,7 +7,7 @@
 #include "DotFileIO.h"
 #include "DotStructUtils.h"
 
-int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, choose userChoose)
+int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, const choose& userChoose)
 {
     if (!graphic.canvas) return NULL_POINTER;
     static mainShape_t mainShape = initShape();
@@ -15,7 +15,7 @@ int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, choose userChoose)
     auto updateCoordData = data.coordChangeData;
     switch (userChoose) {
         case GetShapeFromFile:
-            operationStatus = LoadShapeFromFile(data.fileData, mainShape);
+            operationStatus = LoadShapeFromFile(mainShape, data.fileData);
             break;
         case MoveShape:
             operationStatus = Move(mainShape.dots, mainShape.center, updateCoordData.moveCoords);

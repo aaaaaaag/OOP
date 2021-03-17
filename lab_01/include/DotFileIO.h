@@ -12,6 +12,6 @@ struct FileWorkData
     char *filename;
 };
 
-int LoadShapeFromFile(const FileWorkData& fileData, mainShape_t& mainShape);
+int LoadShapeFromFile(mainShape_t& mainShape, const FileWorkData& fileData);
 
 #endif //LAB_01_DOTFILEIO_H

@@ -29,11 +29,11 @@ struct ScaleCoords_t
     double zScaleKoef;
 };
 
-int Move(dotsStruct& dots, dot &centerDot, MoveCoords_t moveCoords);
+int Move(dotsStruct& dots, dot &centerDot, const MoveCoords_t& moveCoords);
 
-int Rotate(dotsStruct& dots, dot centerDot, RotateCoords_t rotateCoords);
+int Rotate(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& rotateCoords);
 
-int Zoom(dotsStruct& dots, dot centerDot, ScaleCoords_t scaleCoords);
+int Zoom(dotsStruct& dots, const dot& centerDot, const ScaleCoords_t& scaleCoords);
 
 
 

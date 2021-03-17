@@ -17,7 +17,7 @@ struct dot
     double coordZ;
 };
 
-struct link{
+struct link {
     int from;
     int to;
 };
@@ -34,17 +34,17 @@ struct linksStruct
     link* linkNodesNumbers;
 };
 
-typedef struct mainShape
+struct mainShape_t
 {
     dotsStruct dots;
     linksStruct links;
     dot center;
-} mainShape_t;
+};
 
 int freeAll(mainShape_t& shape);
 
 mainShape_t& initShape();
 
-int SetShapeCenter(dotsStruct dots, dot& centerDot);
+int SetShapeCenter(dot& centerDot, const dotsStruct& dots);
 
 #endif //LAB_01_DOTSTRUCT_H

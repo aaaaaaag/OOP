@@ -33,7 +33,7 @@ struct UtilsStruct
 };
 
 
-int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, choose userChoose);
+int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, const choose& userChoose);
 
 
 #endif //LAB_01_OOP_LOGIC_H

@@ -41,7 +41,7 @@ int SetMinDot(dot& minDot, dot checkDot)
 }
 
 
-int SetShapeCenter(dotsStruct dots, dot& centerDot)
+int SetShapeCenter(dot& centerDot, const dotsStruct& dots)
 {
     if (dots.coordsNumb != 0 && dots.shapeCoords == nullptr) return INCORRECT_ARG;
     dot maxDot = dots.shapeCoords[0];

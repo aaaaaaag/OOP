@@ -7,7 +7,7 @@
 #include "Errors.h"
 
 
-int MoveDot(dot &first, MoveCoords_t second)
+int MoveDot(dot &first, const MoveCoords_t& second)
 {
     first.coordX += second.xMove;
     first.coordY += second.yMove;
@@ -15,7 +15,7 @@ int MoveDot(dot &first, MoveCoords_t second)
     return OK;
 }
 
-int Move(dotsStruct& dots, dot &centerDot, MoveCoords_t moveCoords)
+int Move(dotsStruct& dots, dot &centerDot, const MoveCoords_t& moveCoords)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
 
@@ -24,8 +24,7 @@ int Move(dotsStruct& dots, dot &centerDot, MoveCoords_t moveCoords)
     return OK;
 }
 
-
-int RotateDot(double& coord1, double& coord2, double centerCoord1, double centerCoord2, double degrees)
+int RotateDot(double& coord1, double& coord2, double centerCoord1, double centerCoord2, const double& degrees)
 {
     double coord1Copy = coord1;
     double coord2Copy = coord2;
@@ -34,22 +33,22 @@ int RotateDot(double& coord1, double& coord2, double centerCoord1, double center
     return OK;
 }
 
-int RotateX(dot& rotateDot, dot centerDot, double degrees)
+int RotateX(dot& rotateDot, const dot& centerDot, const double& degrees)
 {
     return RotateDot(rotateDot.coordY, rotateDot.coordZ, centerDot.coordY, centerDot.coordZ, degrees);
 }
 
-int RotateY(dot& rotateDot, dot centerDot, double degrees)
+int RotateY(dot& rotateDot, const dot& centerDot, const double& degrees)
 {
     return RotateDot(rotateDot.coordX, rotateDot.coordZ, centerDot.coordX, centerDot.coordZ, degrees);
 }
 
-int RotateZ(dot& rotateDot, dot centerDot, double degrees)
+int RotateZ(dot& rotateDot, const dot& centerDot, const double& degrees)
 {
     return RotateDot(rotateDot.coordX, rotateDot.coordY, centerDot.coordX, centerDot.coordY, degrees);
 }
 
-int RotateXAxis(dotsStruct& dots, dot centerDot, RotateCoords_t degrees)
+int RotateXAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
     double newDegrees = degrees.xRotateDegrees * 3.14 / 180;
@@ -57,7 +56,7 @@ int RotateXAxis(dotsStruct& dots, dot centerDot, RotateCoords_t degrees)
     return OK;
 }
 
-int RotateYAxis(dotsStruct& dots, dot centerDot, RotateCoords_t degrees)
+int RotateYAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
     double newDegrees = degrees.yRotateDegrees * 3.14 / 180;
@@ -65,7 +64,7 @@ int RotateYAxis(dotsStruct& dots, dot centerDot, RotateCoords_t degrees)
     return OK;
 }
 
-int RotateZAxis(dotsStruct& dots, dot centerDot, RotateCoords_t degrees)
+int RotateZAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
     double newDegrees = degrees.zRotateDegrees * 3.14 / 180;
@@ -73,7 +72,7 @@ int RotateZAxis(dotsStruct& dots, dot centerDot, RotateCoords_t degrees)
     return OK;
 }
 
-int Rotate(dotsStruct& dots, dot centerDot, RotateCoords_t rotateCoords)
+int Rotate(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& rotateCoords)
 {
     int error = OK;
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
@@ -83,7 +82,7 @@ int Rotate(dotsStruct& dots, dot centerDot, RotateCoords_t rotateCoords)
     return error;
 }
 
-int ZoomDot(dot& zoomDot, dot centerDot, ScaleCoords_t scaleCoords)
+int ZoomDot(dot& zoomDot, const dot& centerDot, const ScaleCoords_t& scaleCoords)
 {
     zoomDot.coordX = centerDot.coordX + (zoomDot.coordX - centerDot.coordX) * scaleCoords.xScaleKoef;
     zoomDot.coordY = centerDot.coordY + (zoomDot.coordY - centerDot.coordY) * scaleCoords.yScaleKoef;
@@ -92,7 +91,7 @@ int ZoomDot(dot& zoomDot, dot centerDot, ScaleCoords_t scaleCoords)
 }
 
 
-int Zoom(dotsStruct& dots, dot centerDot, ScaleCoords_t scaleCoords) {
+int Zoom(dotsStruct& dots, const dot& centerDot, const ScaleCoords_t& scaleCoords) {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
     int error = OK;
     for (int i = 0; i < dots.coordsNumb && error == OK; i++)
