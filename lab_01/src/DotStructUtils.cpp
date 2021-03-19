@@ -32,7 +32,7 @@ int Move(mainShape_t& shape, const MoveCoords_t& moveCoords)
     return MoveCoords(shape.dots, shape.center, moveCoords);
 }
 
-int RotateDot(double& coord1, double& coord2, double centerCoord1, double centerCoord2, const double& degrees)
+int RotateDot(double& coord1, double& coord2, const double centerCoord1, const double centerCoord2, const double& degrees)
 {
     double coord1Copy = coord1, coord2Copy = coord2;
     coord1 = centerCoord1 + (coord1Copy - centerCoord1) * cos(degrees) - (coord2Copy - centerCoord2) * sin(degrees);
