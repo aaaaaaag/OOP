@@ -5,7 +5,7 @@
 #include <cmath>
 #include "DotStructUtils.h"
 #include "Errors.h"
-
+#include "cmath"
 
 int MoveDot(dot &first, const MoveCoords_t& second)
 {
@@ -19,15 +19,15 @@ int Move(dotsStruct& dots, dot &centerDot, const MoveCoords_t& moveCoords)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
 
-    for (int i = 0; i < dots.coordsNumb; i++) MoveDot(dots.shapeCoords[i], moveCoords);
+    for (int i = 0; i < dots.coordsNumb; i++)
+        MoveDot(dots.shapeCoords[i], moveCoords);
     MoveDot(centerDot, moveCoords);
     return OK;
 }
 
 int RotateDot(double& coord1, double& coord2, double centerCoord1, double centerCoord2, const double& degrees)
 {
-    double coord1Copy = coord1;
-    double coord2Copy = coord2;
+    double coord1Copy = coord1, coord2Copy = coord2;
     coord1 = centerCoord1 + (coord1Copy - centerCoord1) * cos(degrees) - (coord2Copy - centerCoord2) * sin(degrees);
     coord2 = centerCoord2 + (coord1Copy - centerCoord1) * sin(degrees) + (coord2Copy - centerCoord2) * cos(degrees);
     return OK;
@@ -51,7 +51,7 @@ int RotateZ(dot& rotateDot, const dot& centerDot, const double& degrees)
 int RotateXAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
-    double newDegrees = degrees.xRotateDegrees * 3.14 / 180;
+    double newDegrees = degrees.xRotateDegrees * M_PI / 180;
     for (int i = 0; i < dots.coordsNumb; i++) RotateX(dots.shapeCoords[i], centerDot, newDegrees);
     return OK;
 }
@@ -59,7 +59,7 @@ int RotateXAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& de
 int RotateYAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
-    double newDegrees = degrees.yRotateDegrees * 3.14 / 180;
+    double newDegrees = degrees.yRotateDegrees * M_PI / 180;
     for (int i = 0; i < dots.coordsNumb; i++) RotateY(dots.shapeCoords[i], centerDot, newDegrees);
     return OK;
 }
@@ -67,7 +67,7 @@ int RotateYAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& de
 int RotateZAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
-    double newDegrees = degrees.zRotateDegrees * 3.14 / 180;
+    double newDegrees = degrees.zRotateDegrees * M_PI / 180;
     for (int i = 0; i < dots.coordsNumb; i++) RotateZ(dots.shapeCoords[i], centerDot, newDegrees);
     return OK;
 }

@@ -16,7 +16,8 @@ enum choose
     MoveShape = 1,
     RotateShape = 2,
     ScaleShape = 3,
-    Quit = 4
+    Quit = 4,
+    Draw = 5
 };
 
 struct CoordWorkData

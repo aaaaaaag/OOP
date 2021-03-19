@@ -11,16 +11,39 @@ int freeAll(mainShape_t& shape)
     free(shape.dots.shapeCoords);
     shape.dots.shapeCoords = nullptr;
     shape.links.linkNodesNumbers = nullptr;
+    shape.isInit = false;
     return SUCCESS_FREE;
+}
+
+int InitDots(dotsStruct& dots)
+{
+    dots.coordsNumb = 0;
+    dots.shapeCoords = nullptr;
+    return OK;
+}
+
+int InitLinks(linksStruct& links)
+{
+    links.linksNumb = 0;
+    links.linkNodesNumbers = nullptr;
+    return OK;
+}
+
+int InitCenter(dot& center)
+{
+    center.coordX = 0;
+    center.coordY = 0;
+    center.coordZ = 0;
+    return OK;
 }
 
 mainShape_t& initShape()
 {
     static mainShape_t shape;
-    shape.dots.coordsNumb = 0;
-    shape.dots.shapeCoords = nullptr;
-    shape.links.linksNumb = 0;
-    shape.links.linkNodesNumbers = nullptr;
+    InitDots(shape.dots);
+    InitLinks(shape.links);
+    InitCenter(shape.center);
+    shape.isInit = true;
     return shape;
 }
 
@@ -55,4 +78,26 @@ int SetShapeCenter(dot& centerDot, const dotsStruct& dots)
     centerDot.coordY = (maxDot.coordY - minDot.coordY) / 2;
     centerDot.coordZ = (maxDot.coordZ - minDot.coordZ) / 2;
     return OK;
+}
+
+int checkLink(const link& link, unsigned int maxDots)
+{
+    if (link.from < 0 || link.from >= maxDots || link.to < 0 || link.to >= maxDots)
+        return INCORRECT_ARG;
+    return OK;
+}
+
+int checkLinksOnCorrect(const dotsStruct& dots, const linksStruct& links)
+{
+    int error = OK;
+    for (unsigned int i = 0; i < links.linksNumb && error == OK; i++)
+        error = checkLink(links.linkNodesNumbers[i], dots.coordsNumb);
+    return error;
+}
+
+int isShapeCorrect(const mainShape_t& shape)
+{
+    if (!shape.isInit)
+        return INCORRECT_ARG;
+    return checkLinksOnCorrect(shape.dots, shape.links);
 }

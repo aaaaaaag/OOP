@@ -36,6 +36,7 @@ struct linksStruct
 
 struct mainShape_t
 {
+    bool isInit;
     dotsStruct dots;
     linksStruct links;
     dot center;
@@ -46,5 +47,7 @@ int freeAll(mainShape_t& shape);
 mainShape_t& initShape();
 
 int SetShapeCenter(dot& centerDot, const dotsStruct& dots);
+
+int isShapeCorrect(const mainShape_t& shape);
 
 #endif //LAB_01_DOTSTRUCT_H

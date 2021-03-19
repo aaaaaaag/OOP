@@ -149,15 +149,14 @@ int LoadShapeFromFile(mainShape_t& mainShape, const FileWorkData& fileData)
     if (!file) return FAIL_OPEN_FILE;
     int error = OK;
     mainShape_t copyFigure = initShape();
-    if ((error = ReadAllDotsFromFile(file, copyFigure.dots)) != OK) return error;
-    if ((error = ReadAllLinksFromFile(file, copyFigure.links)) != OK) return error;
-    if ((error = SetShapeCenter(copyFigure.center, copyFigure.dots)) != OK) return error;
-
+    if ((error = ReadAllDotsFromFile(file, copyFigure.dots)) == OK) {
+        if ((error = ReadAllLinksFromFile(file, copyFigure.links)) == OK)
+            error = SetShapeCenter(copyFigure.center, copyFigure.dots);
+    }
     fclose(file);
-    if (error == OK)
-    {
-        freeAll(mainShape);
-        mainShape = copyFigure;
+    if (error == OK && isShapeCorrect(copyFigure) == OK) {
+        error = freeAll(mainShape);
+        if (error == OK) mainShape = copyFigure;
     }
     return error;
 }

@@ -29,8 +29,9 @@ int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, const choose& userChoo
         case Quit:
             operationStatus = freeAll(mainShape);
             break;
+        case Draw:
+            operationStatus = FillGraphicsWidget(graphic, mainShape.dots, mainShape.links);
+            break;
     }
-    if (operationStatus == OK)
-        operationStatus = FillGraphicsWidget(graphic, mainShape.dots, mainShape.links);
     return operationStatus;
 }
