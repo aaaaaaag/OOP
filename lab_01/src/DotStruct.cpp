@@ -82,7 +82,7 @@ int SetShapeCenter(dot& centerDot, const dotsStruct& dots)
 
 int checkLink(const link& link, unsigned int maxDots)
 {
-    if (link.from < 0 || link.from >= maxDots || link.to < 0 || link.to >= maxDots)
+    if (link.from < 0 || link.from > maxDots || link.to < 0 || link.to > maxDots)
         return INCORRECT_ARG;
     return OK;
 }

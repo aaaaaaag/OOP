@@ -15,7 +15,7 @@ int MoveDot(dot &first, const MoveCoords_t& second)
     return OK;
 }
 
-int Move(dotsStruct& dots, dot &centerDot, const MoveCoords_t& moveCoords)
+int MoveCoords(dotsStruct& dots, dot &centerDot, const MoveCoords_t& moveCoords)
 {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
 
@@ -23,6 +23,13 @@ int Move(dotsStruct& dots, dot &centerDot, const MoveCoords_t& moveCoords)
         MoveDot(dots.shapeCoords[i], moveCoords);
     MoveDot(centerDot, moveCoords);
     return OK;
+}
+
+int Move(mainShape_t& shape, const MoveCoords_t& moveCoords)
+{
+    if (isShapeCorrect(shape) != OK) return INCORRECT_ARG;
+
+    return MoveCoords(shape.dots, shape.center, moveCoords);
 }
 
 int RotateDot(double& coord1, double& coord2, double centerCoord1, double centerCoord2, const double& degrees)
@@ -72,7 +79,7 @@ int RotateZAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& de
     return OK;
 }
 
-int Rotate(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& rotateCoords)
+int RotateCoords(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& rotateCoords)
 {
     int error = OK;
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
@@ -80,6 +87,12 @@ int Rotate(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& rotateC
     if ((error = RotateYAxis(dots, centerDot, rotateCoords)) != OK) return error;
     if ((error = RotateZAxis(dots, centerDot, rotateCoords)) != OK) return error;
     return error;
+}
+
+int Rotate(mainShape_t& shape, const RotateCoords_t& rotateCoords)
+{
+    if (isShapeCorrect(shape) != OK) return INCORRECT_ARG;
+    return RotateCoords(shape.dots, shape.center, rotateCoords);
 }
 
 int ZoomDot(dot& zoomDot, const dot& centerDot, const ScaleCoords_t& scaleCoords)
@@ -90,11 +103,16 @@ int ZoomDot(dot& zoomDot, const dot& centerDot, const ScaleCoords_t& scaleCoords
     return OK;
 }
 
-
-int Zoom(dotsStruct& dots, const dot& centerDot, const ScaleCoords_t& scaleCoords) {
+int ZoomCoords(dotsStruct& dots, const dot& centerDot, const ScaleCoords_t& scaleCoords) {
     if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
     int error = OK;
     for (int i = 0; i < dots.coordsNumb && error == OK; i++)
         error = ZoomDot(dots.shapeCoords[i], centerDot, scaleCoords);
     return error;
+}
+
+int Zoom(mainShape_t& shape, const ScaleCoords_t& scaleCoords) {
+    if (isShapeCorrect(shape) != OK) return INCORRECT_ARG;
+
+    return ZoomCoords(shape.dots, shape.center, scaleCoords);
 }

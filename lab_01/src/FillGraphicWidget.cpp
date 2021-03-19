@@ -5,7 +5,7 @@
 #include "FillGraphicWidget.h"
 #include "Errors.h"
 
-int FillGraphicsWidget(CanvasStruct& canvasWidget, const dotsStruct& dots, const linksStruct& links)
+int FillGraphicsWidgetWithShapeData(CanvasStruct& canvasWidget, const dotsStruct& dots, const linksStruct& links)
 {
     if (dots.coordsNumb <= 0 || dots.shapeCoords == nullptr || !canvasWidget.canvas) return INCORRECT_ARG;
     int error = clear(canvasWidget);
@@ -17,4 +17,12 @@ int FillGraphicsWidget(CanvasStruct& canvasWidget, const dotsStruct& dots, const
         error = drawLine(canvasWidget, DotFrom, DotTo);
     }
     return error;
+}
+
+
+int FillGraphicsWidget(CanvasStruct& canvasWidget, const mainShape_t& shape)
+{
+    if (isShapeCorrect(shape) != OK) return INCORRECT_ARG;
+
+    return FillGraphicsWidgetWithShapeData(canvasWidget, shape.dots, shape.links);
 }

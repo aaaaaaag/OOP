@@ -156,7 +156,7 @@ int LoadShapeFromFile(mainShape_t& mainShape, const FileWorkData& fileData)
     fclose(file);
     if (error == OK && isShapeCorrect(copyFigure) == OK) {
         error = freeAll(mainShape);
-        if (error == OK) mainShape = copyFigure;
+        if (error == SUCCESS_FREE) mainShape = copyFigure;
     }
     return error;
 }

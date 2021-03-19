@@ -18,19 +18,19 @@ int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, const choose& userChoo
             operationStatus = LoadShapeFromFile(mainShape, data.fileData);
             break;
         case MoveShape:
-            operationStatus = Move(mainShape.dots, mainShape.center, updateCoordData.moveCoords);
+            operationStatus = Move(mainShape, updateCoordData.moveCoords);
             break;
         case RotateShape:
-            operationStatus = Rotate(mainShape.dots, mainShape.center, updateCoordData.rotateCoords);
+            operationStatus = Rotate(mainShape, updateCoordData.rotateCoords);
             break;
         case ScaleShape:
-            operationStatus = Zoom(mainShape.dots, mainShape.center, updateCoordData.scaleCoords);
+            operationStatus = Zoom(mainShape, updateCoordData.scaleCoords);
             break;
         case Quit:
             operationStatus = freeAll(mainShape);
             break;
         case Draw:
-            operationStatus = FillGraphicsWidget(graphic, mainShape.dots, mainShape.links);
+            operationStatus = FillGraphicsWidget(graphic, mainShape);
             break;
     }
     return operationStatus;
