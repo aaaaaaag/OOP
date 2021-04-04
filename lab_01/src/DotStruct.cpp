@@ -5,7 +5,7 @@
 #include "DotStruct.h"
 #include "Errors.h"
 
-int freeAll(mainShape_t& shape)
+int freeShapeMemory(mainShape_t& shape)
 {
     free(shape.links.linkNodesNumbers);
     free(shape.dots.shapeCoords);

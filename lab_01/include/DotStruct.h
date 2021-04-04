@@ -42,7 +42,7 @@ struct mainShape_t
     dot center;
 };
 
-int freeAll(mainShape_t& shape);
+int freeShapeMemory(mainShape_t& shape);
 
 mainShape_t& initShape();
 

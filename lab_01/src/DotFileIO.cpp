@@ -5,6 +5,13 @@
 #include "DotFileIO.h"
 #include "Errors.h"
 #include "cstdio"
+
+int freeDots(dotsStruct& dots)
+{
+    free(dots.shapeCoords);
+    return OK;
+}
+
 int ReadIntFromFile(int &readNumb, FILE *const file)
 {
     if (!file) return FAIL_OPEN_FILE;
@@ -23,8 +30,8 @@ int ReadDoubleFromFile(double &readNumb, FILE *const file)
 
 int GetDotsCountFromFile(dotsStruct &dots, FILE *const file)
 {
-    if (!file)
-        return FAIL_OPEN_FILE;
+    if (!file) return FAIL_OPEN_FILE;
+
     int dotsNumb;
     auto error = ReadIntFromFile(dotsNumb, file);
     if (error != OK) return error;
@@ -108,6 +115,8 @@ int FillShapeLinksNegativeUnits(linksStruct& links)
     int error = OK;
     for (unsigned int i = 0; i < links.linksNumb; i++)
         if ((error = SetNegativePointsToLink(links.linkNodesNumbers[i])) != OK) break;
+
+    if (error != OK) free(links.linkNodesNumbers);
     return error;
 }
 
@@ -119,8 +128,8 @@ int ReadAllLinksFromFile(linksStruct &links, FILE *const file)
     if ((error = GetLinksCountFromFile(links, file)) != OK) return error;
     if ((error = FillShapeLinksNegativeUnits(links)) != OK) return error;
 
-    for (int i = 0; i < links.linksNumb; i++)
-        if ((error = ReadLinkFromFile(links, file)) != OK) break;
+    for (int i = 0; i < links.linksNumb && error == OK; i++)
+        if ((error = ReadLinkFromFile(links, file)) != OK) free(links.linkNodesNumbers);
 
     return error;
 }
@@ -128,8 +137,12 @@ int ReadAllLinksFromFile(linksStruct &links, FILE *const file)
 int ReadDots(dotsStruct& dots, FILE *const file)
 {
     int error = OK;
-    for (int i = 0; i < dots.coordsNumb; i++)
-        if ((error = ReadDotFromFile(dots.shapeCoords[i], file)) != OK) return error;
+    for (int i = 0; i < dots.coordsNumb; i++) {
+        if ((error = ReadDotFromFile(dots.shapeCoords[i], file)) != OK) {
+            free(dots.shapeCoords);
+            return error;
+        }
+    }
     return error;
 }
 
@@ -138,8 +151,7 @@ int ReadAllDotsFromFile(dotsStruct &dots, FILE *const file)
     if (!file) return FAIL_OPEN_FILE;
     int error = OK;
     if ((error = GetDotsCountFromFile(dots, file)) != OK) return error;
-    error = ReadDots(dots, file);
-    return error;
+    return ReadDots(dots, file);
 }
 
 int LoadShapeFromFile(mainShape_t& mainShape, const FileWorkData& fileData)
@@ -149,16 +161,18 @@ int LoadShapeFromFile(mainShape_t& mainShape, const FileWorkData& fileData)
     if (!file) return FAIL_OPEN_FILE;
     int error = OK;
     mainShape_t copyFigure = initShape();
-    if ((error = ReadAllDotsFromFile(copyFigure.dots, file)) == OK) {
-        if ((error = ReadAllLinksFromFile(copyFigure.links, file)) == OK)
-            error = SetShapeCenter(copyFigure.center, copyFigure.dots);
+    error = ReadAllDotsFromFile(copyFigure.dots, file);
+    if (error == OK) {
+        error = ReadAllLinksFromFile(copyFigure.links, file);
+        if (error != OK) freeDots(copyFigure.dots);
     }
     fclose(file);
+    if (error == OK && (error = SetShapeCenter(copyFigure.center, copyFigure.dots)) != OK)
+        error = freeShapeMemory(copyFigure);
+
     if (error == OK && isShapeCorrect(copyFigure) == OK) {
-        error = freeAll(mainShape);
+        error = freeShapeMemory(mainShape);
         if (error == SUCCESS_FREE) mainShape = copyFigure;
     }
     return error;
 }
-
-

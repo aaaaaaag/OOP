@@ -27,7 +27,7 @@ int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, const choose& userChoo
             operationStatus = Zoom(mainShape, updateCoordData.scaleCoords);
             break;
         case Quit:
-            operationStatus = freeAll(mainShape);
+            operationStatus = freeShapeMemory(mainShape);
             break;
         case Draw:
             operationStatus = FillGraphicsWidget(graphic, mainShape);
