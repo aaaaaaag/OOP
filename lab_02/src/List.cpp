@@ -2,7 +2,7 @@
 // Created by denis on 20.04.2021.
 //
 
-#include "../inc/List.h"
+#include "List.h"
 
 using namespace denis;
 
