@@ -3,7 +3,7 @@ project(lab_02_oop)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(${PROJECT_NAME} src/List.cpp inc/List.h src/ListNode.cpp inc/ListNode.h)
+add_library(${PROJECT_NAME} src/List.cpp inc/List.h src/ListNode.cpp inc/ListNode.h src/ListIterator.cpp inc/ListIterator.h)
 
 target_include_directories(${PROJECT_NAME} PUBLIC inc)
 
