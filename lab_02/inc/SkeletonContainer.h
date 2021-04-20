@@ -10,7 +10,7 @@ namespace denis {
     public:
 
         virtual ~ISkeletonContainer() = default;
-        virtual bool isEmpty() const = 0;
+        virtual bool isEmpty() = 0;
         virtual void clear() = 0;
 
     };
