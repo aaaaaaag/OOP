@@ -11,6 +11,7 @@
 namespace denis {
     template <typename T>
     class constListIterator {
+    public:
         constListIterator();
         explicit constListIterator(const std::shared_ptr<listNode<T>> &node);
         constListIterator(const constListIterator<T> &iterator);
@@ -26,7 +27,7 @@ namespace denis {
 
         constListIterator<T> &operator += (const int &size);
         constListIterator<T> operator + (const int &size) const;
-        constListIterator<T> operator = (const listIterator<T> &iterator);
+        constListIterator<T>& operator = (const listIterator<T> &iterator);
         constListIterator<T> &operator ++ ();
 
         bool operator != (const constListIterator<T> &iterator) const;
@@ -37,5 +38,4 @@ namespace denis {
 
     };
 }
-
 #endif //LAB_02_OOP_CONSTLISTITERATOR_H

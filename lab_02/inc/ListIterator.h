@@ -10,9 +10,7 @@
 #include "ListNode.h"
 namespace denis {
     template<typename T>
-class listIterator: private std::iterator<std::input_iterator_tag, T> {
-    public:
-
+class listIterator: public std::iterator<std::input_iterator_tag, T> {
 public:
     listIterator();
     explicit listIterator(const std::shared_ptr<listNode<T>> &node);

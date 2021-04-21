@@ -64,9 +64,7 @@ m_pTail(nullptr)
 template<typename T>
 void list<T>::clear() {
     while (this->m_size)
-    {
         this->popFront();
-    }
 }
 
 template<typename T>

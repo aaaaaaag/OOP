@@ -65,7 +65,7 @@ constListIterator<T> constListIterator<T>::operator+(const int &size) const {
 }
 
 template<typename T>
-constListIterator<T> constListIterator<T>::operator=(const listIterator<T> &iterator) {
+constListIterator<T>& constListIterator<T>::operator=(const listIterator<T> &iterator) {
     this->m_pNode = iterator.m_pNode.lock();
     return *this;
 }
