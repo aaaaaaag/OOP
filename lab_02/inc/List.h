@@ -20,12 +20,10 @@ class list: public ISkeletonContainer {
 public:
 
     list();
-    list(list<T> &&inList); // конструктор перемещения
+    list(list<T> &&inList) noexcept; // конструктор перемещения
     list(list<T> &inList); // конструктор копирования
     list(T *inArray, const int& size);
     list(std::initializer_list<T> inNodes);
-
-    ~list() = default;
 
     bool isEmpty() override;
     void clear() override;
@@ -41,21 +39,40 @@ public:
     listIterator<T> insert(const constListIterator<T> &iterator, const T &data);
     listIterator<T> insert(const constListIterator<T> &iterator, const list<T> &list);
 
-    T pop_front();
-    T pop_back();
+    T popFront();
+    T popBack();
 
+    T remove(const listIterator<T> &inIterator);
 
+    void reverse();
 
+    list<T> &merge(const list<T> &list);
+    list<T> &merge(const T &data);
+
+    listIterator<T> begin();
+    constListIterator<T> cbegin() const;
+
+    listIterator<T> end();
+    constListIterator<T> cend() const;
 
     list<T> &operator = (const list<T> &inList); // = копирования
-    list<T> &operator = (const list<T> &&inList); // = перемещения
+    list<T> &operator = (list<T> &&inList) noexcept; // = перемещения
+
+    list<T> &operator + (const list<T> &list);
+    list<T> &operator + (const T &data);
+
+    list<T> &operator += (const list<T> &list);
+    list<T> &operator += (const T &data);
+
+    bool operator == (const list<T> &list) const;
+    bool operator != (const list<T> &list) const;
 
 protected:
 
     std::shared_ptr<listNode<T>> getHeadNode();
     std::shared_ptr<listNode<T>> getTailNode();
-
-
+    listIterator<T> pushBack(const std::shared_ptr<listNode<T>> &node);
+    listIterator<T> pushFront(const std::shared_ptr<listNode<T>> &node);
 
 
 private:
