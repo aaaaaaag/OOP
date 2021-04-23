@@ -16,16 +16,15 @@ set(PROJECT_SOURCES
         inc/List.hpp
         inc/ListIterator.hpp
         inc/ListNode.hpp
-        )
+        tests/TestListNode.cpp)
 
-#add_library(${PROJECT_NAME} src/List.cpp inc/List.h src/ListNode.cpp inc/ListNode.h src/ListIterator.cpp
-    #    inc/ListIterator.h src/SkeletonContainer.cpp inc/SkeletonContainer.h src/ConstListIterator.cpp inc/ConstListIterator.h)
-
-#target_include_directories(${PROJECT_NAME} PUBLIC inc)
+add_subdirectory(lib/googletest)
+include_directories(lib/googletest/googletest/include)
+include_directories(lib/googletest/googlemock/include)
 
 
 
 add_executable(${PROJECT_NAME}_debug ${PROJECT_SOURCES} ${PROJECT_HEADERS})
-
+target_link_libraries(${PROJECT_NAME}_debug gtest gtest_main)
 #target_include_directories(${PROJECT_NAME}_debug PUBLIC inc)
 #target_link_libraries(${PROJECT_NAME}_debug PRIVATE ${PROJECT_NAME})
