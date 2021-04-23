@@ -29,6 +29,7 @@ namespace denis {
         constListIterator<T> operator + (const int &size) const;
         constListIterator<T>& operator = (const listIterator<T> &iterator);
         constListIterator<T> &operator ++ ();
+        const constListIterator<T> operator ++ (int);
 
         bool operator != (const constListIterator<T> &iterator) const;
         bool operator == (const constListIterator<T> &iterator) const;

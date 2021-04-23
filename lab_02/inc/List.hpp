@@ -39,10 +39,9 @@ list<T>::list(list<T> &inList):
             tmpNode = std::make_shared<listNode<T>>(listNode<T>());
         }
         catch (std::bad_alloc& err) {
-            auto timenow = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-            throw memory_error(ctime(&timenow), __FILE__, typeid(list).name(), __FUNCTION__);
+            //TODO process error
         }
-        tmpNode->set(node.get());
+        tmpNode->setNextNode(node.getNextNode());
         //this->
     }
 }
@@ -79,7 +78,7 @@ template<typename T>
 listIterator<T> list<T>::pushFront(const list<T> &list) {
     listIterator<T> iterator;
 
-    for (int i = 0; i < list.size; i++)
+    for (int i = 0; i < list.m_size; i++)
         iterator = this->insert(this->begin() + i, (*(list.cbegin() + i)).get());
 
     return iterator;
@@ -91,26 +90,26 @@ listIterator<T> list<T>::pushFront(const T &data) {
 
     //TODO add try catch block
 
-    temp_node->set(data);
-    return this->push_front(temp_node);
+    temp_node->setData(data);
+    return this->pushFront(temp_node);
 }
 
 template<typename T>
 listIterator<T> list<T>::pushBack(const T &data) {
     std::shared_ptr<listNode<T>> node = nullptr;
-
+    node = std::shared_ptr<listNode<T>>(new listNode<T>);
     //TODO add try catch block
 
-    node->set(data);
-    return this->push_back(node);
+    node->setData(data);
+    return this->pushBack(node);
 }
 
 template<typename T>
 listIterator<T> list<T>::pushBack(const list<T> &list) {
     for (auto current = list.cbegin(); current != list.cend(); current++)
-        this->push_back((*current).get());
+        this->pushBack((*current).get());
 
-    listIterator<T> iterator(this->tail);
+    listIterator<T> iterator(this->m_pTail);
     return iterator;
 }
 
@@ -130,7 +129,7 @@ listIterator<T> list<T>::insert(const listIterator<T> &iterator, const T &data) 
         //TODO error process
     }
 
-    tmpNode->set(data);
+    tmpNode->setData(data);
 
     if (iterator == this->begin())
         return pushFront(tmpNode);
@@ -140,9 +139,9 @@ listIterator<T> list<T>::insert(const listIterator<T> &iterator, const T &data) 
     listIterator<T> temp_iterator = this->begin();
     for (; temp_iterator + 1 != iterator; temp_iterator++);
 
-    tmpNode->set_next(temp_iterator->get_next());
-    temp_iterator->set_next(tmpNode);
-    this->size++;
+    tmpNode->setNextNode(temp_iterator->getNextNode());
+    temp_iterator->setNextNode(tmpNode);
+    this->m_size++;
 
     listIterator<T> insertIterator(tmpNode);
     return insertIterator;
@@ -156,7 +155,7 @@ listIterator<T> list<T>::insert(const listIterator<T> &iterator, const list<T> &
     }
 
     listIterator<T> insertIterator;
-    for (int i = 0; i < list.size; i++)
+    for (int i = 0; i < list.m_size; i++)
         insertIterator = insert(iterator, (*(list.cbegin() + i)).get());
 
     return insertIterator;
@@ -178,19 +177,20 @@ listIterator<T> list<T>::insert(const constListIterator<T> &iterator, const T &d
         //TODO error process
     }
 
-    tmpNode->set(data);
+    tmpNode->setData(data);
 
     if (iterator == this->cbegin())
-        return push_front(tmpNode);
+        return pushFront(tmpNode);
     else if (iterator == this->cend())
-        return this->push_back(tmpNode);
+        return this->pushBack(tmpNode);
 
     listIterator<T> tmpIterator = this->begin();
-    for (; tmpIterator + 1 != iterator; tmpIterator++);
+    //for (;  iterator != (tmpIterator + 1); tmpIterator++);
+    //TODO fix it!!!!
 
-    tmpNode->set_next(tmpIterator->get_next());
-    tmpIterator->set_next(tmpNode);
-    this->size++;
+    tmpNode->setNextNode(tmpIterator->getNextNode());
+    tmpIterator->setNextNode(tmpNode);
+    this->m_size++;
 
     listIterator<T> insertIterator(tmpNode);
     return insertIterator;
@@ -204,7 +204,7 @@ listIterator<T> list<T>::insert(const constListIterator<T> &iterator, const list
     }
 
     listIterator<T> insertIterator;
-    for (int i = 0; i < list.size; i++)
+    for (int i = 0; i < list.m_size; i++)
         insertIterator = insert(iterator, (*(list.cbegin() + i)).get());
 
     return insertIterator;
@@ -226,7 +226,7 @@ T list<T>::popFront() {
     }
     else
     {
-        this->m_pHead = this->m_pHead->getNext();
+        this->m_pHead = this->m_pHead->getNextNode();
     }
 
     this->m_size--;
@@ -250,8 +250,8 @@ T list<T>::popBack() {
     }
     else
     {
-        std::shared_ptr<listNode<T>> tmpNode = this->head;
-        for (; tmpNode->getNext() != this->tail; tmpNode = tmpNode->getNext());
+        std::shared_ptr<listNode<T>> tmpNode = this->m_pHead;
+        for (; tmpNode->getNextNode() != this->m_pTail; tmpNode = tmpNode->getNextNode());
 
         tmpNode->setNull();
         this->m_pTail = tmpNode;
@@ -284,7 +284,7 @@ T list<T>::remove(const listIterator<T> &inIterator) {
     for (; tmpIterator + 1 != inIterator; tmpIterator++);
 
     T data = tmpIterator->get();
-    tmpIterator->setNext(tmpIterator->getNext()->getNext());
+    tmpIterator->setNextNode(tmpIterator->getNextNode()->getNextNode());
     this->m_size--;
 
     return data;
@@ -298,8 +298,8 @@ void list<T>::reverse() {
 
     while (current)
     {
-        next = current->getNext();
-        current->setNext(prev);
+        next = current->getNextNode();
+        current->setNextNode(prev);
         prev = current;
         current = next;
     }
@@ -386,7 +386,7 @@ bool list<T>::operator!=(const list <T> &list) const {
 
 template<typename T>
 listIterator<T> list<T>::begin() {
-    listIterator<T> iterator(this-m_pHead);
+    listIterator<T> iterator(this->m_pHead);
     return iterator;
 }
 
@@ -436,7 +436,7 @@ listIterator<T> list<T>::pushBack(const std::shared_ptr<listNode<T>> &node) {
         //TODO error process
     }
 
-    tmpNode->set(node->get());
+    tmpNode->setData(node->get());
 
     if (!this->m_size)
     {

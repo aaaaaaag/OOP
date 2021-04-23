@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "inc/List.h"
+#include "inc/List.hpp"
 #include <vector>
 
 void print_list(denis::list<int> &inList)
@@ -18,6 +18,8 @@ int main()
     // Тест кострукторов
     std::cout << "Constructor 1 test: ";
     denis::list<int> list1;
+    list1.pushBack(10);
+    print_list(list1);
 
     std::cout << "\nConstructor 2 test: ";
     denis::list<int> list2;

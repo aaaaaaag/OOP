@@ -26,7 +26,7 @@ constListIterator<T>::constListIterator(const constListIterator<T> &iterator)
 
 template<typename T>
 void constListIterator<T>::next() {
-    this->m_pNode = this->m_pNode.lock()->getNext();
+    this->m_pNode = this->m_pNode.lock()->getNextNode();
 }
 
 template<typename T>
@@ -84,4 +84,10 @@ bool constListIterator<T>::operator!=(const constListIterator<T> &iterator) cons
 template<typename T>
 bool constListIterator<T>::operator==(const constListIterator<T> &iterator) const {
     return this->m_pNode.lock() == iterator.m_pNode.lock();
+}
+
+template<typename T>
+const constListIterator<T> constListIterator<T>::operator++(int) {
+    this->next();
+    return *this;
 }

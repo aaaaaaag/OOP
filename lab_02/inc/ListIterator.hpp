@@ -27,7 +27,7 @@ listIterator<T>::listIterator(const listIterator<T> &iterator) {
 
 template<typename T>
 void listIterator<T>::next() {
-    this->ptr = this->m_pNode.lock()->get_next();
+    this->m_pNode = this->m_pNode.lock()->getNextNode();
 }
 
 template<typename T>
@@ -37,17 +37,17 @@ bool listIterator<T>::isInvalid() const {
 
 template<typename T>
 listNode<T> *listIterator<T>::operator->() {
-    return this->ptr.lock().get();
+    return this->m_pNode.lock().get();
 }
 
 template<typename T>
 const listNode<T> *listIterator<T>::operator->() const {
-    return this->ptr.lock().get();
+    return this->m_pNode.lock().get();
 }
 
 template<typename T>
 const listNode<T> &listIterator<T>::operator*() const {
-    return *this->ptr.lock();
+    return *this->m_pNode.lock();
 }
 
 template<typename T>
@@ -57,7 +57,7 @@ listNode<T> &listIterator<T>::operator*() {
 
 template<typename T>
 listIterator<T>::operator bool() const {
-    return this->ptr.lock() != nullptr;
+    return this->m_pNode.lock() != nullptr;
 }
 
 template<typename T>
@@ -77,7 +77,7 @@ listIterator<T> listIterator<T>::operator+(const int &size) const {
 
 template<typename T>
 listIterator<T>& listIterator<T>::operator=(const listIterator<T> &iterator) {
-    this->ptr = iterator.ptr.lock();
+    this->m_pNode = iterator.m_pNode.lock();
     return *this;
 }
 
@@ -88,7 +88,7 @@ listIterator<T> &listIterator<T>::operator++() {
 }
 
 template<typename T>
-listIterator<T> listIterator<T>::operator++(int) {
+const listIterator<T> listIterator<T>::operator++(int) {
     listIterator<T> new_iterator(*this);
     this->next();
     return new_iterator;
@@ -96,12 +96,14 @@ listIterator<T> listIterator<T>::operator++(int) {
 
 template<typename T>
 bool listIterator<T>::operator!=(const listIterator<T> &iterator) const {
-    return this->ptr.lock() != iterator.ptr.lock();
+    return this->m_pNode.lock() != iterator.m_pNode.lock();
 }
 
 template<typename T>
 bool listIterator<T>::operator==(const listIterator<T> &iterator) const {
-    return this->ptr.lock() == iterator.ptr.lock();
+    return this->m_pNode.lock() == iterator.m_pNode.lock();
 }
+
+
 
 #endif
