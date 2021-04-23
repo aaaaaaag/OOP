@@ -2,6 +2,9 @@
 // Created by denis on 20.04.2021.
 //
 
+#ifndef LIST_ITERATOR_HPP
+#define LIST_ITERATOR_HPP
+
 #include "ListIterator.h"
 
 using namespace denis;
@@ -101,3 +104,4 @@ bool listIterator<T>::operator==(const listIterator<T> &iterator) const {
     return this->ptr.lock() == iterator.ptr.lock();
 }
 
+#endif

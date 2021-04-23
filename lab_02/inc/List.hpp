@@ -2,6 +2,9 @@
 // Created by denis on 20.04.2021.
 //
 
+#ifndef LIST_HPP
+#define LIST_HPP
+
 #include <chrono>
 #include "List.h"
 
@@ -473,6 +476,6 @@ listIterator<T> list<T>::pushFront(const std::shared_ptr<listNode<T>> &node) {
     return iterator;
 }
 
-
+#endif
 
 

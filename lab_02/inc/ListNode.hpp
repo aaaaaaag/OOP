@@ -2,6 +2,9 @@
 // Created by denis on 20.04.2021.
 //
 
+#ifndef LIST_NODE_HPP
+#define LIST_NODE_HPP
+
 #include "ListNode.h"
 
 using namespace denis;
@@ -72,7 +75,7 @@ bool listNode<T>::operator!=(const std::shared_ptr<listNode<T>> &cmpNode) const 
     return this != cmpNode;
 }
 
-
+#endif
 
 
 

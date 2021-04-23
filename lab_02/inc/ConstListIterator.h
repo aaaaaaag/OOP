@@ -5,8 +5,8 @@
 #ifndef LAB_02_OOP_CONSTLISTITERATOR_H
 #define LAB_02_OOP_CONSTLISTITERATOR_H
 
-#include "ListNode.h"
-#include "ListIterator.h"
+#include "ListNode.hpp"
+#include "ListIterator.hpp"
 
 namespace denis {
     template <typename T>

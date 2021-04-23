@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "List.h"
+#include "inc/List.h"
 #include <vector>
 
 void print_list(denis::list<int> &inList)

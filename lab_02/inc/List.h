@@ -8,10 +8,10 @@
 #include <initializer_list>
 
 
-#include "ListNode.h"
-#include "ListIterator.h"
+#include "ListNode.hpp"
+#include "ListIterator.hpp"
 #include "SkeletonContainer.h"
-#include "ConstListIterator.h"
+#include "ConstListIterator.hpp"
 
 namespace denis
 {
