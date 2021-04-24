@@ -102,6 +102,15 @@ bool denis::listIterator<T>::operator==(const denis::listIterator<T> &iterator) 
     return this->m_pNode.lock() == iterator.m_pNode.lock();
 }
 
+template<typename T>
+bool denis::listIterator<T>::operator!=(const denis::constListIterator<T> &iterator) const {
+    return this->m_pNode.lock() != iterator.m_pNode.lock();
+}
+
+template<typename T>
+bool denis::listIterator<T>::operator==(const denis::constListIterator<T> &iterator) const {
+    return this->m_pNode.lock() == iterator.m_pNode.lock();
+}
 
 
 #endif

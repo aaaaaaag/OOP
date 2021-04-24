@@ -8,10 +8,9 @@
 #include <chrono>
 #include "List.h"
 
-using namespace denis;
 
 template <typename T>
-list<T>::list():
+denis::list<T>::list():
         m_size(0),
         m_pHead(nullptr),
         m_pTail(nullptr)
@@ -19,7 +18,7 @@ list<T>::list():
 }
 
 template <typename T>
-list<T>::list(list<T> &&inList) noexcept :
+denis::list<T>::list(denis::list<T> &&inList) noexcept :
         m_size(inList.m_size),
         m_pHead(inList.m_pHead),
         m_pTail(inList.m_pTail)
@@ -27,11 +26,14 @@ list<T>::list(list<T> &&inList) noexcept :
 }
 
 template<typename T>
-list<T>::list(list<T> &inList):
+denis::list<T>::list(denis::list<T> &inList):
         m_size(inList.m_size),
         m_pHead(inList.m_pHead),
         m_pTail(inList.m_pTail)
 {
+
+    if (!inList.begin())
+        return;
     for (auto node: inList)
     {
         std::shared_ptr<listNode<T>> tmpNode = nullptr;
@@ -42,41 +44,53 @@ list<T>::list(list<T> &inList):
             //TODO process error
         }
         tmpNode->setNextNode(node.getNextNode());
-        //this->
     }
 }
 
 template<typename T>
-list<T>::list(T *inArray, const int &size) {
-    //TODO realise
+denis::list<T>::list(T *inArray, const int &size) {
+    if (!inArray)
+    {
+        //TODO process error
+    }
+
+    if (size <= 0)
+    {
+        //TODO process error
+    }
+
+    this->m_size = 0;
+    this->m_pHead = nullptr;
+    this->m_pTail = nullptr;
+
+    for (int i = 0; i < size; i++)
+        this->pushBack(*(inArray + i));
 }
 
 template<typename T>
-list<T>::list(std::initializer_list<T> inNodes):
+denis::list<T>::list(const std::initializer_list<T>& inNodes):
 m_size(0),
 m_pHead(nullptr),
 m_pTail(nullptr)
 {
     for (auto node: inNodes)
-    {
-
-    }
+        this->pushBack(node);
 }
 
 template<typename T>
-void list<T>::clear() {
+void denis::list<T>::clear() {
     while (this->m_size)
         this->popFront();
 }
 
 template<typename T>
-bool list<T>::isEmpty() {
+bool denis::list<T>::isEmpty() {
     return this->m_size == 0;
 }
 
 template<typename T>
-listIterator<T> list<T>::pushFront(const list<T> &list) {
-    listIterator<T> iterator;
+denis::listIterator<T> denis::list<T>::pushFront(const denis::list<T> &list) {
+    denis::listIterator<T> iterator;
 
     for (int i = 0; i < list.m_size; i++)
         iterator = this->insert(this->begin() + i, (*(list.cbegin() + i)).get());
@@ -85,17 +99,21 @@ listIterator<T> list<T>::pushFront(const list<T> &list) {
 }
 
 template<typename T>
-listIterator<T> list<T>::pushFront(const T &data) {
-    std::shared_ptr<listNode<T>> temp_node = nullptr;
+denis::listIterator<T> denis::list<T>::pushFront(const T &data) {
+    std::shared_ptr<denis::listNode<T>> tmpNode = nullptr;
+    try
+    {
+        tmpNode = std::shared_ptr<denis::listNode<T>>(new denis::listNode<T>);
+    } catch (std::bad_alloc &error) {
+        //TODO add error process
+    }
 
-    //TODO add try catch block
-
-    temp_node->setData(data);
-    return this->pushFront(temp_node);
+    tmpNode->setData(data);
+    return this->pushFront(tmpNode);
 }
 
 template<typename T>
-listIterator<T> list<T>::pushBack(const T &data) {
+denis::listIterator<T> denis::list<T>::pushBack(const T &data) {
     std::shared_ptr<listNode<T>> node = nullptr;
     node = std::shared_ptr<listNode<T>>(new listNode<T>);
     //TODO add try catch block
@@ -105,16 +123,16 @@ listIterator<T> list<T>::pushBack(const T &data) {
 }
 
 template<typename T>
-listIterator<T> list<T>::pushBack(const list<T> &list) {
+denis::listIterator<T> denis::list<T>::pushBack(const denis::list<T> &list) {
     for (auto current = list.cbegin(); current != list.cend(); current++)
         this->pushBack((*current).get());
 
-    listIterator<T> iterator(this->m_pTail);
+    denis::listIterator<T> iterator(this->m_pTail);
     return iterator;
 }
 
 template<typename T>
-listIterator<T> list<T>::insert(const listIterator<T> &iterator, const T &data) {
+denis::listIterator<T> denis::list<T>::insert(const denis::listIterator<T> &iterator, const T &data) {
     if (iterator.isInvalid())
     {
         //TODO error process
@@ -136,25 +154,25 @@ listIterator<T> list<T>::insert(const listIterator<T> &iterator, const T &data) 
     else if (iterator == this->end())
         return this->pushBack(tmpNode);
 
-    listIterator<T> temp_iterator = this->begin();
+    denis::listIterator<T> temp_iterator = this->begin();
     for (; temp_iterator + 1 != iterator; temp_iterator++);
 
     tmpNode->setNextNode(temp_iterator->getNextNode());
     temp_iterator->setNextNode(tmpNode);
     this->m_size++;
 
-    listIterator<T> insertIterator(tmpNode);
+    denis::listIterator<T> insertIterator(tmpNode);
     return insertIterator;
 }
 
 template<typename T>
-listIterator<T> list<T>::insert(const listIterator<T> &iterator, const list<T> &list) {
+denis::listIterator<T> denis::list<T>::insert(const denis::listIterator<T> &iterator, const denis::list<T> &list) {
     if (iterator.isInvalid())
     {
         //TODO error process
     }
 
-    listIterator<T> insertIterator;
+    denis::listIterator<T> insertIterator;
     for (int i = 0; i < list.m_size; i++)
         insertIterator = insert(iterator, (*(list.cbegin() + i)).get());
 
@@ -162,7 +180,7 @@ listIterator<T> list<T>::insert(const listIterator<T> &iterator, const list<T> &
 }
 
 template<typename T>
-listIterator<T> list<T>::insert(const constListIterator<T> &iterator, const T &data) {
+denis::listIterator<T> denis::list<T>::insert(const denis::constListIterator<T> &iterator, const T &data) {
     if (iterator.isInvalid())
     {
         //TODO error process
@@ -184,26 +202,26 @@ listIterator<T> list<T>::insert(const constListIterator<T> &iterator, const T &d
     else if (iterator == this->cend())
         return this->pushBack(tmpNode);
 
-    listIterator<T> tmpIterator = this->begin();
-    //for (;  iterator != (tmpIterator + 1); tmpIterator++);
+    denis::listIterator<T> tmpIterator = this->begin();
+    for (;  iterator != (tmpIterator + 1); tmpIterator++);
     //TODO fix it!!!!
 
     tmpNode->setNextNode(tmpIterator->getNextNode());
     tmpIterator->setNextNode(tmpNode);
     this->m_size++;
 
-    listIterator<T> insertIterator(tmpNode);
+    denis::listIterator<T> insertIterator(tmpNode);
     return insertIterator;
 }
 
 template<typename T>
-listIterator<T> list<T>::insert(const constListIterator<T> &iterator, const list <T> &list) {
+denis::listIterator<T> denis::list<T>::insert(const denis::constListIterator<T> &iterator, const list <T> &list) {
     if (iterator.isInvalid())
     {
         //TODO error process
     }
 
-    listIterator<T> insertIterator;
+    denis::listIterator<T> insertIterator;
     for (int i = 0; i < list.m_size; i++)
         insertIterator = insert(iterator, (*(list.cbegin() + i)).get());
 
@@ -211,7 +229,7 @@ listIterator<T> list<T>::insert(const constListIterator<T> &iterator, const list
 }
 
 template<typename T>
-T list<T>::popFront() {
+T denis::list<T>::popFront() {
     if (!this->m_size)
     {
         //TODO error process
@@ -235,7 +253,7 @@ T list<T>::popFront() {
 }
 
 template<typename T>
-T list<T>::popBack() {
+T denis::list<T>::popBack() {
     if (!this->m_size)
     {
         //TODO error process
@@ -264,7 +282,7 @@ T list<T>::popBack() {
 }
 
 template<typename T>
-T list<T>::remove(const listIterator<T> &inIterator) {
+T denis::list<T>::remove(const denis::listIterator<T> &inIterator) {
     if (inIterator.isInvalid())
     {
         //TODO error process
@@ -280,7 +298,7 @@ T list<T>::remove(const listIterator<T> &inIterator) {
         return popFront();
     }
 
-    listIterator<T> tmpIterator = this->begin();
+    denis::listIterator<T> tmpIterator = this->begin();
     for (; tmpIterator + 1 != inIterator; tmpIterator++);
 
     T data = tmpIterator->get();
@@ -291,7 +309,7 @@ T list<T>::remove(const listIterator<T> &inIterator) {
 }
 
 template<typename T>
-void list<T>::reverse() {
+void denis::list<T>::reverse() {
     std::shared_ptr<listNode<T>> current(this->m_pHead);
     std::shared_ptr<listNode<T>> next(nullptr);
     std::shared_ptr<listNode<T>> prev(nullptr);
@@ -311,7 +329,7 @@ void list<T>::reverse() {
 }
 
 template<typename T>
-list<T> &list<T>::operator=(const list<T> &inList) {
+denis::list<T> &denis::list<T>::operator=(const denis::list<T> &inList) {
     clear();
 
     this->m_size = 0;
@@ -323,50 +341,50 @@ list<T> &list<T>::operator=(const list<T> &inList) {
 }
 
 template<typename T>
-list<T> &list<T>::operator=(list<T> &&inList)  noexcept {
+denis::list<T> &denis::list<T>::operator=(denis::list<T> &&inList)  noexcept {
     this->m_size = inList.m_size;
     this->m_pHead = inList.m_pHead;
     this->m_pTail = inList.m_pTail;
 }
 
 template<typename T>
-list<T> &list<T>::merge(const list<T> &list) {
+denis::list<T> &denis::list<T>::merge(const denis::list<T> &list) {
     this->pushBack(list);
     return *this;
 }
 
 template<typename T>
-list<T> &list<T>::merge(const T &data) {
+denis::list<T> &denis::list<T>::merge(const T &data) {
     this->pushBack(data);
     return *this;
 }
 
 template<typename T>
-list<T> &list<T>::operator + (const list<T> &list) {
+denis::list<T> &denis::list<T>::operator + (const denis::list<T> &list) {
     this->pushBack(list);
     return *this;
 }
 
 template<typename T>
-list<T> &list<T>::operator + (const T &data) {
+denis::list<T> &denis::list<T>::operator + (const T &data) {
     this->pushBack(data);
     return *this;
 }
 
 template<typename T>
-list<T> &list<T>::operator+=(const list <T> &list) {
+denis::list<T> &denis::list<T>::operator+=(const list <T> &list) {
     this->pushBack(list);
     return *this;
 }
 
 template<typename T>
-list<T> &list<T>::operator+=(const T &data) {
+denis::list<T> &denis::list<T>::operator+=(const T &data) {
     this->pushBack(data);
     return *this;
 }
 
 template<typename T>
-bool list<T>::operator==(const list <T> &list) const {
+bool denis::list<T>::operator==(const list <T> &list) const {
     auto fst = this->cbegin();
     auto snd = list.cbegin();
 
@@ -380,46 +398,46 @@ bool list<T>::operator==(const list <T> &list) const {
 }
 
 template<typename T>
-bool list<T>::operator!=(const list <T> &list) const {
+bool denis::list<T>::operator!=(const list <T> &list) const {
     return !(*this == list);
 }
 
 template<typename T>
-listIterator<T> list<T>::begin() {
-    listIterator<T> iterator(this->m_pHead);
+denis::listIterator<T> denis::list<T>::begin() {
+    denis::listIterator<T> iterator(this->m_pHead);
     return iterator;
 }
 
 template<typename T>
-constListIterator<T> list<T>::cbegin() const {
-    constListIterator<T> iterator(this->m_pHead);
+denis::constListIterator<T> denis::list<T>::cbegin() const {
+    denis::constListIterator<T> iterator(this->m_pHead);
     return iterator;
 }
 
 template<typename T>
-listIterator <T> list<T>::end() {
-    listIterator<T> iterator(this->m_pTail);
+denis::listIterator<T> denis::list<T>::end() {
+    denis::listIterator<T> iterator(this->m_pTail);
     return ++iterator;
 }
 
 template<typename T>
-constListIterator<T> list<T>::cend() const {
-    constListIterator<T> iterator(this->m_pTail);
+denis::constListIterator<T> denis::list<T>::cend() const {
+    denis::constListIterator<T> iterator(this->m_pTail);
     return ++iterator;
 }
 
 template<typename T>
-std::shared_ptr<listNode<T>> list<T>::getHeadNode() {
+std::shared_ptr<denis::listNode<T>> denis::list<T>::getHeadNode() {
     return this->m_pHead;
 }
 
 template<typename T>
-std::shared_ptr<listNode<T>> list<T>::getTailNode() {
+std::shared_ptr<denis::listNode<T>> denis::list<T>::getTailNode() {
     return this->m_pTail;
 }
 
 template<typename T>
-listIterator<T> list<T>::pushBack(const std::shared_ptr<listNode<T>> &node) {
+denis::listIterator<T> denis::list<T>::pushBack(const std::shared_ptr<listNode<T>> &node) {
     if (!node)
     {
         // TODO error process
@@ -451,12 +469,12 @@ listIterator<T> list<T>::pushBack(const std::shared_ptr<listNode<T>> &node) {
 
     this->m_size++;
 
-    listIterator<T> iterator(this->m_pTail);
+    denis::listIterator<T> iterator(this->m_pTail);
     return iterator;
 }
 
 template<typename T>
-listIterator<T> list<T>::pushFront(const std::shared_ptr<listNode<T>> &node) {
+denis::listIterator<T> denis::list<T>::pushFront(const std::shared_ptr<listNode<T>> &node) {
     if (!node)
     {
         //TODO error process
@@ -472,8 +490,13 @@ listIterator<T> list<T>::pushFront(const std::shared_ptr<listNode<T>> &node) {
 
     this->m_size++;
 
-    listIterator<T> iterator(node);
+    denis::listIterator<T> iterator(node);
     return iterator;
+}
+
+template<typename T>
+size_t denis::list<T>::size() {
+    return m_size;
 }
 
 #endif

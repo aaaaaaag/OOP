@@ -33,7 +33,10 @@ namespace denis {
 
         bool operator != (const constListIterator<T> &iterator) const;
         bool operator == (const constListIterator<T> &iterator) const;
+        bool operator != (const listIterator<T> &iterator) const;
+        bool operator == (const listIterator<T> &iterator) const;
 
+        friend class listIterator<T>;
     protected:
         std::weak_ptr<listNode<T>> m_pNode;
 

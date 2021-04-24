@@ -23,7 +23,7 @@ namespace denis
         list(list<T> &&inList) noexcept; // конструктор перемещения
         list(list<T> &inList); // конструктор копирования
         list(T *inArray, const int& size);
-        list(std::initializer_list<T> inNodes);
+        list(const std::initializer_list<T>& inNodes);
 
         bool isEmpty() override;
         void clear() override;
@@ -45,6 +45,8 @@ namespace denis
         T remove(const listIterator<T> &inIterator);
 
         void reverse();
+        size_t size();
+
 
         list<T> &merge(const list<T> &list);
         list<T> &merge(const T &data);

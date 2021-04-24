@@ -9,7 +9,13 @@
 #include <memory>
 #include "ListNode.hpp"
 
+
+
 namespace denis {
+    template<typename T>
+    class constListIterator;
+
+
     template<typename T>
     class listIterator: public std::iterator<std::input_iterator_tag, T> {
         public:
@@ -39,6 +45,10 @@ namespace denis {
 
             bool operator != (const listIterator<T> &iterator) const;
             bool operator == (const listIterator<T> &iterator) const;
+            bool operator != (const constListIterator<T>& iterator) const;
+            bool operator == (const constListIterator<T>& iterator) const;
+
+            friend class constListIterator<T>;
 
         private:
             std::weak_ptr<listNode<T>> m_pNode;
