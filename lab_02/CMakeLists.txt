@@ -25,7 +25,7 @@ add_executable(${PROJECT_NAME}_debug main.cpp)
 target_include_directories(${PROJECT_NAME}_debug PRIVATE inc)
 target_link_libraries(${PROJECT_NAME}_debug PUBLIC ${PROJECT_NAME})
 
-add_executable(${PROJECT_NAME}_tests tests/TestListNode.cpp tests/TestListInterator.cpp)
+add_executable(${PROJECT_NAME}_tests tests/TestListNode.cpp tests/TestListInterator.cpp tests/TestConstListIterator.cpp)
 target_include_directories(${PROJECT_NAME}_tests PRIVATE inc)
 target_link_libraries(${PROJECT_NAME}_tests PUBLIC ${PROJECT_NAME} gtest gtest_main)
 #target_link_libraries(${PROJECT_NAME}_tests gtest gtest_main)

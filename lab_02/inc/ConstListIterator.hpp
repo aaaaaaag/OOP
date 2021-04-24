@@ -4,53 +4,51 @@
 
 #include "ConstListIterator.h"
 
-using namespace denis;
-
 template <typename T>
-constListIterator<T>::constListIterator():
-m_pNode(nullptr)
+denis::constListIterator<T>::constListIterator()
 {
+    this->m_pNode.lock() = nullptr;
 }
 
 template<typename T>
-constListIterator<T>::constListIterator(const std::shared_ptr<listNode<T>> &node):
-m_pNode(node)
+denis::constListIterator<T>::constListIterator(const std::shared_ptr<listNode<T>> &node)
 {
+    this->m_pNode = node;
 }
 
 template<typename T>
-constListIterator<T>::constListIterator(const constListIterator<T> &iterator)
+denis::constListIterator<T>::constListIterator(const denis::constListIterator<T> &iterator)
 {
     this->m_pNode = iterator.m_pNode.lock();
 }
 
 template<typename T>
-void constListIterator<T>::next() {
+void denis::constListIterator<T>::next() {
     this->m_pNode = this->m_pNode.lock()->getNextNode();
 }
 
 template<typename T>
-bool constListIterator<T>::isInvalid() const {
+bool denis::constListIterator<T>::isInvalid() const {
     return this->m_pNode.lock() == nullptr;
 }
 
 template<typename T>
-const listNode<T> *constListIterator<T>::operator->() const {
+const denis::listNode<T> *denis::constListIterator<T>::operator->() const {
     return this->m_pNode.lock().get();
 }
 
 template<typename T>
-const listNode<T> &constListIterator<T>::operator*() const {
+const denis::listNode<T> &denis::constListIterator<T>::operator*() const {
     return *this->m_pNode.lock().get();
 }
 
 template<typename T>
-constListIterator<T>::operator bool() const {
+denis::constListIterator<T>::operator bool() const {
     return this->m_pNode.lock() != nullptr;
 }
 
 template<typename T>
-constListIterator<T> &constListIterator<T>::operator+=(const int &size) {
+denis::constListIterator<T> &denis::constListIterator<T>::operator+=(const int &size) {
     for (int i = 0; i < size; i++)
         this->next();
 
@@ -58,36 +56,36 @@ constListIterator<T> &constListIterator<T>::operator+=(const int &size) {
 }
 
 template<typename T>
-constListIterator<T> constListIterator<T>::operator+(const int &size) const {
-    constListIterator<T> new_iterator(*this);
+denis::constListIterator<T> denis::constListIterator<T>::operator+(const int &size) const {
+    denis::constListIterator<T> new_iterator(*this);
     new_iterator += size;
     return new_iterator;
 }
 
 template<typename T>
-constListIterator<T>& constListIterator<T>::operator=(const listIterator<T> &iterator) {
+denis::constListIterator<T>& denis::constListIterator<T>::operator=(const listIterator<T> &iterator) {
     this->m_pNode = iterator.m_pNode.lock();
     return *this;
 }
 
 template<typename T>
-constListIterator<T> &constListIterator<T>::operator++() {
+denis::constListIterator<T> &denis::constListIterator<T>::operator++() {
     this->next();
     return *this;
 }
 
 template<typename T>
-bool constListIterator<T>::operator!=(const constListIterator<T> &iterator) const {
+bool denis::constListIterator<T>::operator!=(const denis::constListIterator<T> &iterator) const {
     return this->m_pNode.lock() != iterator.m_pNode.lock();
 }
 
 template<typename T>
-bool constListIterator<T>::operator==(const constListIterator<T> &iterator) const {
+bool denis::constListIterator<T>::operator==(const denis::constListIterator<T> &iterator) const {
     return this->m_pNode.lock() == iterator.m_pNode.lock();
 }
 
 template<typename T>
-const constListIterator<T> constListIterator<T>::operator++(int) {
+const denis::constListIterator<T> denis::constListIterator<T>::operator++(int) {
     this->next();
     return *this;
 }
