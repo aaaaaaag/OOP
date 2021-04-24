@@ -7,7 +7,7 @@
 
 TEST(ListNode, emptyConstructor)
 {
-    auto node = listNode<int>();
+    auto node = denis::listNode<int>();
 
     ASSERT_EQ(node.getNextNode(), nullptr);
 }
@@ -15,7 +15,7 @@ TEST(ListNode, emptyConstructor)
 TEST(ListNode, dataConstructor)
 {
     int testNumb = 10;
-    auto node = listNode<int>(testNumb);
+    auto node = denis::listNode<int>(testNumb);
     ASSERT_EQ(node.getNextNode(), nullptr);
     ASSERT_EQ(node.getData(), testNumb);
 }
@@ -23,8 +23,8 @@ TEST(ListNode, dataConstructor)
 TEST(ListNode, anotherNodeConstructor)
 {
     int testNumb = 10;
-    auto anotherNode = listNode<int>(testNumb);
-    auto mainNode = listNode<int>(anotherNode);
+    auto anotherNode = denis::listNode<int>(testNumb);
+    auto mainNode = denis::listNode<int>(anotherNode);
     ASSERT_EQ(mainNode.getNextNode(), nullptr);
     ASSERT_EQ(mainNode.getData(), testNumb);
 }
@@ -32,7 +32,7 @@ TEST(ListNode, anotherNodeConstructor)
 TEST(ListNode, setDataFunc)
 {
     int data = 10;
-    auto node = listNode<int>(data);
+    auto node = denis::listNode<int>(data);
     ASSERT_EQ(node.getData(), data);
     int newData = 15;
     node.setData(15);
@@ -41,16 +41,16 @@ TEST(ListNode, setDataFunc)
 
 TEST(ListNode, setNextNodeBySharedNode)
 {
-    auto node = listNode<int>();
-    auto newNode = std::make_shared<listNode<int>>();
+    auto node = denis::listNode<int>();
+    auto newNode = std::make_shared<denis::listNode<int>>();
     node.setNextNode(newNode);
     ASSERT_EQ(node.getNextNode(), newNode);
 }
 
 TEST(ListNode, setNextNodeByObjectNode)
 {
-    auto node = listNode<int>(10);
-    auto anotherNode = listNode<int>(10);
+    auto node = denis::listNode<int>(10);
+    auto anotherNode = denis::listNode<int>(10);
     node.setNextNode(anotherNode);
     ASSERT_EQ(node.getNextNode()->getData(), anotherNode.getData());
     ASSERT_EQ(node.getNextNode()->getNextNode(), anotherNode.getNextNode());
@@ -58,28 +58,28 @@ TEST(ListNode, setNextNodeByObjectNode)
 
 TEST(ListNode, get)
 {
-    auto node = listNode<int>(10);
+    auto node = denis::listNode<int>(10);
     int num = node.get();
     ASSERT_EQ(num, 10);
 }
 
 TEST(ListNode, getData)
 {
-    auto node = listNode<int>(10);
+    auto node = denis::listNode<int>(10);
     int num = node.getData();
     ASSERT_EQ(num, 10);
 }
 
 TEST(ListNode, getNextNode)
 {
-    auto node = listNode<int>();
+    auto node = denis::listNode<int>();
     ASSERT_EQ(node.getNextNode(), nullptr);
 }
 
 TEST(ListNode, setNull)
 {
-    auto node = listNode<int>();
-    node.setNextNode(std::make_shared<listNode<int>>());
+    auto node = denis::listNode<int>();
+    node.setNextNode(std::make_shared<denis::listNode<int>>());
     ASSERT_NE(node.getNextNode(), nullptr);
     node.setNull();
     ASSERT_EQ(node.getNextNode(), nullptr);
@@ -87,8 +87,8 @@ TEST(ListNode, setNull)
 
 TEST(ListNode, operatorEqual)
 {
-    auto node = std::make_shared<listNode<int>>();
-    auto anotherNode = std::make_shared<listNode<int>>();
+    auto node = std::make_shared<denis::listNode<int>>();
+    auto anotherNode = std::make_shared<denis::listNode<int>>();
     node->setNextNode(anotherNode);
 
     ASSERT_EQ(node == node, true);
@@ -98,8 +98,8 @@ TEST(ListNode, operatorEqual)
 
 TEST(ListNode, operatorNotEqual)
 {
-    auto node = std::make_shared<listNode<int>>();
-    auto anotherNode = std::make_shared<listNode<int>>();
+    auto node = std::make_shared<denis::listNode<int>>();
+    auto anotherNode = std::make_shared<denis::listNode<int>>();
     node->setNextNode(anotherNode);
 
     ASSERT_EQ(node != node, false);

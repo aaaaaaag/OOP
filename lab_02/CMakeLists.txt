@@ -8,7 +8,7 @@ add_library(${PROJECT_NAME} inc/ConstListIterator.h
         inc/ListIterator.h
         inc/ListNode.h
         inc/SkeletonContainer.h
-        inc/fake.cpp
+        src/fake.cpp
         inc/ConstListIterator.hpp
         inc/List.hpp
         inc/ListIterator.hpp
