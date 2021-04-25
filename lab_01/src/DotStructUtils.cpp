@@ -5,100 +5,97 @@
 #include <cmath>
 #include "DotStructUtils.h"
 #include "Errors.h"
+#include "cmath"
 
-
-int addDotToDot(dot &first, dot second)
+int MoveDot(dot &first, const MoveCoords_t& second)
 {
-    first.coordX += second.coordX;
-    first.coordY += second.coordY;
-    first.coordZ += second.coordZ;
+    first.coordX += second.xMove;
+    first.coordY += second.yMove;
+    first.coordZ += second.zMove;
     return OK;
 }
 
-int Move(mainShape_t& shape, dot &centerDot, MoveCoords_t moveCoords)
+int MoveCoords(dotsStruct& dots, dot &centerDot, const MoveCoords_t& moveCoords)
 {
-    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
-        return INCORRECT_ARG;
-    dot moveDot{moveCoords.xMove, moveCoords.yMove, moveCoords.zMove};
-    for (int i = 0; i < shape.coordsNumb; i++)
-        addDotToDot(shape.shapeCoords[i], moveDot);
+    if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
 
-    addDotToDot(centerDot, moveDot);
+    for (int i = 0; i < dots.coordsNumb; i++)
+        MoveDot(dots.shapeCoords[i], moveCoords);
+    MoveDot(centerDot, moveCoords);
     return OK;
 }
 
-
-int RotateDot(double& coord1, double& coord2, double centerCoord1, double centerCoord2, double degrees)
+int Move(mainShape_t& shape, const MoveCoords_t& moveCoords)
 {
-    double coord1Copy = coord1;
-    double coord2Copy = coord2;
-    coord1 = centerCoord1 + (coord1Copy - centerCoord1) * cos(degrees)
-                                         - (coord2Copy - centerCoord2) * sin(degrees);
-    coord2 = centerCoord2 + (coord1Copy - centerCoord1) * sin(degrees)
-                                         + (coord2Copy - centerCoord2) * cos(degrees);
+    if (isShapeCorrect(shape) != OK) return INCORRECT_ARG;
+
+    return MoveCoords(shape.dots, shape.center, moveCoords);
+}
+
+int RotateDot(double& coord1, double& coord2, const double centerCoord1, const double centerCoord2, const double& degrees)
+{
+    double coord1Copy = coord1, coord2Copy = coord2;
+    coord1 = centerCoord1 + (coord1Copy - centerCoord1) * cos(degrees) - (coord2Copy - centerCoord2) * sin(degrees);
+    coord2 = centerCoord2 + (coord1Copy - centerCoord1) * sin(degrees) + (coord2Copy - centerCoord2) * cos(degrees);
     return OK;
 }
 
-int RotateX(dot& rotateDot, dot centerDot, double degrees)
+int RotateX(dot& rotateDot, const dot& centerDot, const double& degrees)
 {
     return RotateDot(rotateDot.coordY, rotateDot.coordZ, centerDot.coordY, centerDot.coordZ, degrees);
 }
 
-int RotateY(dot& rotateDot, dot centerDot, double degrees)
+int RotateY(dot& rotateDot, const dot& centerDot, const double& degrees)
 {
     return RotateDot(rotateDot.coordX, rotateDot.coordZ, centerDot.coordX, centerDot.coordZ, degrees);
 }
 
-int RotateZ(dot& rotateDot, dot centerDot, double degrees)
+int RotateZ(dot& rotateDot, const dot& centerDot, const double& degrees)
 {
     return RotateDot(rotateDot.coordX, rotateDot.coordY, centerDot.coordX, centerDot.coordY, degrees);
 }
 
-int RotateXAxis(mainShape_t& shape, dot centerDot, RotateCoords_t degrees)
+int RotateXAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
-    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
-        return INCORRECT_ARG;
-    double newDegrees = degrees.xRotateDegrees * 3.14 / 180;
-    for (int i = 0; i < shape.coordsNumb; i++)
-        RotateX(shape.shapeCoords[i], centerDot, newDegrees);
+    if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
+    double newDegrees = degrees.xRotateDegrees * M_PI / 180;
+    for (int i = 0; i < dots.coordsNumb; i++) RotateX(dots.shapeCoords[i], centerDot, newDegrees);
     return OK;
 }
 
-int RotateYAxis(mainShape_t& shape, dot centerDot, RotateCoords_t degrees)
+int RotateYAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
-    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
-        return INCORRECT_ARG;
-    double newDegrees = degrees.yRotateDegrees * 3.14 / 180;
-    for (int i = 0; i < shape.coordsNumb; i++)
-        RotateY(shape.shapeCoords[i], centerDot, newDegrees);
+    if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
+    double newDegrees = degrees.yRotateDegrees * M_PI / 180;
+    for (int i = 0; i < dots.coordsNumb; i++) RotateY(dots.shapeCoords[i], centerDot, newDegrees);
     return OK;
 }
 
-int RotateZAxis(mainShape_t& shape, dot centerDot, RotateCoords_t degrees)
+int RotateZAxis(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& degrees)
 {
-    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
-        return INCORRECT_ARG;
-    double newDegrees = degrees.zRotateDegrees * 3.14 / 180;
-    for (int i = 0; i < shape.coordsNumb; i++)
-        RotateZ(shape.shapeCoords[i], centerDot, newDegrees);
+    if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
+    double newDegrees = degrees.zRotateDegrees * M_PI / 180;
+    for (int i = 0; i < dots.coordsNumb; i++) RotateZ(dots.shapeCoords[i], centerDot, newDegrees);
     return OK;
 }
 
-int Rotate(mainShape_t& shape, dot centerDot, RotateCoords_t rotateCoords)
+int RotateCoords(dotsStruct& dots, const dot& centerDot, const RotateCoords_t& rotateCoords)
 {
     int error = OK;
-    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
-        return INCORRECT_ARG;
-    error = RotateXAxis(shape, centerDot, rotateCoords);
-    if (error == OK) {
-        error = RotateYAxis(shape, centerDot, rotateCoords);
-        if (error == OK)
-            error = RotateZAxis(shape, centerDot, rotateCoords);
-    }
+    if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
+    if ((error = RotateXAxis(dots, centerDot, rotateCoords)) != OK) return error;
+    if ((error = RotateYAxis(dots, centerDot, rotateCoords)) != OK) return error;
+    if ((error = RotateZAxis(dots, centerDot, rotateCoords)) != OK) return error;
     return error;
 }
 
-int ZoomDot(dot& zoomDot, dot centerDot, ScaleCoords_t scaleCoords)
+int Rotate(mainShape_t& shape, const RotateCoords_t& rotateCoords)
+{
+    if (isShapeCorrect(shape) != OK) return INCORRECT_ARG;
+    return RotateCoords(shape.dots, shape.center, rotateCoords);
+}
+
+int ZoomDot(dot& zoomDot, const dot& centerDot, const ScaleCoords_t& scaleCoords)
 {
     zoomDot.coordX = centerDot.coordX + (zoomDot.coordX - centerDot.coordX) * scaleCoords.xScaleKoef;
     zoomDot.coordY = centerDot.coordY + (zoomDot.coordY - centerDot.coordY) * scaleCoords.yScaleKoef;
@@ -106,56 +103,16 @@ int ZoomDot(dot& zoomDot, dot centerDot, ScaleCoords_t scaleCoords)
     return OK;
 }
 
-
-int Zoom(mainShape_t& shape, dot centerDot, ScaleCoords_t scaleCoords)
-{
-    if (shape.shapeCoords == nullptr && shape.coordsNumb != 0)
-        return INCORRECT_ARG;
+int ZoomCoords(dotsStruct& dots, const dot& centerDot, const ScaleCoords_t& scaleCoords) {
+    if (dots.shapeCoords == nullptr && dots.coordsNumb != 0) return INCORRECT_ARG;
     int error = OK;
-    for (int i = 0; i < shape.coordsNumb && error == OK; i++)
-    {
-        error = ZoomDot(shape.shapeCoords[i], centerDot, scaleCoords);
-    }
+    for (int i = 0; i < dots.coordsNumb && error == OK; i++)
+        error = ZoomDot(dots.shapeCoords[i], centerDot, scaleCoords);
     return error;
 }
 
+int Zoom(mainShape_t& shape, const ScaleCoords_t& scaleCoords) {
+    if (isShapeCorrect(shape) != OK) return INCORRECT_ARG;
 
-int SetMaxDot(dot& maxDot, dot checkDot)
-{
-    if (maxDot.coordX < checkDot.coordX)
-        maxDot.coordX = checkDot.coordX;
-    if (maxDot.coordY < checkDot.coordY)
-        maxDot.coordY = checkDot.coordY;
-    if (maxDot.coordZ < checkDot.coordZ)
-        maxDot.coordZ = checkDot.coordZ;
-    return OK;
-}
-
-int SetMinDot(dot& minDot, dot checkDot)
-{
-    if (minDot.coordX > checkDot.coordX)
-        minDot.coordX = checkDot.coordX;
-    if (minDot.coordY > checkDot.coordY)
-        minDot.coordY = checkDot.coordY;
-    if (minDot.coordZ > checkDot.coordZ)
-        minDot.coordZ = checkDot.coordZ;
-    return OK;
-}
-
-
-int SetShapeCenter(mainShape_t shape, dot& centerDot)
-{
-    if (shape.coordsNumb != 0 && shape.shapeCoords == nullptr)
-        return INCORRECT_ARG;
-    dot maxDot = shape.shapeCoords[0];
-    dot minDot = shape.shapeCoords[0];
-    for (int i = 0; i < shape.coordsNumb; i++)
-    {
-        SetMaxDot(maxDot, shape.shapeCoords[i]);
-        SetMinDot(minDot, shape.shapeCoords[i]);
-    }
-    centerDot.coordX = (maxDot.coordX - minDot.coordX) / 2;
-    centerDot.coordY = (maxDot.coordY - minDot.coordY) / 2;
-    centerDot.coordZ = (maxDot.coordZ - minDot.coordZ) / 2;
-    return OK;
+    return ZoomCoords(shape.dots, shape.center, scaleCoords);
 }

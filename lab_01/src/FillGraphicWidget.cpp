@@ -5,19 +5,24 @@
 #include "FillGraphicWidget.h"
 #include "Errors.h"
 
-int FillGraphicsWidget(CanvasStruct& canvasWidget, mainShape_t shape)
+int FillGraphicsWidgetWithShapeData(CanvasStruct& canvasWidget, const dotsStruct& dots, const linksStruct& links)
 {
-    //QMessageBox::critical(nullptr, "Ошибка ", "Нет фигуры для совершения действий. Загрузите ее", QMessageBox::Ok);
-    int error = OK;
-    if (shape.coordsNumb <= 0 || shape.shapeCoords == nullptr || !canvasWidget.canvas)
-        return INCORRECT_ARG;
-    clear(canvasWidget);
-    for (int i = 0; i < shape.linksNumb; i++)
+    if (dots.coordsNumb <= 0 || dots.shapeCoords == nullptr || !canvasWidget.canvas) return INCORRECT_ARG;
+    int error = clear(canvasWidget);
+    for (int i = 0; i < links.linksNumb && error == OK; i++)
     {
-        auto curLink = shape.linkNodesNumbers[i];
-        auto DotFrom = shape.shapeCoords[curLink.from];
-        auto DotTo = shape.shapeCoords[curLink.to];
+        auto curLink = links.linkNodesNumbers[i];
+        auto DotFrom = dots.shapeCoords[curLink.from];
+        auto DotTo = dots.shapeCoords[curLink.to];
         error = drawLine(canvasWidget, DotFrom, DotTo);
     }
     return error;
+}
+
+
+int FillGraphicsWidget(CanvasStruct& canvasWidget, const mainShape_t& shape)
+{
+    if (isShapeCorrect(shape) != OK) return INCORRECT_ARG;
+
+    return FillGraphicsWidgetWithShapeData(canvasWidget, shape.dots, shape.links);
 }

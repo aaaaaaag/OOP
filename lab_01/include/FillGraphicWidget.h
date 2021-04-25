@@ -8,6 +8,6 @@
 #include "Qt/CanvasStruct.h"
 #include "DotStruct.h"
 
-int FillGraphicsWidget(CanvasStruct& canvasWidget, mainShape_t shape);
+int FillGraphicsWidget(CanvasStruct& canvasWidget, const mainShape_t& shape);
 
 #endif //LAB_01_OOP_FILLGRAPHICWIDGET_H

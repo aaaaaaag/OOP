@@ -38,6 +38,6 @@ void ZoomButton::UpdateUtilData() {
         return;
     }
     auto data = m_pActionSlots->m_data;
-    SetScaleCoords(data->scaleCoords, std::stoi(xLine), std::stoi(yLine), std::stoi(zLine));
+    SetScaleCoords(data->coordChangeData.scaleCoords, std::stoi(xLine), std::stoi(yLine), std::stoi(zLine));
     m_pActionSlots->Scale();
 }

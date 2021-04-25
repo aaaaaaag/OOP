@@ -9,26 +9,32 @@
 #include "Qt/CanvasStruct.h"
 #include "FillGraphicWidget.h"
 #include "DotStructUtils.h"
+#include "DotFileIO.h"
 enum choose
 {
     GetShapeFromFile = 0,
     MoveShape = 1,
     RotateShape = 2,
     ScaleShape = 3,
-    Quit = 4
+    Quit = 4,
+    Draw = 5
+};
+
+struct CoordWorkData
+{
+    MoveCoords_t moveCoords;
+    RotateCoords_t rotateCoords;
+    ScaleCoords_t scaleCoords;
 };
 
 struct UtilsStruct
 {
-    dot centerDot;
-    MoveCoords_t moveCoords;
-    RotateCoords_t rotateCoords;
-    ScaleCoords_t scaleCoords;
-    char *filename;
+    FileWorkData fileData;
+    CoordWorkData coordChangeData;
 };
 
 
-int ApplyAction(UtilsStruct& data, CanvasStruct& canvas, choose userChoose);
+int ApplyAction(UtilsStruct& data, CanvasStruct& graphic, const choose& userChoose);
 
 
 #endif //LAB_01_OOP_LOGIC_H
