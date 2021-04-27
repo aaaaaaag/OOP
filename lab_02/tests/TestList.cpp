@@ -58,9 +58,10 @@ TEST(List, clearFunc)
 TEST(List, pushFrontList)
 {
     denis::list<int> l {0, 1, 2};
-    auto list = denis::list<int>();
+    denis::list<int> list {0};
     list.pushFront(l);
     ASSERT_EQ(list.isEmpty(), false);
+    ASSERT_EQ(list.popBack(), 0);
     ASSERT_EQ(list.popBack(), 2);
     ASSERT_EQ(list.popBack(), 1);
     ASSERT_EQ(list.popBack(), 0);
@@ -104,6 +105,21 @@ TEST(List, insertDataByIterator)
     ASSERT_EQ(list.popBack(), 15);
     ASSERT_EQ(list.popBack(), 20);
     ASSERT_EQ(list.popBack(), 10);
+}
+
+TEST(List, insertDataByIteratorIncorrectIterator)
+{
+    auto list = denis::list<int>();
+    list.pushBack(10);
+    list.pushBack(15);
+    try {
+        list.insert(list.begin() + 4, 20);
+    }
+    catch (InvalidArgument& err) {
+        ASSERT_EQ(true, true);
+        return;
+    }
+    ASSERT_EQ(false, true);
 }
 
 TEST(List, insertListByIterator)

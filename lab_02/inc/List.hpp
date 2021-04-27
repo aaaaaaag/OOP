@@ -7,7 +7,7 @@
 
 #include <chrono>
 #include "List.h"
-
+#include "ErrorExceptions.hpp"
 
 template <typename T>
 denis::list<T>::list():
@@ -36,12 +36,14 @@ denis::list<T>::list(denis::list<T> &inList):
         return;
     for (auto node: inList)
     {
-        std::shared_ptr<listNode<T>> tmpNode = nullptr;
-        try {
-            tmpNode = std::make_shared<listNode<T>>(listNode<T>());
-        }
-        catch (std::bad_alloc& err) {
-            //TODO process error
+        std::shared_ptr<denis::listNode<T>> tmpNode;
+        try
+        {
+            tmpNode = std::make_shared<denis::listNode<T>>();
+        } catch (std::bad_alloc &error) {
+            time_t curTime = time(nullptr);
+            auto curLocalTime = localtime(&curTime);
+            throw MemoryError(asctime(curLocalTime), __FILE__, __LINE__, "Shared_ptr allocate error");
         }
         tmpNode->setNextNode(node.getNextNode());
     }
@@ -51,12 +53,16 @@ template<typename T>
 denis::list<T>::list(T *inArray, const int &size) {
     if (!inArray)
     {
-        //TODO process error
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "Empty array");
     }
 
     if (size <= 0)
     {
-        //TODO process error
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "Incorrect size arg( <= 0)");
     }
 
     this->m_size = 0;
@@ -100,12 +106,14 @@ denis::listIterator<T> denis::list<T>::pushFront(const denis::list<T> &list) {
 
 template<typename T>
 denis::listIterator<T> denis::list<T>::pushFront(const T &data) {
-    std::shared_ptr<denis::listNode<T>> tmpNode = nullptr;
+    std::shared_ptr<denis::listNode<T>> tmpNode;
     try
     {
-        tmpNode = std::shared_ptr<denis::listNode<T>>(new denis::listNode<T>);
+        tmpNode = std::make_shared<denis::listNode<T>>();
     } catch (std::bad_alloc &error) {
-        //TODO add error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw MemoryError(asctime(curLocalTime), __FILE__, __LINE__, "Shared_ptr allocate error");
     }
 
     tmpNode->setData(data);
@@ -114,12 +122,18 @@ denis::listIterator<T> denis::list<T>::pushFront(const T &data) {
 
 template<typename T>
 denis::listIterator<T> denis::list<T>::pushBack(const T &data) {
-    std::shared_ptr<listNode<T>> node = nullptr;
-    node = std::shared_ptr<listNode<T>>(new listNode<T>);
-    //TODO add try catch block
+    std::shared_ptr<denis::listNode<T>> tmpNode;
+    try
+    {
+        tmpNode = std::make_shared<denis::listNode<T>>();
+    } catch (std::bad_alloc &error) {
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw MemoryError(asctime(curLocalTime), __FILE__, __LINE__, "Shared_ptr allocate error");
+    }
 
-    node->setData(data);
-    return this->pushBack(node);
+    tmpNode->setData(data);
+    return this->pushBack(tmpNode);
 }
 
 template<typename T>
@@ -135,16 +149,18 @@ template<typename T>
 denis::listIterator<T> denis::list<T>::insert(const denis::listIterator<T> &iterator, const T &data) {
     if (iterator.isInvalid())
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "Invalid iterator");
     }
-
-    std::shared_ptr<listNode<T>> tmpNode = nullptr;
-
+    std::shared_ptr<denis::listNode<T>> tmpNode;
     try
     {
-        tmpNode = std::shared_ptr<listNode<T>>(new listNode<T>); // maybe std make_shared
+        tmpNode = std::make_shared<denis::listNode<T>>();
     } catch (std::bad_alloc &error) {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw MemoryError(asctime(curLocalTime), __FILE__, __LINE__, "Shared_ptr allocate error");
     }
 
     tmpNode->setData(data);
@@ -169,7 +185,9 @@ template<typename T>
 denis::listIterator<T> denis::list<T>::insert(const denis::listIterator<T> &iterator, const denis::list<T> &list) {
     if (iterator.isInvalid())
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "Invalid iterator");
     }
 
     denis::listIterator<T> insertIterator;
@@ -183,16 +201,19 @@ template<typename T>
 denis::listIterator<T> denis::list<T>::insert(const denis::constListIterator<T> &iterator, const T &data) {
     if (iterator.isInvalid())
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "Invalid iterator");
     }
 
-    std::shared_ptr<listNode<T>> tmpNode = nullptr;
-
+    std::shared_ptr<denis::listNode<T>> tmpNode;
     try
     {
-        tmpNode = std::shared_ptr<listNode<T>>(new listNode<T>);
-    } catch (std::bad_alloc &err) {
-        //TODO error process
+        tmpNode = std::make_shared<denis::listNode<T>>();
+    } catch (std::bad_alloc &error) {
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw MemoryError(asctime(curLocalTime), __FILE__, __LINE__, "Shared_ptr allocate error");
     }
 
     tmpNode->setData(data);
@@ -204,7 +225,6 @@ denis::listIterator<T> denis::list<T>::insert(const denis::constListIterator<T> 
 
     denis::listIterator<T> tmpIterator = this->begin();
     for (;  iterator != (tmpIterator + 1); tmpIterator++);
-    //TODO fix it!!!!
 
     tmpNode->setNextNode(tmpIterator->getNextNode());
     tmpIterator->setNextNode(tmpNode);
@@ -218,7 +238,9 @@ template<typename T>
 denis::listIterator<T> denis::list<T>::insert(const denis::constListIterator<T> &iterator, const list <T> &list) {
     if (iterator.isInvalid())
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "Invalid iterator");
     }
 
     denis::listIterator<T> insertIterator;
@@ -232,7 +254,9 @@ template<typename T>
 T denis::list<T>::popFront() {
     if (!this->m_size)
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidState(asctime(curLocalTime), __FILE__, __LINE__, "try to pop element in empty list");
     }
 
     T data = this->m_pHead->get();
@@ -256,7 +280,9 @@ template<typename T>
 T denis::list<T>::popBack() {
     if (!this->m_size)
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidState(asctime(curLocalTime), __FILE__, __LINE__, "try to pop element in empty list");
     }
 
     T data = this->m_pTail->get();
@@ -285,12 +311,16 @@ template<typename T>
 T denis::list<T>::remove(const denis::listIterator<T> &inIterator) {
     if (inIterator.isInvalid())
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "Invalid iterator");
     }
 
     if (!this->m_size)
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidState(asctime(curLocalTime), __FILE__, __LINE__, "try to pop element in empty list");
     }
 
     if (inIterator == this->begin())
@@ -440,18 +470,19 @@ template<typename T>
 denis::listIterator<T> denis::list<T>::pushBack(const std::shared_ptr<listNode<T>> &node) {
     if (!node)
     {
-        // TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "empty in node");
     }
 
-    std::shared_ptr<listNode<T>> tmpNode = nullptr;
-
+    std::shared_ptr<denis::listNode<T>> tmpNode;
     try
     {
-        tmpNode = std::shared_ptr<listNode<T>>(new listNode<T>);
-    }
-    catch (std::bad_alloc &error)
-    {
-        //TODO error process
+        tmpNode = std::make_shared<denis::listNode<T>>();
+    } catch (std::bad_alloc &error) {
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw MemoryError(asctime(curLocalTime), __FILE__, __LINE__, "Shared_ptr allocate error");
     }
 
     tmpNode->setData(node->get());
@@ -477,7 +508,9 @@ template<typename T>
 denis::listIterator<T> denis::list<T>::pushFront(const std::shared_ptr<listNode<T>> &node) {
     if (!node)
     {
-        //TODO error process
+        time_t curTime = time(nullptr);
+        auto curLocalTime = localtime(&curTime);
+        throw InvalidArgument(asctime(curLocalTime), __FILE__, __LINE__, "empty in node");
     }
 
     node->setNextNode(this->m_pHead);

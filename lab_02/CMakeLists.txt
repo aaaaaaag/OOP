@@ -12,7 +12,7 @@ add_library(${PROJECT_NAME} inc/ConstListIterator.h
         inc/ConstListIterator.hpp
         inc/List.hpp
         inc/ListIterator.hpp
-        inc/ListNode.hpp)
+        inc/ListNode.hpp inc/ErrorExceptions.hpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE inc)
 

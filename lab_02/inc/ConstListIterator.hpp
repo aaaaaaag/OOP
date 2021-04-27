@@ -24,6 +24,8 @@ denis::constListIterator<T>::constListIterator(const denis::constListIterator<T>
 
 template<typename T>
 void denis::constListIterator<T>::next() {
+    if (this->m_pNode.lock() == nullptr)
+        return;
     this->m_pNode = this->m_pNode.lock()->getNextNode();
 }
 

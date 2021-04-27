@@ -25,6 +25,8 @@ denis::listIterator<T>::listIterator(const denis::listIterator<T> &iterator) {
 
 template<typename T>
 void denis::listIterator<T>::next() {
+    if (this->m_pNode.lock() == nullptr)
+        return;
     this->m_pNode = this->m_pNode.lock()->getNextNode();
 }
 
@@ -81,6 +83,7 @@ denis::listIterator<T>& denis::listIterator<T>::operator=(const denis::listItera
 
 template<typename T>
 denis::listIterator<T> &denis::listIterator<T>::operator++() {
+
     this->next();
     return *this;
 }
