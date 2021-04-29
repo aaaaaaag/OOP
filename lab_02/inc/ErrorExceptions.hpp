@@ -6,66 +6,48 @@
 #include <exception>
 #include <string>
 
-class ExceptionMatrix: public std::exception {
+class ListExceptions: public std::exception {
 protected:
     std::string _errmsg;
 public:
-    ExceptionMatrix(const std::string& time_info, const std::string& file_info, int line_info,
+    ListExceptions(const std::string& time_info, const std::string& file_info, int line_info,
                     const std::string& errmsg = "No error message");
-    ~ExceptionMatrix() override = default;
+    ~ListExceptions() override = default;
     [[nodiscard]] const char *what() const noexcept override {
         return _errmsg.c_str();
     };
 };
 
-ExceptionMatrix::ExceptionMatrix(const std::string& time_info, const std::string& file_info, int line_info,
+ListExceptions::ListExceptions(const std::string& time_info, const std::string& file_info, int line_info,
                                  const std::string& errmsg) {
     _errmsg = "\nFile: " + file_info + "\nLine: " + std::to_string(line_info) + "\nTime: " + time_info + "Message: " + errmsg;
 }
 
 
-class IndexError: public ExceptionMatrix {
+class IndexError: public ListExceptions {
 public:
     IndexError(const std::string& time_info, const std::string& file_info, const int line_info,
                const std::string& errmsg = "No error message"):
-            ExceptionMatrix(time_info, file_info, line_info, errmsg) {
+            ListExceptions(time_info, file_info, line_info, errmsg) {
         _errmsg += " (error type: IndexError)";
     }
 };
 
 
-class MemoryError: public ExceptionMatrix {
+class MemoryError: public ListExceptions {
 public:
     MemoryError(const std::string& time_info, const std::string& file_info, const int line_info,
                 const std::string& errmsg = "No error message"):
-            ExceptionMatrix(time_info, file_info, line_info, errmsg) {
+            ListExceptions(time_info, file_info, line_info, errmsg) {
         _errmsg += " (error type: MemoryError)";
     }
 };
 
-class InvalidArgument: public ExceptionMatrix {
+class InvalidArgument: public ListExceptions {
 public:
     InvalidArgument(const std::string& time_info, const std::string& file_info, const int line_info,
                     const std::string& errmsg = "No error message"):
-            ExceptionMatrix(time_info, file_info, line_info, errmsg) {
+            ListExceptions(time_info, file_info, line_info, errmsg) {
         _errmsg += " (error type: InvalidArgument)";
-    }
-};
-
-class IncompatibleElements: public ExceptionMatrix {
-public:
-    IncompatibleElements(const std::string& time_info, const std::string& file_info, const int line_info,
-                         const std::string& errmsg = "No error message"):
-            ExceptionMatrix(time_info, file_info, line_info, errmsg) {
-        _errmsg += " (error type: IncompatibleElements)";
-    }
-};
-
-class InvalidState: public ExceptionMatrix {
-public:
-    InvalidState(const std::string& time_info, const std::string& file_info, const int line_info,
-                 const std::string& errmsg = "No error message"):
-            ExceptionMatrix(time_info, file_info, line_info, errmsg) {
-        _errmsg += " (error type: InvalidState)";
     }
 };

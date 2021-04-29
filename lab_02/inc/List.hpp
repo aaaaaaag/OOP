@@ -50,7 +50,7 @@ denis::list<T>::list(denis::list<T> &inList):
 }
 
 template<typename T>
-denis::list<T>::list(T *inArray, const int &size) {
+denis::list<T>::list(const T *inArray, const int &size) {
     if (!inArray)
     {
         time_t curTime = time(nullptr);
@@ -74,7 +74,7 @@ denis::list<T>::list(T *inArray, const int &size) {
 }
 
 template<typename T>
-denis::list<T>::list(const std::initializer_list<T>& inNodes):
+denis::list<T>::list(std::initializer_list<T> inNodes):
 m_size(0),
 m_pHead(nullptr),
 m_pTail(nullptr)
@@ -530,6 +530,119 @@ denis::listIterator<T> denis::list<T>::pushFront(const std::shared_ptr<listNode<
 template<typename T>
 size_t denis::list<T>::size() {
     return m_size;
+}
+
+template<typename T>
+template<typename iter>
+denis::list<T>::list(const iter& begin, const iter& end)
+{
+    m_size = 0;
+    m_pHead = nullptr;
+    m_pTail = nullptr;
+    for (auto iter = begin; iter != end; iter++)
+        pushBack(iter);
+}
+
+template<typename T>
+template<typename iter>
+denis::listIterator<T> denis::list<T>::pushFront(const iter& begin, const iter& end)
+{
+    denis::list<T> listNew(begin, end);
+    pushFront(listNew);
+}
+
+template<typename T>
+template<typename iter>
+denis::listIterator<T> denis::list<T>::pushFront(const iter& begin, size_t count)
+{
+    iter end = begin;
+    for (int i = 0; i < count; i++, end++);
+    denis::list<T> listNew(begin, end);
+    pushFront(listNew);
+}
+
+template<typename T>
+template<typename iter>
+denis::listIterator<T> denis::list<T>::pushBack(const iter& begin, const iter& end)
+{
+    denis::list<T> listNew(begin, end);
+    pushBack(listNew);
+}
+
+template<typename T>
+template<typename iter>
+denis::listIterator<T> denis::list<T>::pushBack(const iter& begin, size_t count)
+{
+    iter end = begin;
+    for (int i = 0; i < count; i++, end++);
+    denis::list<T> listNew(begin, end);
+    pushBack(listNew);
+}
+
+template<typename T>
+template<typename iter>
+denis::listIterator<T> denis::list<T>::insert(const listIterator<T> &iterator, const iter& begin, const iter& end)
+{
+    denis::list<T> listNew(begin, end);
+    insert(iterator, listNew);
+}
+
+template<typename T>
+template<typename iter>
+denis::listIterator<T> denis::list<T>::insert(const listIterator<T> &iterator, const iter& begin, size_t count)
+{
+    iter end = begin;
+    for (int i = 0; i < count; i++, end++);
+    denis::list<T> listNew(begin, end);
+    insert(iterator, listNew);
+}
+
+
+template<typename T>
+template<typename iter>
+denis::listIterator<T> denis::list<T>::insert(const constListIterator<T> &iterator, const iter& begin, const iter& end)
+{
+    denis::list<T> listNew(begin, end);
+    insert(iterator, listNew);
+}
+
+template<typename T>
+template<typename iter>
+denis::listIterator<T> denis::list<T>::insert(const constListIterator<T> &iterator, const iter& begin, size_t count)
+{
+    iter end = begin;
+    for (int i = 0; i < count; i++, end++);
+    denis::list<T> listNew(begin, end);
+    insert(iterator, listNew);
+}
+
+template<typename T>
+denis::list<T> denis::list<T>::remove(const listIterator<T> &inIterator, size_t count)
+{
+    denis::list<T> resList();
+    auto iter = inIterator;
+    for (int i = 0; i < count; i++, iter++)
+        resList.pushBack(remove(iter));
+
+    return resList;
+}
+
+template<typename T>
+template<typename iter>
+denis::list<T>& denis::list<T>::merge(const iter& begin, const iter& end)
+{
+    denis::list<T> listNew(begin, end);
+    return merge(listNew);
+}
+
+template<typename T>
+template<typename iter>
+denis::list<T>& denis::list<T>::merge(const iter& begin, size_t count)
+{
+    iter end = begin;
+    for (int i = 0; i < count; i++, end++);
+    denis::list<T> listNew(begin, end);
+    return merge(listNew);
 }
 
 #endif
