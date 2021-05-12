@@ -517,9 +517,7 @@ denis::listIterator<T> denis::list<T>::pushFront(const std::shared_ptr<listNode<
     this->m_pHead = node;
 
     if (!this->m_size)
-    {
         this->m_pTail = this->m_pHead;
-    }
 
     this->m_size++;
 

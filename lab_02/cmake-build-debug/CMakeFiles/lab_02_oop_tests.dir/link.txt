@@ -1,0 +1,1 @@
+/bin/g++  -g   CMakeFiles/lab_02_oop_tests.dir/tests/TestListNode.cpp.o CMakeFiles/lab_02_oop_tests.dir/tests/TestListInterator.cpp.o CMakeFiles/lab_02_oop_tests.dir/tests/TestConstListIterator.cpp.o CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.o  -o lab_02_oop_tests  liblab_02_oop.a lib/libgtestd.a lib/libgtest_maind.a lib/libgtestd.a -lpthread 

@@ -1,0 +1,593 @@
+        -:    0:Source:/home/denis/OOP/lab_02/tests/TestListNode.cpp
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestListNode.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestListNode.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 23.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#include "gtest/gtest.h"
+        -:    6:#include "ListNode.hpp"
+        -:    7:
+        4:    8:TEST(ListNode, emptyConstructor)
+        -:    9:{
+        1:   10:    auto node = denis::listNode<int>();
+        -:   11:
+       2*:   12:    ASSERT_EQ(node.getNextNode(), nullptr);
+        -:   13:}
+------------------
+_ZN30ListNode_emptyConstructor_TestC2Ev:
+        1:    8:TEST(ListNode, emptyConstructor)
+        1:    8-block  0
+------------------
+_ZN30ListNode_emptyConstructor_TestD0Ev:
+        1:    8:TEST(ListNode, emptyConstructor)
+        1:    8-block  0
+------------------
+_ZN30ListNode_emptyConstructor_TestD2Ev:
+        1:    8:TEST(ListNode, emptyConstructor)
+        1:    8-block  0
+------------------
+_ZN30ListNode_emptyConstructor_Test8TestBodyEv:
+        1:    8:TEST(ListNode, emptyConstructor)
+        -:    9:{
+        1:   10:    auto node = denis::listNode<int>();
+        1:   10-block  0
+    $$$$$:   10-block  1
+        -:   11:
+       2*:   12:    ASSERT_EQ(node.getNextNode(), nullptr);
+    %%%%%:   12-block  0
+    %%%%%:   12-block  1
+    %%%%%:   12-block  2
+    %%%%%:   12-block  3
+    $$$$$:   12-block  4
+    $$$$$:   12-block  5
+    $$$$$:   12-block  6
+    $$$$$:   12-block  7
+    $$$$$:   12-block  8
+    $$$$$:   12-block  9
+    $$$$$:   12-block 10
+        -:   13:}
+------------------
+        -:   14:
+        4:   15:TEST(ListNode, dataConstructor)
+        -:   16:{
+        1:   17:    int testNumb = 10;
+        1:   18:    auto node = denis::listNode<int>(testNumb);
+       2*:   19:    ASSERT_EQ(node.getNextNode(), nullptr);
+       1*:   20:    ASSERT_EQ(node.getData(), testNumb);
+        -:   21:}
+------------------
+_ZN29ListNode_dataConstructor_TestC2Ev:
+        1:   15:TEST(ListNode, dataConstructor)
+        1:   15-block  0
+------------------
+_ZN29ListNode_dataConstructor_TestD0Ev:
+        1:   15:TEST(ListNode, dataConstructor)
+        1:   15-block  0
+------------------
+_ZN29ListNode_dataConstructor_TestD2Ev:
+        1:   15:TEST(ListNode, dataConstructor)
+        1:   15-block  0
+------------------
+_ZN29ListNode_dataConstructor_Test8TestBodyEv:
+        1:   15:TEST(ListNode, dataConstructor)
+        -:   16:{
+        1:   17:    int testNumb = 10;
+        1:   18:    auto node = denis::listNode<int>(testNumb);
+        1:   18-block  0
+    $$$$$:   18-block  1
+       2*:   19:    ASSERT_EQ(node.getNextNode(), nullptr);
+    %%%%%:   19-block  0
+    %%%%%:   19-block  1
+    %%%%%:   19-block  2
+    %%%%%:   19-block  3
+    $$$$$:   19-block  4
+    $$$$$:   19-block  5
+    $$$$$:   19-block  6
+    $$$$$:   19-block  7
+    $$$$$:   19-block  8
+    $$$$$:   19-block  9
+    $$$$$:   19-block 10
+       1*:   20:    ASSERT_EQ(node.getData(), testNumb);
+        1:   20-block  0
+        1:   20-block  1
+    %%%%%:   20-block  2
+    %%%%%:   20-block  3
+    %%%%%:   20-block  4
+    %%%%%:   20-block  5
+    $$$$$:   20-block  6
+    $$$$$:   20-block  7
+    $$$$$:   20-block  8
+    $$$$$:   20-block  9
+    $$$$$:   20-block 10
+        -:   21:}
+------------------
+        -:   22:
+        4:   23:TEST(ListNode, anotherNodeConstructor)
+        -:   24:{
+        1:   25:    int testNumb = 10;
+        1:   26:    auto anotherNode = denis::listNode<int>(testNumb);
+        1:   27:    auto mainNode = denis::listNode<int>(anotherNode);
+       2*:   28:    ASSERT_EQ(mainNode.getNextNode(), nullptr);
+       1*:   29:    ASSERT_EQ(mainNode.getData(), testNumb);
+        -:   30:}
+------------------
+_ZN36ListNode_anotherNodeConstructor_TestC2Ev:
+        1:   23:TEST(ListNode, anotherNodeConstructor)
+        1:   23-block  0
+------------------
+_ZN36ListNode_anotherNodeConstructor_TestD0Ev:
+        1:   23:TEST(ListNode, anotherNodeConstructor)
+        1:   23-block  0
+------------------
+_ZN36ListNode_anotherNodeConstructor_TestD2Ev:
+        1:   23:TEST(ListNode, anotherNodeConstructor)
+        1:   23-block  0
+------------------
+_ZN36ListNode_anotherNodeConstructor_Test8TestBodyEv:
+        1:   23:TEST(ListNode, anotherNodeConstructor)
+        -:   24:{
+        1:   25:    int testNumb = 10;
+        1:   26:    auto anotherNode = denis::listNode<int>(testNumb);
+        1:   26-block  0
+    $$$$$:   26-block  1
+        1:   27:    auto mainNode = denis::listNode<int>(anotherNode);
+    $$$$$:   27-block  0
+       2*:   28:    ASSERT_EQ(mainNode.getNextNode(), nullptr);
+    %%%%%:   28-block  0
+    %%%%%:   28-block  1
+    %%%%%:   28-block  2
+    %%%%%:   28-block  3
+    $$$$$:   28-block  4
+    $$$$$:   28-block  5
+    $$$$$:   28-block  6
+    $$$$$:   28-block  7
+    $$$$$:   28-block  8
+    $$$$$:   28-block  9
+    $$$$$:   28-block 10
+       1*:   29:    ASSERT_EQ(mainNode.getData(), testNumb);
+        1:   29-block  0
+        1:   29-block  1
+    %%%%%:   29-block  2
+    %%%%%:   29-block  3
+    %%%%%:   29-block  4
+    %%%%%:   29-block  5
+    $$$$$:   29-block  6
+    $$$$$:   29-block  7
+    $$$$$:   29-block  8
+    $$$$$:   29-block  9
+    $$$$$:   29-block 10
+        -:   30:}
+------------------
+        -:   31:
+        4:   32:TEST(ListNode, setDataFunc)
+        -:   33:{
+        1:   34:    int data = 10;
+        1:   35:    auto node = denis::listNode<int>(data);
+       1*:   36:    ASSERT_EQ(node.getData(), data);
+        1:   37:    int newData = 15;
+        1:   38:    node.setData(15);
+       1*:   39:    ASSERT_EQ(node.getData(), newData);
+        -:   40:}
+------------------
+_ZN25ListNode_setDataFunc_TestC2Ev:
+        1:   32:TEST(ListNode, setDataFunc)
+        1:   32-block  0
+------------------
+_ZN25ListNode_setDataFunc_TestD0Ev:
+        1:   32:TEST(ListNode, setDataFunc)
+        1:   32-block  0
+------------------
+_ZN25ListNode_setDataFunc_TestD2Ev:
+        1:   32:TEST(ListNode, setDataFunc)
+        1:   32-block  0
+------------------
+_ZN25ListNode_setDataFunc_Test8TestBodyEv:
+        1:   32:TEST(ListNode, setDataFunc)
+        -:   33:{
+        1:   34:    int data = 10;
+        1:   35:    auto node = denis::listNode<int>(data);
+        1:   35-block  0
+    $$$$$:   35-block  1
+       1*:   36:    ASSERT_EQ(node.getData(), data);
+        1:   36-block  0
+    %%%%%:   36-block  1
+    %%%%%:   36-block  2
+    %%%%%:   36-block  3
+    %%%%%:   36-block  4
+    $$$$$:   36-block  5
+    $$$$$:   36-block  6
+    $$$$$:   36-block  7
+    $$$$$:   36-block  8
+    $$$$$:   36-block  9
+        1:   37:    int newData = 15;
+        1:   38:    node.setData(15);
+        1:   38-block  0
+       1*:   39:    ASSERT_EQ(node.getData(), newData);
+        1:   39-block  0
+    %%%%%:   39-block  1
+    %%%%%:   39-block  2
+    %%%%%:   39-block  3
+    %%%%%:   39-block  4
+    $$$$$:   39-block  5
+    $$$$$:   39-block  6
+    $$$$$:   39-block  7
+    $$$$$:   39-block  8
+    $$$$$:   39-block  9
+        -:   40:}
+------------------
+        -:   41:
+        4:   42:TEST(ListNode, setNextNodeBySharedNode)
+        -:   43:{
+        1:   44:    auto node = denis::listNode<int>();
+        1:   45:    auto newNode = std::make_shared<denis::listNode<int>>();
+        1:   46:    node.setNextNode(newNode);
+       2*:   47:    ASSERT_EQ(node.getNextNode(), newNode);
+        -:   48:}
+------------------
+_ZN37ListNode_setNextNodeBySharedNode_TestC2Ev:
+        1:   42:TEST(ListNode, setNextNodeBySharedNode)
+        1:   42-block  0
+------------------
+_ZN37ListNode_setNextNodeBySharedNode_TestD0Ev:
+        1:   42:TEST(ListNode, setNextNodeBySharedNode)
+        1:   42-block  0
+------------------
+_ZN37ListNode_setNextNodeBySharedNode_TestD2Ev:
+        1:   42:TEST(ListNode, setNextNodeBySharedNode)
+        1:   42-block  0
+------------------
+_ZN37ListNode_setNextNodeBySharedNode_Test8TestBodyEv:
+        1:   42:TEST(ListNode, setNextNodeBySharedNode)
+        -:   43:{
+        1:   44:    auto node = denis::listNode<int>();
+        1:   44-block  0
+    $$$$$:   44-block  1
+        1:   45:    auto newNode = std::make_shared<denis::listNode<int>>();
+    $$$$$:   45-block  0
+        1:   46:    node.setNextNode(newNode);
+        1:   46-block  0
+       2*:   47:    ASSERT_EQ(node.getNextNode(), newNode);
+    %%%%%:   47-block  0
+    %%%%%:   47-block  1
+    %%%%%:   47-block  2
+    %%%%%:   47-block  3
+    $$$$$:   47-block  4
+    $$$$$:   47-block  5
+    $$$$$:   47-block  6
+    $$$$$:   47-block  7
+    $$$$$:   47-block  8
+    $$$$$:   47-block  9
+        -:   48:}
+------------------
+        -:   49:
+        4:   50:TEST(ListNode, setNextNodeByObjectNode)
+        -:   51:{
+        1:   52:    auto node = denis::listNode<int>(10);
+        1:   53:    auto anotherNode = denis::listNode<int>(10);
+        1:   54:    node.setNextNode(anotherNode);
+       2*:   55:    ASSERT_EQ(node.getNextNode()->getData(), anotherNode.getData());
+       2*:   56:    ASSERT_EQ(node.getNextNode()->getNextNode(), anotherNode.getNextNode());
+        -:   57:}
+------------------
+_ZN37ListNode_setNextNodeByObjectNode_TestC2Ev:
+        1:   50:TEST(ListNode, setNextNodeByObjectNode)
+        1:   50-block  0
+------------------
+_ZN37ListNode_setNextNodeByObjectNode_TestD0Ev:
+        1:   50:TEST(ListNode, setNextNodeByObjectNode)
+        1:   50-block  0
+------------------
+_ZN37ListNode_setNextNodeByObjectNode_TestD2Ev:
+        1:   50:TEST(ListNode, setNextNodeByObjectNode)
+        1:   50-block  0
+------------------
+_ZN37ListNode_setNextNodeByObjectNode_Test8TestBodyEv:
+        1:   50:TEST(ListNode, setNextNodeByObjectNode)
+        -:   51:{
+        1:   52:    auto node = denis::listNode<int>(10);
+        1:   52-block  0
+    $$$$$:   52-block  1
+        1:   53:    auto anotherNode = denis::listNode<int>(10);
+    $$$$$:   53-block  0
+        1:   54:    node.setNextNode(anotherNode);
+       2*:   55:    ASSERT_EQ(node.getNextNode()->getData(), anotherNode.getData());
+        1:   55-block  0
+    %%%%%:   55-block  1
+    %%%%%:   55-block  2
+    %%%%%:   55-block  3
+    %%%%%:   55-block  4
+    $$$$$:   55-block  5
+    $$$$$:   55-block  6
+    $$$$$:   55-block  7
+    $$$$$:   55-block  8
+    $$$$$:   55-block  9
+    $$$$$:   55-block 10
+       2*:   56:    ASSERT_EQ(node.getNextNode()->getNextNode(), anotherNode.getNextNode());
+        1:   56-block  0
+    %%%%%:   56-block  1
+    %%%%%:   56-block  2
+    %%%%%:   56-block  3
+    %%%%%:   56-block  4
+    $$$$$:   56-block  5
+    $$$$$:   56-block  6
+    $$$$$:   56-block  7
+    $$$$$:   56-block  8
+    $$$$$:   56-block  9
+    $$$$$:   56-block 10
+    $$$$$:   56-block 11
+    $$$$$:   56-block 12
+        -:   57:}
+------------------
+        -:   58:
+        4:   59:TEST(ListNode, get)
+        -:   60:{
+        1:   61:    auto node = denis::listNode<int>(10);
+        1:   62:    int num = node.get();
+       1*:   63:    ASSERT_EQ(num, 10);
+        -:   64:}
+------------------
+_ZN17ListNode_get_TestC2Ev:
+        1:   59:TEST(ListNode, get)
+        1:   59-block  0
+------------------
+_ZN17ListNode_get_TestD0Ev:
+        1:   59:TEST(ListNode, get)
+        1:   59-block  0
+------------------
+_ZN17ListNode_get_TestD2Ev:
+        1:   59:TEST(ListNode, get)
+        1:   59-block  0
+------------------
+_ZN17ListNode_get_Test8TestBodyEv:
+        1:   59:TEST(ListNode, get)
+        -:   60:{
+        1:   61:    auto node = denis::listNode<int>(10);
+        1:   61-block  0
+    $$$$$:   61-block  1
+        1:   62:    int num = node.get();
+       1*:   63:    ASSERT_EQ(num, 10);
+        1:   63-block  0
+    %%%%%:   63-block  1
+    %%%%%:   63-block  2
+    %%%%%:   63-block  3
+    %%%%%:   63-block  4
+    $$$$$:   63-block  5
+    $$$$$:   63-block  6
+    $$$$$:   63-block  7
+    $$$$$:   63-block  8
+    $$$$$:   63-block  9
+    $$$$$:   63-block 10
+        -:   64:}
+------------------
+        -:   65:
+        4:   66:TEST(ListNode, getData)
+        -:   67:{
+        1:   68:    auto node = denis::listNode<int>(10);
+        1:   69:    int num = node.getData();
+       1*:   70:    ASSERT_EQ(num, 10);
+        -:   71:}
+------------------
+_ZN21ListNode_getData_TestC2Ev:
+        1:   66:TEST(ListNode, getData)
+        1:   66-block  0
+------------------
+_ZN21ListNode_getData_TestD0Ev:
+        1:   66:TEST(ListNode, getData)
+        1:   66-block  0
+------------------
+_ZN21ListNode_getData_TestD2Ev:
+        1:   66:TEST(ListNode, getData)
+        1:   66-block  0
+------------------
+_ZN21ListNode_getData_Test8TestBodyEv:
+        1:   66:TEST(ListNode, getData)
+        -:   67:{
+        1:   68:    auto node = denis::listNode<int>(10);
+        1:   68-block  0
+    $$$$$:   68-block  1
+        1:   69:    int num = node.getData();
+       1*:   70:    ASSERT_EQ(num, 10);
+        1:   70-block  0
+    %%%%%:   70-block  1
+    %%%%%:   70-block  2
+    %%%%%:   70-block  3
+    %%%%%:   70-block  4
+    $$$$$:   70-block  5
+    $$$$$:   70-block  6
+    $$$$$:   70-block  7
+    $$$$$:   70-block  8
+    $$$$$:   70-block  9
+    $$$$$:   70-block 10
+        -:   71:}
+------------------
+        -:   72:
+        4:   73:TEST(ListNode, getNextNode)
+        -:   74:{
+        1:   75:    auto node = denis::listNode<int>();
+       2*:   76:    ASSERT_EQ(node.getNextNode(), nullptr);
+        -:   77:}
+------------------
+_ZN25ListNode_getNextNode_TestC2Ev:
+        1:   73:TEST(ListNode, getNextNode)
+        1:   73-block  0
+------------------
+_ZN25ListNode_getNextNode_TestD0Ev:
+        1:   73:TEST(ListNode, getNextNode)
+        1:   73-block  0
+------------------
+_ZN25ListNode_getNextNode_TestD2Ev:
+        1:   73:TEST(ListNode, getNextNode)
+        1:   73-block  0
+------------------
+_ZN25ListNode_getNextNode_Test8TestBodyEv:
+        1:   73:TEST(ListNode, getNextNode)
+        -:   74:{
+        1:   75:    auto node = denis::listNode<int>();
+        1:   75-block  0
+    $$$$$:   75-block  1
+       2*:   76:    ASSERT_EQ(node.getNextNode(), nullptr);
+    %%%%%:   76-block  0
+    %%%%%:   76-block  1
+    %%%%%:   76-block  2
+    %%%%%:   76-block  3
+    $$$$$:   76-block  4
+    $$$$$:   76-block  5
+    $$$$$:   76-block  6
+    $$$$$:   76-block  7
+    $$$$$:   76-block  8
+    $$$$$:   76-block  9
+    $$$$$:   76-block 10
+        -:   77:}
+------------------
+        -:   78:
+        4:   79:TEST(ListNode, setNull)
+        -:   80:{
+        1:   81:    auto node = denis::listNode<int>();
+        1:   82:    node.setNextNode(std::make_shared<denis::listNode<int>>());
+       2*:   83:    ASSERT_NE(node.getNextNode(), nullptr);
+        1:   84:    node.setNull();
+       2*:   85:    ASSERT_EQ(node.getNextNode(), nullptr);
+        -:   86:}
+------------------
+_ZN21ListNode_setNull_TestC2Ev:
+        1:   79:TEST(ListNode, setNull)
+        1:   79-block  0
+------------------
+_ZN21ListNode_setNull_TestD0Ev:
+        1:   79:TEST(ListNode, setNull)
+        1:   79-block  0
+------------------
+_ZN21ListNode_setNull_TestD2Ev:
+        1:   79:TEST(ListNode, setNull)
+        1:   79-block  0
+------------------
+_ZN21ListNode_setNull_Test8TestBodyEv:
+        1:   79:TEST(ListNode, setNull)
+        -:   80:{
+        1:   81:    auto node = denis::listNode<int>();
+        1:   81-block  0
+    $$$$$:   81-block  1
+        1:   82:    node.setNextNode(std::make_shared<denis::listNode<int>>());
+        1:   82-block  0
+       2*:   83:    ASSERT_NE(node.getNextNode(), nullptr);
+    %%%%%:   83-block  0
+    %%%%%:   83-block  1
+    %%%%%:   83-block  2
+    %%%%%:   83-block  3
+    $$$$$:   83-block  4
+    $$$$$:   83-block  5
+    $$$$$:   83-block  6
+    $$$$$:   83-block  7
+    $$$$$:   83-block  8
+    $$$$$:   83-block  9
+    $$$$$:   83-block 10
+        1:   84:    node.setNull();
+        1:   84-block  0
+       2*:   85:    ASSERT_EQ(node.getNextNode(), nullptr);
+    %%%%%:   85-block  0
+    %%%%%:   85-block  1
+    %%%%%:   85-block  2
+    %%%%%:   85-block  3
+    $$$$$:   85-block  4
+    $$$$$:   85-block  5
+    $$$$$:   85-block  6
+    $$$$$:   85-block  7
+    $$$$$:   85-block  8
+    $$$$$:   85-block  9
+    $$$$$:   85-block 10
+        -:   86:}
+------------------
+        -:   87:
+        4:   88:TEST(ListNode, operatorEqual)
+        -:   89:{
+        1:   90:    auto node = std::make_shared<denis::listNode<int>>();
+        1:   91:    auto anotherNode = std::make_shared<denis::listNode<int>>();
+        1:   92:    node->setNextNode(anotherNode);
+        -:   93:
+       1*:   94:    ASSERT_EQ(node == node, true);
+       1*:   95:    ASSERT_NE(node == anotherNode, true);
+       1*:   96:    ASSERT_EQ(node->getNextNode() == anotherNode, true);
+        -:   97:}
+------------------
+_ZN27ListNode_operatorEqual_TestC2Ev:
+        1:   88:TEST(ListNode, operatorEqual)
+        1:   88-block  0
+------------------
+_ZN27ListNode_operatorEqual_TestD0Ev:
+        1:   88:TEST(ListNode, operatorEqual)
+        1:   88-block  0
+------------------
+_ZN27ListNode_operatorEqual_TestD2Ev:
+        1:   88:TEST(ListNode, operatorEqual)
+        1:   88-block  0
+------------------
+_ZN27ListNode_operatorEqual_Test8TestBodyEv:
+        1:   88:TEST(ListNode, operatorEqual)
+        -:   89:{
+        1:   90:    auto node = std::make_shared<denis::listNode<int>>();
+        1:   90-block  0
+    $$$$$:   90-block  1
+        1:   91:    auto anotherNode = std::make_shared<denis::listNode<int>>();
+        1:   91-block  0
+    $$$$$:   91-block  1
+        1:   92:    node->setNextNode(anotherNode);
+        1:   92-block  0
+        -:   93:
+       1*:   94:    ASSERT_EQ(node == node, true);
+        1:   94-block  0
+    %%%%%:   94-block  1
+    %%%%%:   94-block  2
+    %%%%%:   94-block  3
+    %%%%%:   94-block  4
+    $$$$$:   94-block  5
+    $$$$$:   94-block  6
+    $$$$$:   94-block  7
+    $$$$$:   94-block  8
+    $$$$$:   94-block  9
+    $$$$$:   94-block 10
+    $$$$$:   94-block 11
+       1*:   95:    ASSERT_NE(node == anotherNode, true);
+        1:   95-block  0
+        1:   95-block  1
+    %%%%%:   95-block  2
+    %%%%%:   95-block  3
+    %%%%%:   95-block  4
+    %%%%%:   95-block  5
+    $$$$$:   95-block  6
+    $$$$$:   95-block  7
+    $$$$$:   95-block  8
+    $$$$$:   95-block  9
+    $$$$$:   95-block 10
+    $$$$$:   95-block 11
+    $$$$$:   95-block 12
+       1*:   96:    ASSERT_EQ(node->getNextNode() == anotherNode, true);
+        1:   96-block  0
+        1:   96-block  1
+    %%%%%:   96-block  2
+    %%%%%:   96-block  3
+    %%%%%:   96-block  4
+    %%%%%:   96-block  5
+    $$$$$:   96-block  6
+    $$$$$:   96-block  7
+    $$$$$:   96-block  8
+    $$$$$:   96-block  9
+    $$$$$:   96-block 10
+    $$$$$:   96-block 11
+    $$$$$:   96-block 12
+    $$$$$:   96-block 13
+        -:   97:}
+------------------
+        -:   98:
+        4:   99:TEST(ListNode, operatorNotEqual)
+        -:  100:{
+        1:  101:    auto node = std::make_shared<denis::listNode<int>>();
+        1:  102:    auto anotherNode = std::make_shared<denis::listNode<int>>();
+        1:  103:    node->setNextNode(anotherNode);
+        -:  104:
+       1*:  105:    ASSERT_EQ(node != node, false);
+       1*:  106:    ASSERT_NE(node != anotherNode, false);
+       1*:  107:    ASSERT_EQ(node->getNextNode() != anotherNode, false);
+        -:  108:}

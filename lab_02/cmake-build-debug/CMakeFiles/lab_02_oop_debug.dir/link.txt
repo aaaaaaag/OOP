@@ -1,0 +1,1 @@
+/bin/g++  -g   CMakeFiles/lab_02_oop_debug.dir/main.cpp.o  -o lab_02_oop_debug  liblab_02_oop.a 

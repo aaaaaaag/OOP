@@ -1,0 +1,1 @@
+/bin/g++  -g   CMakeFiles/lab_02.dir/main.cpp.o CMakeFiles/lab_02.dir/inc/List.cpp.o  -o lab_02 

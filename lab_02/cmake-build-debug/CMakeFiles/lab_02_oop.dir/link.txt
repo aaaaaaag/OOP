@@ -1,0 +1,2 @@
+/bin/ar qc liblab_02_oop.a  CMakeFiles/lab_02_oop.dir/src/fake.cpp.o
+/bin/ranlib liblab_02_oop.a
