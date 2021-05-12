@@ -1,0 +1,707 @@
+        -:    0:Source:/home/denis/OOP/lab_02/inc/List.hpp
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 20.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LIST_HPP
+        -:    6:#define LIST_HPP
+        -:    7:
+        -:    8:#include <chrono>
+        -:    9:#include "List.h"
+        -:   10:
+        -:   11:
+        -:   12:template <typename T>
+       10:   13:denis::list<T>::list():
+        -:   14:        m_size(0),
+        -:   15:        m_pHead(nullptr),
+       10:   16:        m_pTail(nullptr)
+       10:   16-block  0
+        -:   17:{
+       10:   18:}
+        -:   19:
+        -:   20:template <typename T>
+        -:   21:denis::list<T>::list(denis::list<T> &&inList) noexcept :
+        -:   22:        m_size(inList.m_size),
+        -:   23:        m_pHead(inList.m_pHead),
+        -:   24:        m_pTail(inList.m_pTail)
+        -:   25:{
+        -:   26:}
+        -:   27:
+        -:   28:template<typename T>
+        1:   29:denis::list<T>::list(denis::list<T> &inList):
+        1:   30:        m_size(inList.m_size),
+        1:   31:        m_pHead(inList.m_pHead),
+        1:   32:        m_pTail(inList.m_pTail)
+        1:   32-block  0
+    $$$$$:   32-block  1
+    $$$$$:   32-block  2
+    $$$$$:   32-block  3
+        -:   33:{
+        -:   34:
+        1:   35:    if (!inList.begin())
+        1:   35-block  0
+    #####:   36:        return;
+    %%%%%:   36-block  0
+        4:   37:    for (auto node: inList)
+        1:   37-block  0
+        1:   37-block  1
+        4:   37-block  2
+        3:   37-block  3
+        3:   37-block  4
+        1:   37-block  5
+    $$$$$:   37-block  6
+    $$$$$:   37-block  7
+    $$$$$:   37-block  8
+        -:   38:    {
+        3:   39:        std::shared_ptr<listNode<T>> tmpNode = nullptr;
+    $$$$$:   39-block  0
+        -:   40:        try {
+        3:   41:            tmpNode = std::make_shared<listNode<T>>(listNode<T>());
+        3:   41-block  0
+    $$$$$:   41-block  1
+    $$$$$:   41-block  2
+        -:   42:        }
+    =====:   43:        catch (std::bad_alloc& err) {
+    $$$$$:   43-block  0
+        -:   44:            //TODO process error
+        -:   45:        }
+        3:   46:        tmpNode->setNextNode(node.getNextNode());
+        3:   46-block  0
+        -:   47:    }
+        -:   48:}
+        -:   49:
+        -:   50:template<typename T>
+        2:   51:denis::list<T>::list(T *inArray, const int &size) {
+        2:   51-block  0
+    $$$$$:   51-block  1
+    $$$$$:   51-block  2
+    $$$$$:   51-block  3
+        -:   52:    if (!inArray)
+        -:   53:    {
+        -:   54:        //TODO process error
+        -:   55:    }
+        -:   56:
+        2:   57:    if (size <= 0)
+        -:   58:    {
+        -:   59:        //TODO process error
+        -:   60:    }
+        -:   61:
+        2:   62:    this->m_size = 0;
+        2:   63:    this->m_pHead = nullptr;
+        2:   63-block  0
+        2:   64:    this->m_pTail = nullptr;
+        -:   65:
+        8:   66:    for (int i = 0; i < size; i++)
+        8:   66-block  0
+        6:   67:        this->pushBack(*(inArray + i));
+        6:   67-block  0
+        6:   67-block  1
+        2:   68:}
+        2:   68-block  0
+        -:   69:
+        -:   70:template<typename T>
+        6:   71:denis::list<T>::list(const std::initializer_list<T>& inNodes):
+        -:   72:m_size(0),
+        -:   73:m_pHead(nullptr),
+        6:   74:m_pTail(nullptr)
+        6:   74-block  0
+    $$$$$:   74-block  1
+    $$$$$:   74-block  2
+    $$$$$:   74-block  3
+        -:   75:{
+       24:   76:    for (auto node: inNodes)
+       24:   76-block  0
+       18:   77:        this->pushBack(node);
+       18:   77-block  0
+       18:   77-block  1
+        6:   78:}
+        6:   78-block  0
+        -:   79:
+        -:   80:template<typename T>
+        1:   81:void denis::list<T>::clear() {
+       1*:   82:    while (this->m_size)
+        1:   82-block  0
+    #####:   83:        this->popFront();
+    %%%%%:   83-block  0
+        1:   84:}
+        -:   85:
+        -:   86:template<typename T>
+        9:   87:bool denis::list<T>::isEmpty() {
+        9:   88:    return this->m_size == 0;
+        9:   88-block  0
+        -:   89:}
+        -:   90:
+        -:   91:template<typename T>
+        1:   92:denis::listIterator<T> denis::list<T>::pushFront(const denis::list<T> &list) {
+        1:   93:    denis::listIterator<T> iterator;
+        1:   93-block  0
+        -:   94:
+        4:   95:    for (int i = 0; i < list.m_size; i++)
+        4:   95-block  0
+        3:   96:        iterator = this->insert(this->begin() + i, (*(list.cbegin() + i)).get());
+        3:   96-block  0
+        3:   96-block  1
+        3:   96-block  2
+        3:   96-block  3
+        3:   96-block  4
+        3:   96-block  5
+    $$$$$:   96-block  6
+    $$$$$:   96-block  7
+    $$$$$:   96-block  8
+    $$$$$:   96-block  9
+    $$$$$:   96-block 10
+    $$$$$:   96-block 11
+    $$$$$:   96-block 12
+    $$$$$:   96-block 13
+        -:   97:
+        1:   98:    return iterator;
+        1:   98-block  0
+        1:   98-block  1
+        -:   99:}
+        -:  100:
+        -:  101:template<typename T>
+        2:  102:denis::listIterator<T> denis::list<T>::pushFront(const T &data) {
+        4:  103:    std::shared_ptr<denis::listNode<T>> tmpNode = nullptr;
+        2:  103-block  0
+        2:  103-block  1
+    $$$$$:  103-block  2
+        -:  104:    try
+        -:  105:    {
+        2:  106:        tmpNode = std::shared_ptr<denis::listNode<T>>(new denis::listNode<T>);
+        2:  106-block  0
+        2:  106-block  1
+    =====:  107:    } catch (std::bad_alloc &error) {
+    $$$$$:  107-block  0
+        -:  108:        //TODO add error process
+        -:  109:    }
+        -:  110:
+        2:  111:    tmpNode->setData(data);
+        2:  111-block  0
+        4:  112:    return this->pushFront(tmpNode);
+        2:  112-block  0
+        2:  112-block  1
+        -:  113:}
+        -:  114:
+        -:  115:template<typename T>
+       37:  116:denis::listIterator<T> denis::list<T>::pushBack(const T &data) {
+       74:  117:    std::shared_ptr<listNode<T>> node = nullptr;
+       37:  117-block  0
+       37:  117-block  1
+    $$$$$:  117-block  2
+       37:  118:    node = std::shared_ptr<listNode<T>>(new listNode<T>);
+       37:  118-block  0
+       37:  118-block  1
+        -:  119:    //TODO add try catch block
+        -:  120:
+       37:  121:    node->setData(data);
+       74:  122:    return this->pushBack(node);
+       37:  122-block  0
+       37:  122-block  1
+        -:  123:}
+        -:  124:
+        -:  125:template<typename T>
+        1:  126:denis::listIterator<T> denis::list<T>::pushBack(const denis::list<T> &list) {
+        4:  127:    for (auto current = list.cbegin(); current != list.cend(); current++)
+        1:  127-block  0
+        4:  127-block  1
+        4:  127-block  2
+        3:  127-block  3
+        1:  127-block  4
+    $$$$$:  127-block  5
+        3:  128:        this->pushBack((*current).get());
+        3:  128-block  0
+        3:  128-block  1
+        -:  129:
+        1:  130:    denis::listIterator<T> iterator(this->m_pTail);
+        1:  131:    return iterator;
+        1:  131-block  0
+        -:  132:}
+        -:  133:
+        -:  134:template<typename T>
+        7:  135:denis::listIterator<T> denis::list<T>::insert(const denis::listIterator<T> &iterator, const T &data) {
+        7:  136:    if (iterator.isInvalid())
+        7:  136-block  0
+        7:  136-block  1
+        -:  137:    {
+        -:  138:        //TODO error process
+        -:  139:    }
+        -:  140:
+       14:  141:    std::shared_ptr<listNode<T>> tmpNode = nullptr;
+        7:  141-block  0
+        7:  141-block  1
+    $$$$$:  141-block  2
+        -:  142:
+        -:  143:    try
+        -:  144:    {
+        7:  145:        tmpNode = std::shared_ptr<listNode<T>>(new listNode<T>); // maybe std make_shared
+        7:  145-block  0
+        7:  145-block  1
+    =====:  146:    } catch (std::bad_alloc &error) {
+    $$$$$:  146-block  0
+        -:  147:        //TODO error process
+        -:  148:    }
+        -:  149:
+        7:  150:    tmpNode->setData(data);
+        7:  150-block  0
+        -:  151:
+        7:  152:    if (iterator == this->begin())
+        7:  152-block  0
+        1:  153:        return pushFront(tmpNode);
+        1:  153-block  0
+        1:  153-block  1
+        6:  154:    else if (iterator == this->end())
+        6:  154-block  0
+        6:  154-block  1
+        2:  155:        return this->pushBack(tmpNode);
+        2:  155-block  0
+        2:  155-block  1
+        -:  156:
+        8:  157:    denis::listIterator<T> temp_iterator = this->begin();
+        4:  157-block  0
+    $$$$$:  157-block  1
+        7:  158:    for (; temp_iterator + 1 != iterator; temp_iterator++);
+        7:  158-block  0
+        7:  158-block  1
+        3:  158-block  2
+        3:  158-block  3
+    $$$$$:  158-block  4
+        -:  159:
+        4:  160:    tmpNode->setNextNode(temp_iterator->getNextNode());
+        4:  160-block  0
+        4:  161:    temp_iterator->setNextNode(tmpNode);
+        4:  162:    this->m_size++;
+        -:  163:
+        8:  164:    denis::listIterator<T> insertIterator(tmpNode);
+        4:  165:    return insertIterator;
+        -:  166:}
+        -:  167:
+        -:  168:template<typename T>
+        1:  169:denis::listIterator<T> denis::list<T>::insert(const denis::listIterator<T> &iterator, const denis::list<T> &list) {
+        1:  170:    if (iterator.isInvalid())
+        1:  170-block  0
+        -:  171:    {
+        -:  172:        //TODO error process
+        -:  173:    }
+        -:  174:
+        1:  175:    denis::listIterator<T> insertIterator;
+        1:  175-block  0
+        4:  176:    for (int i = 0; i < list.m_size; i++)
+        4:  176-block  0
+        3:  177:        insertIterator = insert(iterator, (*(list.cbegin() + i)).get());
+        3:  177-block  0
+        3:  177-block  1
+        3:  177-block  2
+        3:  177-block  3
+    $$$$$:  177-block  4
+    $$$$$:  177-block  5
+    $$$$$:  177-block  6
+    $$$$$:  177-block  7
+        -:  178:
+        1:  179:    return insertIterator;
+        1:  179-block  0
+        1:  179-block  1
+        -:  180:}
+        -:  181:
+        -:  182:template<typename T>
+        4:  183:denis::listIterator<T> denis::list<T>::insert(const denis::constListIterator<T> &iterator, const T &data) {
+        4:  184:    if (iterator.isInvalid())
+        4:  184-block  0
+        4:  184-block  1
+        -:  185:    {
+        -:  186:        //TODO error process
+        -:  187:    }
+        -:  188:
+        8:  189:    std::shared_ptr<listNode<T>> tmpNode = nullptr;
+        4:  189-block  0
+        4:  189-block  1
+    $$$$$:  189-block  2
+        -:  190:
+        -:  191:    try
+        -:  192:    {
+        4:  193:        tmpNode = std::shared_ptr<listNode<T>>(new listNode<T>);
+        4:  193-block  0
+        4:  193-block  1
+    =====:  194:    } catch (std::bad_alloc &err) {
+    $$$$$:  194-block  0
+        -:  195:        //TODO error process
+        -:  196:    }
+        -:  197:
+        4:  198:    tmpNode->setData(data);
+        4:  198-block  0
+        -:  199:
+        4:  200:    if (iterator == this->cbegin())
+        4:  200-block  0
+    #####:  201:        return pushFront(tmpNode);
+    %%%%%:  201-block  0
+    %%%%%:  201-block  1
+        4:  202:    else if (iterator == this->cend())
+        4:  202-block  0
+        4:  202-block  1
+    #####:  203:        return this->pushBack(tmpNode);
+    %%%%%:  203-block  0
+    %%%%%:  203-block  1
+        -:  204:
+        8:  205:    denis::listIterator<T> tmpIterator = this->begin();
+        4:  205-block  0
+    $$$$$:  205-block  1
+        7:  206:    for (;  iterator != (tmpIterator + 1); tmpIterator++);
+        7:  206-block  0
+        7:  206-block  1
+        3:  206-block  2
+        3:  206-block  3
+    $$$$$:  206-block  4
+        -:  207:    //TODO fix it!!!!
+        -:  208:
+        4:  209:    tmpNode->setNextNode(tmpIterator->getNextNode());
+        4:  209-block  0
+        4:  210:    tmpIterator->setNextNode(tmpNode);
+        4:  211:    this->m_size++;
+        -:  212:
+        8:  213:    denis::listIterator<T> insertIterator(tmpNode);
+        4:  214:    return insertIterator;
+        -:  215:}
+        -:  216:
+        -:  217:template<typename T>
+        1:  218:denis::listIterator<T> denis::list<T>::insert(const denis::constListIterator<T> &iterator, const list <T> &list) {
+        1:  219:    if (iterator.isInvalid())
+        1:  219-block  0
+        -:  220:    {
+        -:  221:        //TODO error process
+        -:  222:    }
+        -:  223:
+        1:  224:    denis::listIterator<T> insertIterator;
+        1:  224-block  0
+        4:  225:    for (int i = 0; i < list.m_size; i++)
+        4:  225-block  0
+        3:  226:        insertIterator = insert(iterator, (*(list.cbegin() + i)).get());
+        3:  226-block  0
+        3:  226-block  1
+        3:  226-block  2
+        3:  226-block  3
+    $$$$$:  226-block  4
+    $$$$$:  226-block  5
+    $$$$$:  226-block  6
+    $$$$$:  226-block  7
+        -:  227:
+        1:  228:    return insertIterator;
+        1:  228-block  0
+        1:  228-block  1
+        -:  229:}
+        -:  230:
+        -:  231:template<typename T>
+    #####:  232:T denis::list<T>::popFront() {
+    #####:  233:    if (!this->m_size)
+    %%%%%:  233-block  0
+        -:  234:    {
+        -:  235:        //TODO error process
+        -:  236:    }
+        -:  237:
+    #####:  238:    T data = this->m_pHead->get();
+    %%%%%:  238-block  0
+        -:  239:
+    #####:  240:    if (this->m_size == 1)
+        -:  241:    {
+    #####:  242:        this->m_pHead = nullptr;
+    %%%%%:  242-block  0
+    #####:  243:        this->m_pHead = nullptr;
+        -:  244:    }
+        -:  245:    else
+        -:  246:    {
+    #####:  247:        this->m_pHead = this->m_pHead->getNextNode();
+    %%%%%:  247-block  0
+        -:  248:    }
+        -:  249:
+    #####:  250:    this->m_size--;
+        -:  251:
+    #####:  252:    return data;
+    %%%%%:  252-block  0
+        -:  253:}
+        -:  254:
+        -:  255:template<typename T>
+       35:  256:T denis::list<T>::popBack() {
+       35:  257:    if (!this->m_size)
+       35:  257-block  0
+        -:  258:    {
+        -:  259:        //TODO error process
+        -:  260:    }
+        -:  261:
+       35:  262:    T data = this->m_pTail->get();
+       35:  262-block  0
+        -:  263:
+       35:  264:    if (this->m_size == 1)
+        -:  265:    {
+       11:  266:        this->m_pHead = nullptr;
+       11:  266-block  0
+       11:  267:        this->m_pTail = nullptr;
+        -:  268:    }
+        -:  269:    else
+        -:  270:    {
+       48:  271:        std::shared_ptr<listNode<T>> tmpNode = this->m_pHead;
+       24:  271-block  0
+       43:  272:        for (; tmpNode->getNextNode() != this->m_pTail; tmpNode = tmpNode->getNextNode());
+       43:  272-block  0
+       19:  272-block  1
+        -:  273:
+       24:  274:        tmpNode->setNull();
+       24:  274-block  0
+       24:  275:        this->m_pTail = tmpNode;
+       24:  276:        this->m_pTail->setNull();
+        -:  277:    }
+        -:  278:
+       35:  279:    this->m_size--;
+        -:  280:
+       35:  281:    return data;
+       35:  281-block  0
+        -:  282:}
+        -:  283:
+        -:  284:template<typename T>
+        -:  285:T denis::list<T>::remove(const denis::listIterator<T> &inIterator) {
+        -:  286:    if (inIterator.isInvalid())
+        -:  287:    {
+        -:  288:        //TODO error process
+        -:  289:    }
+        -:  290:
+        -:  291:    if (!this->m_size)
+        -:  292:    {
+        -:  293:        //TODO error process
+        -:  294:    }
+        -:  295:
+        -:  296:    if (inIterator == this->begin())
+        -:  297:    {
+        -:  298:        return popFront();
+        -:  299:    }
+        -:  300:
+        -:  301:    denis::listIterator<T> tmpIterator = this->begin();
+        -:  302:    for (; tmpIterator + 1 != inIterator; tmpIterator++);
+        -:  303:
+        -:  304:    T data = tmpIterator->get();
+        -:  305:    tmpIterator->setNextNode(tmpIterator->getNextNode()->getNextNode());
+        -:  306:    this->m_size--;
+        -:  307:
+        -:  308:    return data;
+        -:  309:}
+        -:  310:
+        -:  311:template<typename T>
+        -:  312:void denis::list<T>::reverse() {
+        -:  313:    std::shared_ptr<listNode<T>> current(this->m_pHead);
+        -:  314:    std::shared_ptr<listNode<T>> next(nullptr);
+        -:  315:    std::shared_ptr<listNode<T>> prev(nullptr);
+        -:  316:
+        -:  317:    while (current)
+        -:  318:    {
+        -:  319:        next = current->getNextNode();
+        -:  320:        current->setNextNode(prev);
+        -:  321:        prev = current;
+        -:  322:        current = next;
+        -:  323:    }
+        -:  324:
+        -:  325:    prev = this->m_pHead;
+        -:  326:    this->m_pHead = this->m_pTail;
+        -:  327:    this->m_pTail = prev;
+        -:  328:    this->m_pTail->setNull();
+        -:  329:}
+        -:  330:
+        -:  331:template<typename T>
+        -:  332:denis::list<T> &denis::list<T>::operator=(const denis::list<T> &inList) {
+        -:  333:    clear();
+        -:  334:
+        -:  335:    this->m_size = 0;
+        -:  336:    this->m_pHead = nullptr;
+        -:  337:    this->m_pTail = nullptr;
+        -:  338:
+        -:  339:    pushBack(inList);
+        -:  340:    return *this;
+        -:  341:}
+        -:  342:
+        -:  343:template<typename T>
+        -:  344:denis::list<T> &denis::list<T>::operator=(denis::list<T> &&inList)  noexcept {
+        -:  345:    this->m_size = inList.m_size;
+        -:  346:    this->m_pHead = inList.m_pHead;
+        -:  347:    this->m_pTail = inList.m_pTail;
+        -:  348:}
+        -:  349:
+        -:  350:template<typename T>
+        -:  351:denis::list<T> &denis::list<T>::merge(const denis::list<T> &list) {
+        -:  352:    this->pushBack(list);
+        -:  353:    return *this;
+        -:  354:}
+        -:  355:
+        -:  356:template<typename T>
+        -:  357:denis::list<T> &denis::list<T>::merge(const T &data) {
+        -:  358:    this->pushBack(data);
+        -:  359:    return *this;
+        -:  360:}
+        -:  361:
+        -:  362:template<typename T>
+        -:  363:denis::list<T> &denis::list<T>::operator + (const denis::list<T> &list) {
+        -:  364:    this->pushBack(list);
+        -:  365:    return *this;
+        -:  366:}
+        -:  367:
+        -:  368:template<typename T>
+        -:  369:denis::list<T> &denis::list<T>::operator + (const T &data) {
+        -:  370:    this->pushBack(data);
+        -:  371:    return *this;
+        -:  372:}
+        -:  373:
+        -:  374:template<typename T>
+        -:  375:denis::list<T> &denis::list<T>::operator+=(const list <T> &list) {
+        -:  376:    this->pushBack(list);
+        -:  377:    return *this;
+        -:  378:}
+        -:  379:
+        -:  380:template<typename T>
+        -:  381:denis::list<T> &denis::list<T>::operator+=(const T &data) {
+        -:  382:    this->pushBack(data);
+        -:  383:    return *this;
+        -:  384:}
+        -:  385:
+        -:  386:template<typename T>
+        -:  387:bool denis::list<T>::operator==(const list <T> &list) const {
+        -:  388:    auto fst = this->cbegin();
+        -:  389:    auto snd = list.cbegin();
+        -:  390:
+        -:  391:    for (; fst != this->cend() && snd != list.cend(); ++fst, ++snd)
+        -:  392:    {
+        -:  393:        if (fst->get() != snd->get())
+        -:  394:            return false;
+        -:  395:    }
+        -:  396:
+        -:  397:    return this->m_size == list.m_size;
+        -:  398:}
+        -:  399:
+        -:  400:template<typename T>
+        -:  401:bool denis::list<T>::operator!=(const list <T> &list) const {
+        -:  402:    return !(*this == list);
+        -:  403:}
+        -:  404:
+        -:  405:template<typename T>
+       22:  406:denis::listIterator<T> denis::list<T>::begin() {
+       22:  407:    denis::listIterator<T> iterator(this->m_pHead);
+       22:  407-block  0
+       22:  408:    return iterator;
+        -:  409:}
+        -:  410:
+        -:  411:template<typename T>
+       16:  412:denis::constListIterator<T> denis::list<T>::cbegin() const {
+       16:  413:    denis::constListIterator<T> iterator(this->m_pHead);
+       16:  413-block  0
+       16:  414:    return iterator;
+        -:  415:}
+        -:  416:
+        -:  417:template<typename T>
+        7:  418:denis::listIterator<T> denis::list<T>::end() {
+       14:  419:    denis::listIterator<T> iterator(this->m_pTail);
+        7:  419-block  0
+    $$$$$:  419-block  1
+       14:  420:    return ++iterator;
+        7:  420-block  0
+        7:  420-block  1
+        -:  421:}
+        -:  422:
+        -:  423:template<typename T>
+        8:  424:denis::constListIterator<T> denis::list<T>::cend() const {
+       16:  425:    denis::constListIterator<T> iterator(this->m_pTail);
+        8:  425-block  0
+    $$$$$:  425-block  1
+       16:  426:    return ++iterator;
+        8:  426-block  0
+        8:  426-block  1
+        -:  427:}
+        -:  428:
+        -:  429:template<typename T>
+        -:  430:std::shared_ptr<denis::listNode<T>> denis::list<T>::getHeadNode() {
+        -:  431:    return this->m_pHead;
+        -:  432:}
+        -:  433:
+        -:  434:template<typename T>
+        -:  435:std::shared_ptr<denis::listNode<T>> denis::list<T>::getTailNode() {
+        -:  436:    return this->m_pTail;
+        -:  437:}
+        -:  438:
+        -:  439:template<typename T>
+       39:  440:denis::listIterator<T> denis::list<T>::pushBack(const std::shared_ptr<listNode<T>> &node) {
+       39:  441:    if (!node)
+       39:  441-block  0
+        -:  442:    {
+        -:  443:        // TODO error process
+        -:  444:    }
+        -:  445:
+       78:  446:    std::shared_ptr<listNode<T>> tmpNode = nullptr;
+       39:  446-block  0
+       39:  446-block  1
+    $$$$$:  446-block  2
+        -:  447:
+        -:  448:    try
+        -:  449:    {
+       39:  450:        tmpNode = std::shared_ptr<listNode<T>>(new listNode<T>);
+       39:  450-block  0
+       39:  450-block  1
+        -:  451:    }
+    =====:  452:    catch (std::bad_alloc &error)
+    $$$$$:  452-block  0
+        -:  453:    {
+        -:  454:        //TODO error process
+        -:  455:    }
+        -:  456:
+       39:  457:    tmpNode->setData(node->get());
+       39:  457-block  0
+        -:  458:
+       39:  459:    if (!this->m_size)
+        -:  460:    {
+       14:  461:        this->m_pHead = tmpNode;
+       14:  461-block  0
+       14:  462:        this->m_pTail = tmpNode;
+        -:  463:    }
+        -:  464:    else
+        -:  465:    {
+       25:  466:        this->m_pTail->setNextNode(tmpNode);
+       25:  466-block  0
+       25:  467:        this->m_pTail = tmpNode;
+        -:  468:    }
+        -:  469:
+       39:  470:    this->m_size++;
+        -:  471:
+       39:  472:    denis::listIterator<T> iterator(this->m_pTail);
+       39:  472-block  0
+       78:  473:    return iterator;
+       39:  473-block  0
+        -:  474:}
+        -:  475:
+        -:  476:template<typename T>
+        3:  477:denis::listIterator<T> denis::list<T>::pushFront(const std::shared_ptr<listNode<T>> &node) {
+        3:  478:    if (!node)
+        3:  478-block  0
+        -:  479:    {
+        -:  480:        //TODO error process
+        -:  481:    }
+        -:  482:
+        3:  483:    node->setNextNode(this->m_pHead);
+        3:  483-block  0
+        3:  484:    this->m_pHead = node;
+        -:  485:
+        3:  486:    if (!this->m_size)
+        -:  487:    {
+        2:  488:        this->m_pTail = this->m_pHead;
+        2:  488-block  0
+        -:  489:    }
+        -:  490:
+        3:  491:    this->m_size++;
+        -:  492:
+        3:  493:    denis::listIterator<T> iterator(node);
+        3:  493-block  0
+        3:  494:    return iterator;
+        -:  495:}
+        -:  496:
+        -:  497:template<typename T>
+        -:  498:size_t denis::list<T>::size() {
+        -:  499:    return m_size;
+        -:  500:}
+        -:  501:
+        -:  502:#endif
+        -:  503:
+        -:  504:

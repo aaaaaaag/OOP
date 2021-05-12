@@ -1,0 +1,1081 @@
+        -:    0:Source:/home/denis/OOP/lab_02/tests/TestList.cpp
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 24.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#include "gtest/gtest.h"
+        -:    6:#include "List.hpp"
+        -:    7:
+        4:    8:TEST(List, emptyConstructor)
+        -:    9:{
+        1:   10:    auto list = denis::list<int>();
+       1*:   11:    ASSERT_EQ(list.isEmpty(), true);
+        -:   12:}
+------------------
+_ZN26List_emptyConstructor_TestC2Ev:
+        1:    8:TEST(List, emptyConstructor)
+        1:    8-block  0
+------------------
+_ZN26List_emptyConstructor_TestD0Ev:
+        1:    8:TEST(List, emptyConstructor)
+        1:    8-block  0
+------------------
+_ZN26List_emptyConstructor_TestD2Ev:
+        1:    8:TEST(List, emptyConstructor)
+        1:    8-block  0
+------------------
+_ZN26List_emptyConstructor_Test8TestBodyEv:
+        1:    8:TEST(List, emptyConstructor)
+        -:    9:{
+        1:   10:    auto list = denis::list<int>();
+        1:   10-block  0
+    $$$$$:   10-block  1
+       1*:   11:    ASSERT_EQ(list.isEmpty(), true);
+        1:   11-block  0
+    %%%%%:   11-block  1
+    %%%%%:   11-block  2
+    %%%%%:   11-block  3
+    %%%%%:   11-block  4
+    $$$$$:   11-block  5
+    $$$$$:   11-block  6
+    $$$$$:   11-block  7
+    $$$$$:   11-block  8
+    $$$$$:   11-block  9
+    $$$$$:   11-block 10
+    $$$$$:   11-block 11
+        -:   12:}
+------------------
+        -:   13:
+        4:   14:TEST(List, moveConstructor)
+        -:   15:{
+        1:   16:    auto list = denis::list<int>(denis::list<int>());
+       1*:   17:    ASSERT_EQ(list.isEmpty(), true);
+        -:   18:}
+------------------
+_ZN25List_moveConstructor_TestC2Ev:
+        1:   14:TEST(List, moveConstructor)
+        1:   14-block  0
+------------------
+_ZN25List_moveConstructor_TestD0Ev:
+        1:   14:TEST(List, moveConstructor)
+        1:   14-block  0
+------------------
+_ZN25List_moveConstructor_TestD2Ev:
+        1:   14:TEST(List, moveConstructor)
+        1:   14-block  0
+------------------
+_ZN25List_moveConstructor_Test8TestBodyEv:
+        1:   14:TEST(List, moveConstructor)
+        -:   15:{
+        1:   16:    auto list = denis::list<int>(denis::list<int>());
+        1:   16-block  0
+    $$$$$:   16-block  1
+       1*:   17:    ASSERT_EQ(list.isEmpty(), true);
+        1:   17-block  0
+    %%%%%:   17-block  1
+    %%%%%:   17-block  2
+    %%%%%:   17-block  3
+    %%%%%:   17-block  4
+    $$$$$:   17-block  5
+    $$$$$:   17-block  6
+    $$$$$:   17-block  7
+    $$$$$:   17-block  8
+    $$$$$:   17-block  9
+    $$$$$:   17-block 10
+    $$$$$:   17-block 11
+        -:   18:}
+------------------
+        -:   19:
+        4:   20:TEST(List, copyConstructor)
+        -:   21:{
+        1:   22:    std::vector<int> vector{0, 1, 2};
+        1:   23:    auto copList = denis::list<int>(vector.data(), vector.size());
+        1:   24:    auto list = denis::list<int>(copList);
+       1*:   25:    ASSERT_EQ(list.isEmpty(), false);
+        -:   26:}
+------------------
+_ZN25List_copyConstructor_TestC2Ev:
+        1:   20:TEST(List, copyConstructor)
+        1:   20-block  0
+------------------
+_ZN25List_copyConstructor_TestD0Ev:
+        1:   20:TEST(List, copyConstructor)
+        1:   20-block  0
+------------------
+_ZN25List_copyConstructor_TestD2Ev:
+        1:   20:TEST(List, copyConstructor)
+        1:   20-block  0
+------------------
+_ZN25List_copyConstructor_Test8TestBodyEv:
+        1:   20:TEST(List, copyConstructor)
+        -:   21:{
+        1:   22:    std::vector<int> vector{0, 1, 2};
+        1:   22-block  0
+    $$$$$:   22-block  1
+    $$$$$:   22-block  2
+        1:   23:    auto copList = denis::list<int>(vector.data(), vector.size());
+    $$$$$:   23-block  0
+    $$$$$:   23-block  1
+        1:   24:    auto list = denis::list<int>(copList);
+        1:   24-block  0
+    $$$$$:   24-block  1
+       1*:   25:    ASSERT_EQ(list.isEmpty(), false);
+        1:   25-block  0
+        1:   25-block  1
+    %%%%%:   25-block  2
+    %%%%%:   25-block  3
+    %%%%%:   25-block  4
+    %%%%%:   25-block  5
+    $$$$$:   25-block  6
+    $$$$$:   25-block  7
+    $$$$$:   25-block  8
+    $$$$$:   25-block  9
+    $$$$$:   25-block 10
+    $$$$$:   25-block 11
+    $$$$$:   25-block 12
+        -:   26:}
+------------------
+        -:   27:
+        4:   28:TEST(List, arrayConstructor)
+        -:   29:{
+        1:   30:    std::vector<int> vector{0, 1, 2};
+        1:   31:    auto list = denis::list<int>(vector.data(), vector.size());
+       1*:   32:    ASSERT_EQ(list.isEmpty(), false);
+       1*:   33:    ASSERT_EQ(list.popBack(), 2);
+       1*:   34:    ASSERT_EQ(list.popBack(), 1);
+       1*:   35:    ASSERT_EQ(list.popBack(), 0);
+        -:   36:}
+------------------
+_ZN26List_arrayConstructor_TestC2Ev:
+        1:   28:TEST(List, arrayConstructor)
+        1:   28-block  0
+------------------
+_ZN26List_arrayConstructor_TestD0Ev:
+        1:   28:TEST(List, arrayConstructor)
+        1:   28-block  0
+------------------
+_ZN26List_arrayConstructor_TestD2Ev:
+        1:   28:TEST(List, arrayConstructor)
+        1:   28-block  0
+------------------
+_ZN26List_arrayConstructor_Test8TestBodyEv:
+        1:   28:TEST(List, arrayConstructor)
+        -:   29:{
+        1:   30:    std::vector<int> vector{0, 1, 2};
+        1:   30-block  0
+    $$$$$:   30-block  1
+    $$$$$:   30-block  2
+        1:   31:    auto list = denis::list<int>(vector.data(), vector.size());
+    $$$$$:   31-block  0
+    $$$$$:   31-block  1
+       1*:   32:    ASSERT_EQ(list.isEmpty(), false);
+        1:   32-block  0
+        1:   32-block  1
+    %%%%%:   32-block  2
+    %%%%%:   32-block  3
+    %%%%%:   32-block  4
+    %%%%%:   32-block  5
+    $$$$$:   32-block  6
+    $$$$$:   32-block  7
+    $$$$$:   32-block  8
+    $$$$$:   32-block  9
+    $$$$$:   32-block 10
+    $$$$$:   32-block 11
+    $$$$$:   32-block 12
+       1*:   33:    ASSERT_EQ(list.popBack(), 2);
+        1:   33-block  0
+        1:   33-block  1
+        1:   33-block  2
+    %%%%%:   33-block  3
+    %%%%%:   33-block  4
+    %%%%%:   33-block  5
+    %%%%%:   33-block  6
+    $$$$$:   33-block  7
+    $$$$$:   33-block  8
+    $$$$$:   33-block  9
+    $$$$$:   33-block 10
+    $$$$$:   33-block 11
+    $$$$$:   33-block 12
+    $$$$$:   33-block 13
+       1*:   34:    ASSERT_EQ(list.popBack(), 1);
+        1:   34-block  0
+        1:   34-block  1
+        1:   34-block  2
+    %%%%%:   34-block  3
+    %%%%%:   34-block  4
+    %%%%%:   34-block  5
+    %%%%%:   34-block  6
+    $$$$$:   34-block  7
+    $$$$$:   34-block  8
+    $$$$$:   34-block  9
+    $$$$$:   34-block 10
+    $$$$$:   34-block 11
+    $$$$$:   34-block 12
+    $$$$$:   34-block 13
+       1*:   35:    ASSERT_EQ(list.popBack(), 0);
+        1:   35-block  0
+        1:   35-block  1
+        1:   35-block  2
+    %%%%%:   35-block  3
+    %%%%%:   35-block  4
+    %%%%%:   35-block  5
+    %%%%%:   35-block  6
+    $$$$$:   35-block  7
+    $$$$$:   35-block  8
+    $$$$$:   35-block  9
+    $$$$$:   35-block 10
+    $$$$$:   35-block 11
+    $$$$$:   35-block 12
+    $$$$$:   35-block 13
+        -:   36:}
+------------------
+        -:   37:
+        4:   38:TEST(List, initializerListConstructor)
+        -:   39:{
+        1:   40:    denis::list<int> l {0, 1, 2};
+       1*:   41:    ASSERT_EQ(l.isEmpty(), false);
+       1*:   42:    ASSERT_EQ(l.popBack(), 2);
+       1*:   43:    ASSERT_EQ(l.popBack(), 1);
+       1*:   44:    ASSERT_EQ(l.popBack(), 0);
+        -:   45:}
+------------------
+_ZN36List_initializerListConstructor_TestC2Ev:
+        1:   38:TEST(List, initializerListConstructor)
+        1:   38-block  0
+------------------
+_ZN36List_initializerListConstructor_TestD0Ev:
+        1:   38:TEST(List, initializerListConstructor)
+        1:   38-block  0
+------------------
+_ZN36List_initializerListConstructor_TestD2Ev:
+        1:   38:TEST(List, initializerListConstructor)
+        1:   38-block  0
+------------------
+_ZN36List_initializerListConstructor_Test8TestBodyEv:
+        1:   38:TEST(List, initializerListConstructor)
+        -:   39:{
+        1:   40:    denis::list<int> l {0, 1, 2};
+        1:   40-block  0
+    $$$$$:   40-block  1
+    $$$$$:   40-block  2
+       1*:   41:    ASSERT_EQ(l.isEmpty(), false);
+        1:   41-block  0
+        1:   41-block  1
+    %%%%%:   41-block  2
+    %%%%%:   41-block  3
+    %%%%%:   41-block  4
+    %%%%%:   41-block  5
+    $$$$$:   41-block  6
+    $$$$$:   41-block  7
+    $$$$$:   41-block  8
+    $$$$$:   41-block  9
+    $$$$$:   41-block 10
+    $$$$$:   41-block 11
+    $$$$$:   41-block 12
+       1*:   42:    ASSERT_EQ(l.popBack(), 2);
+        1:   42-block  0
+        1:   42-block  1
+        1:   42-block  2
+    %%%%%:   42-block  3
+    %%%%%:   42-block  4
+    %%%%%:   42-block  5
+    %%%%%:   42-block  6
+    $$$$$:   42-block  7
+    $$$$$:   42-block  8
+    $$$$$:   42-block  9
+    $$$$$:   42-block 10
+    $$$$$:   42-block 11
+    $$$$$:   42-block 12
+    $$$$$:   42-block 13
+       1*:   43:    ASSERT_EQ(l.popBack(), 1);
+        1:   43-block  0
+        1:   43-block  1
+        1:   43-block  2
+    %%%%%:   43-block  3
+    %%%%%:   43-block  4
+    %%%%%:   43-block  5
+    %%%%%:   43-block  6
+    $$$$$:   43-block  7
+    $$$$$:   43-block  8
+    $$$$$:   43-block  9
+    $$$$$:   43-block 10
+    $$$$$:   43-block 11
+    $$$$$:   43-block 12
+    $$$$$:   43-block 13
+       1*:   44:    ASSERT_EQ(l.popBack(), 0);
+        1:   44-block  0
+        1:   44-block  1
+        1:   44-block  2
+    %%%%%:   44-block  3
+    %%%%%:   44-block  4
+    %%%%%:   44-block  5
+    %%%%%:   44-block  6
+    $$$$$:   44-block  7
+    $$$$$:   44-block  8
+    $$$$$:   44-block  9
+    $$$$$:   44-block 10
+    $$$$$:   44-block 11
+    $$$$$:   44-block 12
+    $$$$$:   44-block 13
+        -:   45:}
+------------------
+        -:   46:
+        4:   47:TEST(List, clearFunc)
+        -:   48:{
+        1:   49:    denis::list<int> l {0, 1, 2};
+       1*:   50:    ASSERT_EQ(l.isEmpty(), false);
+       1*:   51:    ASSERT_EQ(l.popBack(), 2);
+       1*:   52:    ASSERT_EQ(l.popBack(), 1);
+       1*:   53:    ASSERT_EQ(l.popBack(), 0);
+        1:   54:    l.clear();
+       1*:   55:    ASSERT_EQ(l.isEmpty(), true);
+        -:   56:}
+------------------
+_ZN19List_clearFunc_TestC2Ev:
+        1:   47:TEST(List, clearFunc)
+        1:   47-block  0
+------------------
+_ZN19List_clearFunc_TestD0Ev:
+        1:   47:TEST(List, clearFunc)
+        1:   47-block  0
+------------------
+_ZN19List_clearFunc_TestD2Ev:
+        1:   47:TEST(List, clearFunc)
+        1:   47-block  0
+------------------
+_ZN19List_clearFunc_Test8TestBodyEv:
+        1:   47:TEST(List, clearFunc)
+        -:   48:{
+        1:   49:    denis::list<int> l {0, 1, 2};
+        1:   49-block  0
+    $$$$$:   49-block  1
+    $$$$$:   49-block  2
+       1*:   50:    ASSERT_EQ(l.isEmpty(), false);
+        1:   50-block  0
+        1:   50-block  1
+    %%%%%:   50-block  2
+    %%%%%:   50-block  3
+    %%%%%:   50-block  4
+    %%%%%:   50-block  5
+    $$$$$:   50-block  6
+    $$$$$:   50-block  7
+    $$$$$:   50-block  8
+    $$$$$:   50-block  9
+    $$$$$:   50-block 10
+    $$$$$:   50-block 11
+    $$$$$:   50-block 12
+       1*:   51:    ASSERT_EQ(l.popBack(), 2);
+        1:   51-block  0
+        1:   51-block  1
+        1:   51-block  2
+    %%%%%:   51-block  3
+    %%%%%:   51-block  4
+    %%%%%:   51-block  5
+    %%%%%:   51-block  6
+    $$$$$:   51-block  7
+    $$$$$:   51-block  8
+    $$$$$:   51-block  9
+    $$$$$:   51-block 10
+    $$$$$:   51-block 11
+    $$$$$:   51-block 12
+    $$$$$:   51-block 13
+       1*:   52:    ASSERT_EQ(l.popBack(), 1);
+        1:   52-block  0
+        1:   52-block  1
+        1:   52-block  2
+    %%%%%:   52-block  3
+    %%%%%:   52-block  4
+    %%%%%:   52-block  5
+    %%%%%:   52-block  6
+    $$$$$:   52-block  7
+    $$$$$:   52-block  8
+    $$$$$:   52-block  9
+    $$$$$:   52-block 10
+    $$$$$:   52-block 11
+    $$$$$:   52-block 12
+    $$$$$:   52-block 13
+       1*:   53:    ASSERT_EQ(l.popBack(), 0);
+        1:   53-block  0
+        1:   53-block  1
+        1:   53-block  2
+    %%%%%:   53-block  3
+    %%%%%:   53-block  4
+    %%%%%:   53-block  5
+    %%%%%:   53-block  6
+    $$$$$:   53-block  7
+    $$$$$:   53-block  8
+    $$$$$:   53-block  9
+    $$$$$:   53-block 10
+    $$$$$:   53-block 11
+    $$$$$:   53-block 12
+    $$$$$:   53-block 13
+        1:   54:    l.clear();
+        1:   54-block  0
+       1*:   55:    ASSERT_EQ(l.isEmpty(), true);
+        1:   55-block  0
+        1:   55-block  1
+    %%%%%:   55-block  2
+    %%%%%:   55-block  3
+    %%%%%:   55-block  4
+    %%%%%:   55-block  5
+    $$$$$:   55-block  6
+    $$$$$:   55-block  7
+    $$$$$:   55-block  8
+    $$$$$:   55-block  9
+    $$$$$:   55-block 10
+    $$$$$:   55-block 11
+    $$$$$:   55-block 12
+        -:   56:}
+------------------
+        -:   57:
+        4:   58:TEST(List, pushFrontList)
+        -:   59:{
+        1:   60:    denis::list<int> l {0, 1, 2};
+        1:   61:    auto list = denis::list<int>();
+        1:   62:    list.pushFront(l);
+       1*:   63:    ASSERT_EQ(list.isEmpty(), false);
+       1*:   64:    ASSERT_EQ(list.popBack(), 2);
+       1*:   65:    ASSERT_EQ(list.popBack(), 1);
+       1*:   66:    ASSERT_EQ(list.popBack(), 0);
+        -:   67:}
+------------------
+_ZN23List_pushFrontList_TestC2Ev:
+        1:   58:TEST(List, pushFrontList)
+        1:   58-block  0
+------------------
+_ZN23List_pushFrontList_TestD0Ev:
+        1:   58:TEST(List, pushFrontList)
+        1:   58-block  0
+------------------
+_ZN23List_pushFrontList_TestD2Ev:
+        1:   58:TEST(List, pushFrontList)
+        1:   58-block  0
+------------------
+_ZN23List_pushFrontList_Test8TestBodyEv:
+        1:   58:TEST(List, pushFrontList)
+        -:   59:{
+        1:   60:    denis::list<int> l {0, 1, 2};
+        1:   60-block  0
+    $$$$$:   60-block  1
+    $$$$$:   60-block  2
+        1:   61:    auto list = denis::list<int>();
+        1:   61-block  0
+    $$$$$:   61-block  1
+        1:   62:    list.pushFront(l);
+        1:   62-block  0
+       1*:   63:    ASSERT_EQ(list.isEmpty(), false);
+        1:   63-block  0
+    %%%%%:   63-block  1
+    %%%%%:   63-block  2
+    %%%%%:   63-block  3
+    %%%%%:   63-block  4
+    $$$$$:   63-block  5
+    $$$$$:   63-block  6
+    $$$$$:   63-block  7
+    $$$$$:   63-block  8
+    $$$$$:   63-block  9
+    $$$$$:   63-block 10
+    $$$$$:   63-block 11
+       1*:   64:    ASSERT_EQ(list.popBack(), 2);
+        1:   64-block  0
+        1:   64-block  1
+        1:   64-block  2
+    %%%%%:   64-block  3
+    %%%%%:   64-block  4
+    %%%%%:   64-block  5
+    %%%%%:   64-block  6
+    $$$$$:   64-block  7
+    $$$$$:   64-block  8
+    $$$$$:   64-block  9
+    $$$$$:   64-block 10
+    $$$$$:   64-block 11
+    $$$$$:   64-block 12
+    $$$$$:   64-block 13
+       1*:   65:    ASSERT_EQ(list.popBack(), 1);
+        1:   65-block  0
+        1:   65-block  1
+        1:   65-block  2
+    %%%%%:   65-block  3
+    %%%%%:   65-block  4
+    %%%%%:   65-block  5
+    %%%%%:   65-block  6
+    $$$$$:   65-block  7
+    $$$$$:   65-block  8
+    $$$$$:   65-block  9
+    $$$$$:   65-block 10
+    $$$$$:   65-block 11
+    $$$$$:   65-block 12
+    $$$$$:   65-block 13
+       1*:   66:    ASSERT_EQ(list.popBack(), 0);
+        1:   66-block  0
+        1:   66-block  1
+        1:   66-block  2
+    %%%%%:   66-block  3
+    %%%%%:   66-block  4
+    %%%%%:   66-block  5
+    %%%%%:   66-block  6
+    $$$$$:   66-block  7
+    $$$$$:   66-block  8
+    $$$$$:   66-block  9
+    $$$$$:   66-block 10
+    $$$$$:   66-block 11
+    $$$$$:   66-block 12
+    $$$$$:   66-block 13
+        -:   67:}
+------------------
+        -:   68:
+        4:   69:TEST(List, pushFrontData)
+        -:   70:{
+        1:   71:    auto list = denis::list<int>();
+        1:   72:    list.pushFront(10);
+        1:   73:    list.pushFront(15);
+       1*:   74:    ASSERT_EQ(list.popBack(), 10);
+       1*:   75:    ASSERT_EQ(list.popBack(), 15);
+        -:   76:}
+------------------
+_ZN23List_pushFrontData_TestC2Ev:
+        1:   69:TEST(List, pushFrontData)
+        1:   69-block  0
+------------------
+_ZN23List_pushFrontData_TestD0Ev:
+        1:   69:TEST(List, pushFrontData)
+        1:   69-block  0
+------------------
+_ZN23List_pushFrontData_TestD2Ev:
+        1:   69:TEST(List, pushFrontData)
+        1:   69-block  0
+------------------
+_ZN23List_pushFrontData_Test8TestBodyEv:
+        1:   69:TEST(List, pushFrontData)
+        -:   70:{
+        1:   71:    auto list = denis::list<int>();
+        1:   71-block  0
+    $$$$$:   71-block  1
+        1:   72:    list.pushFront(10);
+        1:   72-block  0
+    $$$$$:   72-block  1
+        1:   73:    list.pushFront(15);
+        1:   73-block  0
+    $$$$$:   73-block  1
+       1*:   74:    ASSERT_EQ(list.popBack(), 10);
+        1:   74-block  0
+        1:   74-block  1
+    %%%%%:   74-block  2
+    %%%%%:   74-block  3
+    %%%%%:   74-block  4
+    %%%%%:   74-block  5
+    $$$$$:   74-block  6
+    $$$$$:   74-block  7
+    $$$$$:   74-block  8
+    $$$$$:   74-block  9
+    $$$$$:   74-block 10
+    $$$$$:   74-block 11
+    $$$$$:   74-block 12
+       1*:   75:    ASSERT_EQ(list.popBack(), 15);
+        1:   75-block  0
+        1:   75-block  1
+        1:   75-block  2
+    %%%%%:   75-block  3
+    %%%%%:   75-block  4
+    %%%%%:   75-block  5
+    %%%%%:   75-block  6
+    $$$$$:   75-block  7
+    $$$$$:   75-block  8
+    $$$$$:   75-block  9
+    $$$$$:   75-block 10
+    $$$$$:   75-block 11
+    $$$$$:   75-block 12
+    $$$$$:   75-block 13
+        -:   76:}
+------------------
+        -:   77:
+        4:   78:TEST(List, pushBackList)
+        -:   79:{
+        1:   80:    denis::list<int> l {0, 1, 2};
+        1:   81:    auto list = denis::list<int>();
+        1:   82:    list.pushBack(l);
+       1*:   83:    ASSERT_EQ(list.isEmpty(), false);
+       1*:   84:    ASSERT_EQ(list.popBack(), 2);
+       1*:   85:    ASSERT_EQ(list.popBack(), 1);
+       1*:   86:    ASSERT_EQ(list.popBack(), 0);
+        -:   87:}
+------------------
+_ZN22List_pushBackList_TestC2Ev:
+        1:   78:TEST(List, pushBackList)
+        1:   78-block  0
+------------------
+_ZN22List_pushBackList_TestD0Ev:
+        1:   78:TEST(List, pushBackList)
+        1:   78-block  0
+------------------
+_ZN22List_pushBackList_TestD2Ev:
+        1:   78:TEST(List, pushBackList)
+        1:   78-block  0
+------------------
+_ZN22List_pushBackList_Test8TestBodyEv:
+        1:   78:TEST(List, pushBackList)
+        -:   79:{
+        1:   80:    denis::list<int> l {0, 1, 2};
+        1:   80-block  0
+    $$$$$:   80-block  1
+    $$$$$:   80-block  2
+        1:   81:    auto list = denis::list<int>();
+        1:   81-block  0
+    $$$$$:   81-block  1
+        1:   82:    list.pushBack(l);
+        1:   82-block  0
+       1*:   83:    ASSERT_EQ(list.isEmpty(), false);
+        1:   83-block  0
+    %%%%%:   83-block  1
+    %%%%%:   83-block  2
+    %%%%%:   83-block  3
+    %%%%%:   83-block  4
+    $$$$$:   83-block  5
+    $$$$$:   83-block  6
+    $$$$$:   83-block  7
+    $$$$$:   83-block  8
+    $$$$$:   83-block  9
+    $$$$$:   83-block 10
+    $$$$$:   83-block 11
+       1*:   84:    ASSERT_EQ(list.popBack(), 2);
+        1:   84-block  0
+        1:   84-block  1
+        1:   84-block  2
+    %%%%%:   84-block  3
+    %%%%%:   84-block  4
+    %%%%%:   84-block  5
+    %%%%%:   84-block  6
+    $$$$$:   84-block  7
+    $$$$$:   84-block  8
+    $$$$$:   84-block  9
+    $$$$$:   84-block 10
+    $$$$$:   84-block 11
+    $$$$$:   84-block 12
+    $$$$$:   84-block 13
+       1*:   85:    ASSERT_EQ(list.popBack(), 1);
+        1:   85-block  0
+        1:   85-block  1
+        1:   85-block  2
+    %%%%%:   85-block  3
+    %%%%%:   85-block  4
+    %%%%%:   85-block  5
+    %%%%%:   85-block  6
+    $$$$$:   85-block  7
+    $$$$$:   85-block  8
+    $$$$$:   85-block  9
+    $$$$$:   85-block 10
+    $$$$$:   85-block 11
+    $$$$$:   85-block 12
+    $$$$$:   85-block 13
+       1*:   86:    ASSERT_EQ(list.popBack(), 0);
+        1:   86-block  0
+        1:   86-block  1
+        1:   86-block  2
+    %%%%%:   86-block  3
+    %%%%%:   86-block  4
+    %%%%%:   86-block  5
+    %%%%%:   86-block  6
+    $$$$$:   86-block  7
+    $$$$$:   86-block  8
+    $$$$$:   86-block  9
+    $$$$$:   86-block 10
+    $$$$$:   86-block 11
+    $$$$$:   86-block 12
+    $$$$$:   86-block 13
+        -:   87:}
+------------------
+        -:   88:
+        4:   89:TEST(List, pushBackData)
+        -:   90:{
+        1:   91:    auto list = denis::list<int>();
+        1:   92:    list.pushBack(10);
+        1:   93:    list.pushBack(15);
+       1*:   94:    ASSERT_EQ(list.popBack(), 15);
+       1*:   95:    ASSERT_EQ(list.popBack(), 10);
+        -:   96:}
+------------------
+_ZN22List_pushBackData_TestC2Ev:
+        1:   89:TEST(List, pushBackData)
+        1:   89-block  0
+------------------
+_ZN22List_pushBackData_TestD0Ev:
+        1:   89:TEST(List, pushBackData)
+        1:   89-block  0
+------------------
+_ZN22List_pushBackData_TestD2Ev:
+        1:   89:TEST(List, pushBackData)
+        1:   89-block  0
+------------------
+_ZN22List_pushBackData_Test8TestBodyEv:
+        1:   89:TEST(List, pushBackData)
+        -:   90:{
+        1:   91:    auto list = denis::list<int>();
+        1:   91-block  0
+    $$$$$:   91-block  1
+        1:   92:    list.pushBack(10);
+        1:   92-block  0
+    $$$$$:   92-block  1
+        1:   93:    list.pushBack(15);
+        1:   93-block  0
+    $$$$$:   93-block  1
+       1*:   94:    ASSERT_EQ(list.popBack(), 15);
+        1:   94-block  0
+        1:   94-block  1
+    %%%%%:   94-block  2
+    %%%%%:   94-block  3
+    %%%%%:   94-block  4
+    %%%%%:   94-block  5
+    $$$$$:   94-block  6
+    $$$$$:   94-block  7
+    $$$$$:   94-block  8
+    $$$$$:   94-block  9
+    $$$$$:   94-block 10
+    $$$$$:   94-block 11
+    $$$$$:   94-block 12
+       1*:   95:    ASSERT_EQ(list.popBack(), 10);
+        1:   95-block  0
+        1:   95-block  1
+        1:   95-block  2
+    %%%%%:   95-block  3
+    %%%%%:   95-block  4
+    %%%%%:   95-block  5
+    %%%%%:   95-block  6
+    $$$$$:   95-block  7
+    $$$$$:   95-block  8
+    $$$$$:   95-block  9
+    $$$$$:   95-block 10
+    $$$$$:   95-block 11
+    $$$$$:   95-block 12
+    $$$$$:   95-block 13
+        -:   96:}
+------------------
+        -:   97:
+        4:   98:TEST(List, insertDataByIterator)
+        -:   99:{
+        1:  100:    auto list = denis::list<int>();
+        1:  101:    list.pushBack(10);
+        1:  102:    list.pushBack(15);
+        1:  103:    list.insert(list.begin() + 1, 20);
+       1*:  104:    ASSERT_EQ(list.popBack(), 15);
+       1*:  105:    ASSERT_EQ(list.popBack(), 20);
+       1*:  106:    ASSERT_EQ(list.popBack(), 10);
+        -:  107:}
+------------------
+_ZN30List_insertDataByIterator_TestC2Ev:
+        1:   98:TEST(List, insertDataByIterator)
+        1:   98-block  0
+------------------
+_ZN30List_insertDataByIterator_TestD0Ev:
+        1:   98:TEST(List, insertDataByIterator)
+        1:   98-block  0
+------------------
+_ZN30List_insertDataByIterator_TestD2Ev:
+        1:   98:TEST(List, insertDataByIterator)
+        1:   98-block  0
+------------------
+_ZN30List_insertDataByIterator_Test8TestBodyEv:
+        1:   98:TEST(List, insertDataByIterator)
+        -:   99:{
+        1:  100:    auto list = denis::list<int>();
+        1:  100-block  0
+    $$$$$:  100-block  1
+        1:  101:    list.pushBack(10);
+        1:  101-block  0
+    $$$$$:  101-block  1
+        1:  102:    list.pushBack(15);
+        1:  102-block  0
+    $$$$$:  102-block  1
+        1:  103:    list.insert(list.begin() + 1, 20);
+        1:  103-block  0
+        1:  103-block  1
+        1:  103-block  2
+    $$$$$:  103-block  3
+    $$$$$:  103-block  4
+    $$$$$:  103-block  5
+    $$$$$:  103-block  6
+    $$$$$:  103-block  7
+    $$$$$:  103-block  8
+       1*:  104:    ASSERT_EQ(list.popBack(), 15);
+        1:  104-block  0
+        1:  104-block  1
+    %%%%%:  104-block  2
+    %%%%%:  104-block  3
+    %%%%%:  104-block  4
+    %%%%%:  104-block  5
+    $$$$$:  104-block  6
+    $$$$$:  104-block  7
+    $$$$$:  104-block  8
+    $$$$$:  104-block  9
+    $$$$$:  104-block 10
+    $$$$$:  104-block 11
+    $$$$$:  104-block 12
+       1*:  105:    ASSERT_EQ(list.popBack(), 20);
+        1:  105-block  0
+        1:  105-block  1
+        1:  105-block  2
+    %%%%%:  105-block  3
+    %%%%%:  105-block  4
+    %%%%%:  105-block  5
+    %%%%%:  105-block  6
+    $$$$$:  105-block  7
+    $$$$$:  105-block  8
+    $$$$$:  105-block  9
+    $$$$$:  105-block 10
+    $$$$$:  105-block 11
+    $$$$$:  105-block 12
+    $$$$$:  105-block 13
+       1*:  106:    ASSERT_EQ(list.popBack(), 10);
+        1:  106-block  0
+        1:  106-block  1
+        1:  106-block  2
+    %%%%%:  106-block  3
+    %%%%%:  106-block  4
+    %%%%%:  106-block  5
+    %%%%%:  106-block  6
+    $$$$$:  106-block  7
+    $$$$$:  106-block  8
+    $$$$$:  106-block  9
+    $$$$$:  106-block 10
+    $$$$$:  106-block 11
+    $$$$$:  106-block 12
+    $$$$$:  106-block 13
+        -:  107:}
+------------------
+        -:  108:
+        4:  109:TEST(List, insertListByIterator)
+        -:  110:{
+        1:  111:    denis::list<int> l {0, 1, 2};
+        1:  112:    auto list = denis::list<int>();
+        1:  113:    list.pushBack(10);
+        1:  114:    list.pushBack(15);
+        1:  115:    list.insert(list.begin() + 1, l);
+       1*:  116:    ASSERT_EQ(list.popBack(), 15);
+       1*:  117:    ASSERT_EQ(list.popBack(), 2);
+       1*:  118:    ASSERT_EQ(list.popBack(), 1);
+       1*:  119:    ASSERT_EQ(list.popBack(), 0);
+       1*:  120:    ASSERT_EQ(list.popBack(), 10);
+        -:  121:}
+------------------
+_ZN30List_insertListByIterator_TestC2Ev:
+        1:  109:TEST(List, insertListByIterator)
+        1:  109-block  0
+------------------
+_ZN30List_insertListByIterator_TestD0Ev:
+        1:  109:TEST(List, insertListByIterator)
+        1:  109-block  0
+------------------
+_ZN30List_insertListByIterator_TestD2Ev:
+        1:  109:TEST(List, insertListByIterator)
+        1:  109-block  0
+------------------
+_ZN30List_insertListByIterator_Test8TestBodyEv:
+        1:  109:TEST(List, insertListByIterator)
+        -:  110:{
+        1:  111:    denis::list<int> l {0, 1, 2};
+        1:  111-block  0
+    $$$$$:  111-block  1
+    $$$$$:  111-block  2
+        1:  112:    auto list = denis::list<int>();
+        1:  112-block  0
+    $$$$$:  112-block  1
+        1:  113:    list.pushBack(10);
+        1:  113-block  0
+    $$$$$:  113-block  1
+        1:  114:    list.pushBack(15);
+        1:  114-block  0
+    $$$$$:  114-block  1
+        1:  115:    list.insert(list.begin() + 1, l);
+        1:  115-block  0
+        1:  115-block  1
+        1:  115-block  2
+    $$$$$:  115-block  3
+    $$$$$:  115-block  4
+    $$$$$:  115-block  5
+    $$$$$:  115-block  6
+    $$$$$:  115-block  7
+       1*:  116:    ASSERT_EQ(list.popBack(), 15);
+        1:  116-block  0
+        1:  116-block  1
+    %%%%%:  116-block  2
+    %%%%%:  116-block  3
+    %%%%%:  116-block  4
+    %%%%%:  116-block  5
+    $$$$$:  116-block  6
+    $$$$$:  116-block  7
+    $$$$$:  116-block  8
+    $$$$$:  116-block  9
+    $$$$$:  116-block 10
+    $$$$$:  116-block 11
+    $$$$$:  116-block 12
+       1*:  117:    ASSERT_EQ(list.popBack(), 2);
+        1:  117-block  0
+        1:  117-block  1
+        1:  117-block  2
+    %%%%%:  117-block  3
+    %%%%%:  117-block  4
+    %%%%%:  117-block  5
+    %%%%%:  117-block  6
+    $$$$$:  117-block  7
+    $$$$$:  117-block  8
+    $$$$$:  117-block  9
+    $$$$$:  117-block 10
+    $$$$$:  117-block 11
+    $$$$$:  117-block 12
+    $$$$$:  117-block 13
+       1*:  118:    ASSERT_EQ(list.popBack(), 1);
+        1:  118-block  0
+        1:  118-block  1
+        1:  118-block  2
+    %%%%%:  118-block  3
+    %%%%%:  118-block  4
+    %%%%%:  118-block  5
+    %%%%%:  118-block  6
+    $$$$$:  118-block  7
+    $$$$$:  118-block  8
+    $$$$$:  118-block  9
+    $$$$$:  118-block 10
+    $$$$$:  118-block 11
+    $$$$$:  118-block 12
+    $$$$$:  118-block 13
+       1*:  119:    ASSERT_EQ(list.popBack(), 0);
+        1:  119-block  0
+        1:  119-block  1
+        1:  119-block  2
+    %%%%%:  119-block  3
+    %%%%%:  119-block  4
+    %%%%%:  119-block  5
+    %%%%%:  119-block  6
+    $$$$$:  119-block  7
+    $$$$$:  119-block  8
+    $$$$$:  119-block  9
+    $$$$$:  119-block 10
+    $$$$$:  119-block 11
+    $$$$$:  119-block 12
+    $$$$$:  119-block 13
+       1*:  120:    ASSERT_EQ(list.popBack(), 10);
+        1:  120-block  0
+        1:  120-block  1
+        1:  120-block  2
+    %%%%%:  120-block  3
+    %%%%%:  120-block  4
+    %%%%%:  120-block  5
+    %%%%%:  120-block  6
+    $$$$$:  120-block  7
+    $$$$$:  120-block  8
+    $$$$$:  120-block  9
+    $$$$$:  120-block 10
+    $$$$$:  120-block 11
+    $$$$$:  120-block 12
+    $$$$$:  120-block 13
+        -:  121:}
+------------------
+        -:  122:
+        4:  123:TEST(List, insertDataByConstIterator)
+        -:  124:{
+        1:  125:    auto list = denis::list<int>();
+        1:  126:    list.pushBack(10);
+        1:  127:    list.pushBack(15);
+        1:  128:    list.insert(list.cbegin() + 1, 20);
+       1*:  129:    ASSERT_EQ(list.popBack(), 15);
+       1*:  130:    ASSERT_EQ(list.popBack(), 20);
+       1*:  131:    ASSERT_EQ(list.popBack(), 10);
+        -:  132:}
+------------------
+_ZN35List_insertDataByConstIterator_TestC2Ev:
+        1:  123:TEST(List, insertDataByConstIterator)
+        1:  123-block  0
+------------------
+_ZN35List_insertDataByConstIterator_TestD0Ev:
+        1:  123:TEST(List, insertDataByConstIterator)
+        1:  123-block  0
+------------------
+_ZN35List_insertDataByConstIterator_TestD2Ev:
+        1:  123:TEST(List, insertDataByConstIterator)
+        1:  123-block  0
+------------------
+_ZN35List_insertDataByConstIterator_Test8TestBodyEv:
+        1:  123:TEST(List, insertDataByConstIterator)
+        -:  124:{
+        1:  125:    auto list = denis::list<int>();
+        1:  125-block  0
+    $$$$$:  125-block  1
+        1:  126:    list.pushBack(10);
+        1:  126-block  0
+    $$$$$:  126-block  1
+        1:  127:    list.pushBack(15);
+        1:  127-block  0
+    $$$$$:  127-block  1
+        1:  128:    list.insert(list.cbegin() + 1, 20);
+        1:  128-block  0
+        1:  128-block  1
+        1:  128-block  2
+    $$$$$:  128-block  3
+    $$$$$:  128-block  4
+    $$$$$:  128-block  5
+    $$$$$:  128-block  6
+    $$$$$:  128-block  7
+    $$$$$:  128-block  8
+       1*:  129:    ASSERT_EQ(list.popBack(), 15);
+        1:  129-block  0
+        1:  129-block  1
+    %%%%%:  129-block  2
+    %%%%%:  129-block  3
+    %%%%%:  129-block  4
+    %%%%%:  129-block  5
+    $$$$$:  129-block  6
+    $$$$$:  129-block  7
+    $$$$$:  129-block  8
+    $$$$$:  129-block  9
+    $$$$$:  129-block 10
+    $$$$$:  129-block 11
+    $$$$$:  129-block 12
+       1*:  130:    ASSERT_EQ(list.popBack(), 20);
+        1:  130-block  0
+        1:  130-block  1
+        1:  130-block  2
+    %%%%%:  130-block  3
+    %%%%%:  130-block  4
+    %%%%%:  130-block  5
+    %%%%%:  130-block  6
+    $$$$$:  130-block  7
+    $$$$$:  130-block  8
+    $$$$$:  130-block  9
+    $$$$$:  130-block 10
+    $$$$$:  130-block 11
+    $$$$$:  130-block 12
+    $$$$$:  130-block 13
+       1*:  131:    ASSERT_EQ(list.popBack(), 10);
+        1:  131-block  0
+        1:  131-block  1
+        1:  131-block  2
+    %%%%%:  131-block  3
+    %%%%%:  131-block  4
+    %%%%%:  131-block  5
+    %%%%%:  131-block  6
+    $$$$$:  131-block  7
+    $$$$$:  131-block  8
+    $$$$$:  131-block  9
+    $$$$$:  131-block 10
+    $$$$$:  131-block 11
+    $$$$$:  131-block 12
+    $$$$$:  131-block 13
+        -:  132:}
+------------------
+        -:  133:
+        4:  134:TEST(List, insertListByConstIterator)
+        -:  135:{
+        1:  136:    denis::list<int> l {0, 1, 2};
+        1:  137:    auto list = denis::list<int>();
+        1:  138:    list.pushBack(10);
+        1:  139:    list.pushBack(15);
+        1:  140:    list.insert(list.cbegin() + 1, l);
+       1*:  141:    ASSERT_EQ(list.popBack(), 15);
+       1*:  142:    ASSERT_EQ(list.popBack(), 2);
+       1*:  143:    ASSERT_EQ(list.popBack(), 1);
+       1*:  144:    ASSERT_EQ(list.popBack(), 0);
+       1*:  145:    ASSERT_EQ(list.popBack(), 10);
+        -:  146:}

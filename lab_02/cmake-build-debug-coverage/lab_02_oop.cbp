@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="lab_02_oop"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\lib\;CMake Files\lib\googletest\;CMake Files\lib\googletest\googlemock\;CMake Files\lib\googletest\googlemock\cmake\;CMake Files\lib\googletest\googletest\;CMake Files\lib\googletest\googletest\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab_02_oop_debug">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lab_02_oop_debug" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/home/denis/OOP/lab_02/inc"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 lab_02_oop_debug"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab_02_oop_debug/fast">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lab_02_oop_debug" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/home/denis/OOP/lab_02/inc"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 lab_02_oop_debug/fast"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab_02_oop">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/liblab_02_oop.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/inc"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 lab_02_oop"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab_02_oop/fast">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/liblab_02_oop.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/inc"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 lab_02_oop/fast"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab_02_oop_tests">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lab_02_oop_tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/home/denis/OOP/lab_02/inc"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 lab_02_oop_tests"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab_02_oop_tests/fast">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lab_02_oop_tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/home/denis/OOP/lab_02/inc"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 lab_02_oop_tests/fast"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock_main">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock_main"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock_main/fast">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock_main/fast"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/libgmockd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock/fast">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/libgmockd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googlemock"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock/fast"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main/fast">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest/fast">
+				<Option output="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest/include"/>
+					<Add directory="/home/denis/OOP/lab_02/lib/googletest/googletest"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/make -j4 -f &quot;/home/denis/OOP/lab_02/cmake-build-debug-coverage/lib/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/denis/OOP/lab_02/inc/ConstListIterator.h">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/ConstListIterator.hpp">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/ErrorExceptions.hpp">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/List.h">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/List.hpp">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/ListIterator.h">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/ListIterator.hpp">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/ListNode.h">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/ListNode.hpp">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/inc/SkeletonContainer.h">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googlemock/src/gmock-all.cc">
+			<Option target="gmock"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googlemock/src/gmock_main.cc">
+			<Option target="gmock_main"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googletest/src/gtest-all.cc">
+			<Option target="gtest"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googletest/src/gtest_main.cc">
+			<Option target="gtest_main"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/main.cpp">
+			<Option target="lab_02_oop_debug"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/src/fake.cpp">
+			<Option target="lab_02_oop"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/tests/TestConstListIterator.cpp">
+			<Option target="lab_02_oop_tests"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/tests/TestList.cpp">
+			<Option target="lab_02_oop_tests"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/tests/TestListInterator.cpp">
+			<Option target="lab_02_oop_tests"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/tests/TestListNode.cpp">
+			<Option target="lab_02_oop_tests"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\googletest\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googlemock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\googletest\googlemock\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googlemock/cmake/gmock.pc.in">
+			<Option virtualFolder="CMake Files\lib\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googlemock/cmake/gmock_main.pc.in">
+			<Option virtualFolder="CMake Files\lib\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googletest/cmake/Config.cmake.in">
+			<Option virtualFolder="CMake Files\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googletest/cmake/gtest.pc.in">
+			<Option virtualFolder="CMake Files\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googletest/cmake/gtest_main.pc.in">
+			<Option virtualFolder="CMake Files\lib\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/denis/OOP/lab_02/lib/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\lib\googletest\googletest\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

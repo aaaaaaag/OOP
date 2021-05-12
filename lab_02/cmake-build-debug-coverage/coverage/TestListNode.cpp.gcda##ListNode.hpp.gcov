@@ -1,0 +1,95 @@
+        -:    0:Source:/home/denis/OOP/lab_02/inc/ListNode.hpp
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestListNode.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestListNode.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 20.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LIST_NODE_HPP
+        -:    6:#define LIST_NODE_HPP
+        -:    7:
+        -:    8:#include "ListNode.h"
+        -:    9:
+        -:   10://using namespace denis;
+        -:   11:
+        -:   12:template <typename T>
+      102:   13:denis::listNode<T>::listNode():
+      102:   14:m_pNextNode(nullptr)
+      102:   14-block  0
+        -:   15:{
+      102:   16:}
+        -:   17:
+        -:   18:template<typename T>
+       45:   19:denis::listNode<T>::listNode(const T &inData):
+        -:   20:m_pNextNode(nullptr),
+       45:   21:m_data(inData)
+       45:   21-block  0
+        -:   22:{
+       45:   23:}
+        -:   24:
+        -:   25:template<typename T>
+        -:   26:denis::listNode<T>::listNode(std::shared_ptr<listNode<T>>& inNode):
+        -:   27:m_pNextNode(inNode->m_pNextNode),
+        -:   28:m_data(inNode->m_data)
+        -:   29:{
+        -:   30:}
+        -:   31:
+        -:   32:template<typename T>
+       90:   33:void denis::listNode<T>::setData(const T &inData) {
+       90:   34:    this->m_data = inData;
+       90:   35:}
+        -:   36:
+        -:   37:template<typename T>
+       73:   38:void denis::listNode<T>::setNextNode(const std::shared_ptr<listNode<T>> &inNextNode) {
+       73:   39:    this->m_pNextNode = inNextNode;
+       73:   39-block  0
+       73:   40:}
+        -:   41:
+        -:   42:template<typename T>
+        1:   43:void denis::listNode<T>::setNextNode(const listNode<T> &inNode) {
+        2:   44:    auto pNode = std::make_shared<listNode<T>>(inNode);
+        1:   44-block  0
+        1:   45:    this->m_pNextNode = pNode;
+        1:   45-block  0
+        1:   46:}
+        -:   47:
+        -:   48:template<typename T>
+      101:   49:const T &denis::listNode<T>::get() const {
+      101:   50:    return this->m_data;
+      101:   50-block  0
+        -:   51:}
+        -:   52:
+        -:   53:template<typename T>
+       21:   54:T &denis::listNode<T>::getData() {
+       21:   55:    return this->m_data;
+       21:   55-block  0
+        -:   56:}
+        -:   57:
+        -:   58:template<typename T>
+      161:   59:std::shared_ptr<denis::listNode<T>> denis::listNode<T>::getNextNode() const {
+      161:   60:    return this->m_pNextNode;
+      161:   60-block  0
+        -:   61:}
+        -:   62:
+        -:   63:template<typename T>
+       49:   64:void denis::listNode<T>::setNull() {
+       49:   65:    this->m_pNextNode = nullptr;
+       49:   65-block  0
+       49:   66:}
+        -:   67:
+        -:   68:template<typename T>
+        -:   69:bool denis::listNode<T>::operator==(const std::shared_ptr<listNode<T>> &cmpNode) const {
+        -:   70:    return this == cmpNode;
+        -:   71:}
+        -:   72:
+        -:   73:template<typename T>
+        -:   74:bool denis::listNode<T>::operator!=(const std::shared_ptr<listNode<T>> &cmpNode) const {
+        -:   75:    return this != cmpNode;
+        -:   76:}
+        -:   77:
+        -:   78:#endif
+        -:   79:
+        -:   80:
+        -:   81:

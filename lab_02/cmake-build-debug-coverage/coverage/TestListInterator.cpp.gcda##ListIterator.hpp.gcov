@@ -1,0 +1,140 @@
+        -:    0:Source:/home/denis/OOP/lab_02/inc/ListIterator.hpp
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestListInterator.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestListInterator.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 20.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LIST_ITERATOR_HPP
+        -:    6:#define LIST_ITERATOR_HPP
+        -:    7:
+        -:    8:#include "ListIterator.h"
+        -:    9:
+        -:   10:template <typename T>
+        4:   11:denis::listIterator<T>::listIterator()
+        4:   11-block  0
+        -:   12:{
+        4:   13:    this->m_pNode.lock() = nullptr;
+        4:   14:}
+        -:   15:
+        -:   16:template<typename T>
+       88:   17:denis::listIterator<T>::listIterator(const std::shared_ptr<listNode<T>> &node) {
+       88:   17-block  0
+       88:   18:    this->m_pNode = node;
+       88:   19:}
+        -:   20:
+        -:   21:template<typename T>
+       48:   22:denis::listIterator<T>::listIterator(const denis::listIterator<T> &iterator) {
+       48:   22-block  0
+       48:   23:    this->m_pNode = iterator.m_pNode.lock();
+       48:   24:}
+        -:   25:
+        -:   26:template<typename T>
+       44:   27:void denis::listIterator<T>::next() {
+       44:   28:    this->m_pNode = this->m_pNode.lock()->getNextNode();
+       44:   28-block  0
+       44:   29:}
+        -:   30:
+        -:   31:template<typename T>
+       10:   32:bool denis::listIterator<T>::isInvalid() const {
+       10:   33:    return this->m_pNode.lock() == nullptr;
+       10:   33-block  0
+        -:   34:}
+        -:   35:
+        -:   36:template<typename T>
+       27:   37:denis::listNode<T> *denis::listIterator<T>::operator->() {
+       27:   38:    return this->m_pNode.lock().get();
+       27:   38-block  0
+        -:   39:}
+        -:   40:
+        -:   41:template<typename T>
+        -:   42:const denis::listNode<T> *denis::listIterator<T>::operator->() const {
+        -:   43:    return this->m_pNode.lock().get();
+        -:   44:}
+        -:   45:
+        -:   46:template<typename T>
+        -:   47:const denis::listNode<T> &denis::listIterator<T>::operator*() const {
+        -:   48:    return *this->m_pNode.lock();
+        -:   49:}
+        -:   50:
+        -:   51:template<typename T>
+        6:   52:denis::listNode<T> &denis::listIterator<T>::operator*() {
+        6:   53:    return *this->m_pNode.lock();
+        6:   53-block  0
+        -:   54:}
+        -:   55:
+        -:   56:template<typename T>
+        -:   57:denis::listIterator<T>::operator bool() const {
+        -:   58:    return this->m_pNode.lock() != nullptr;
+        -:   59:}
+        -:   60:
+        -:   61:template<typename T>
+       21:   62:denis::listIterator<T> &denis::listIterator<T>::operator+=(const int &size) {
+       44:   63:    for (int i = 0; i < size; i++)
+       21:   63-block  0
+       44:   63-block  1
+       23:   64:        this->next();
+       23:   64-block  0
+        -:   65:
+       21:   66:    return *this;
+       21:   66-block  0
+        -:   67:}
+        -:   68:
+        -:   69:template<typename T>
+       20:   70:denis::listIterator<T> denis::listIterator<T>::operator+(const int &size) const {
+       20:   71:    denis::listIterator<T> new_iterator(*this);
+       20:   71-block  0
+       20:   72:    new_iterator += size;
+       20:   73:    return new_iterator;
+       20:   73-block  0
+       20:   73-block  1
+        -:   74:}
+        -:   75:
+        -:   76:template<typename T>
+        -:   77:denis::listIterator<T>& denis::listIterator<T>::operator=(const denis::listIterator<T> &iterator) {
+        -:   78:    this->m_pNode = iterator.m_pNode.lock();
+        -:   79:    return *this;
+        -:   80:}
+        -:   81:
+        -:   82:template<typename T>
+        -:   83:denis::listIterator<T> &denis::listIterator<T>::operator++() {
+        -:   84:    this->next();
+        -:   85:    return *this;
+        -:   86:}
+        -:   87:
+        -:   88:template<typename T>
+       10:   89:const denis::listIterator<T> denis::listIterator<T>::operator++(int) {
+       10:   90:    denis::listIterator<T> new_iterator(*this);
+       10:   90-block  0
+       10:   91:    this->next();
+       10:   92:    return new_iterator;
+       10:   92-block  0
+       10:   92-block  1
+        -:   93:}
+        -:   94:
+        -:   95:template<typename T>
+       13:   96:bool denis::listIterator<T>::operator!=(const denis::listIterator<T> &iterator) const {
+       13:   97:    return this->m_pNode.lock() != iterator.m_pNode.lock();
+       13:   97-block  0
+        -:   98:}
+        -:   99:
+        -:  100:template<typename T>
+       15:  101:bool denis::listIterator<T>::operator==(const denis::listIterator<T> &iterator) const {
+       15:  102:    return this->m_pNode.lock() == iterator.m_pNode.lock();
+       15:  102-block  0
+        -:  103:}
+        -:  104:
+        -:  105:template<typename T>
+        -:  106:bool denis::listIterator<T>::operator!=(const denis::constListIterator<T> &iterator) const {
+        -:  107:    return this->m_pNode.lock() != iterator.m_pNode.lock();
+        -:  108:}
+        -:  109:
+        -:  110:template<typename T>
+        -:  111:bool denis::listIterator<T>::operator==(const denis::constListIterator<T> &iterator) const {
+        -:  112:    return this->m_pNode.lock() == iterator.m_pNode.lock();
+        -:  113:}
+        -:  114:
+        -:  115:
+        -:  116:#endif

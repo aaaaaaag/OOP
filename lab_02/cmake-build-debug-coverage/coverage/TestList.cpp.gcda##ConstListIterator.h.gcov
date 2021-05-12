@@ -1,0 +1,51 @@
+        -:    0:Source:/home/denis/OOP/lab_02/inc/ConstListIterator.h
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 20.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LAB_02_OOP_CONSTLISTITERATOR_H
+        -:    6:#define LAB_02_OOP_CONSTLISTITERATOR_H
+        -:    7:
+        -:    8:#include "ListNode.hpp"
+        -:    9:#include "ListIterator.hpp"
+        -:   10:
+        -:   11:namespace denis {
+        -:   12:    template <typename T>
+        -:   13:    class constListIterator {
+        -:   14:    public:
+        -:   15:        constListIterator();
+        -:   16:        explicit constListIterator(const std::shared_ptr<listNode<T>> &node);
+        -:   17:        constListIterator(const constListIterator<T> &iterator);
+        -:   18:
+    #####:   19:        ~constListIterator() = default;
+    %%%%%:   19-block  0
+        -:   20:
+        -:   21:        virtual void next();
+        -:   22:        virtual bool isInvalid() const;
+        -:   23:
+        -:   24:        const listNode<T> *operator ->() const;
+        -:   25:        const listNode<T> &operator *() const;
+        -:   26:        operator bool() const;
+        -:   27:
+        -:   28:        constListIterator<T> &operator += (const int &size);
+        -:   29:        constListIterator<T> operator + (const int &size) const;
+        -:   30:        constListIterator<T>& operator = (const listIterator<T> &iterator);
+        -:   31:        constListIterator<T> &operator ++ ();
+        -:   32:        const constListIterator<T> operator ++ (int);
+        -:   33:
+        -:   34:        bool operator != (const constListIterator<T> &iterator) const;
+        -:   35:        bool operator == (const constListIterator<T> &iterator) const;
+        -:   36:        bool operator != (const listIterator<T> &iterator) const;
+        -:   37:        bool operator == (const listIterator<T> &iterator) const;
+        -:   38:
+        -:   39:        friend class listIterator<T>;
+        -:   40:    protected:
+        -:   41:        std::weak_ptr<listNode<T>> m_pNode;
+        -:   42:
+        -:   43:    };
+        -:   44:}
+        -:   45:#endif //LAB_02_OOP_CONSTLISTITERATOR_H

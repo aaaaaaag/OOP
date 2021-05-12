@@ -1,0 +1,64 @@
+        -:    0:Source:/home/denis/OOP/lab_02/inc/ListIterator.h
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestListInterator.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestListInterator.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 20.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LAB_02_OOP_LISTITERATOR_H
+        -:    6:#define LAB_02_OOP_LISTITERATOR_H
+        -:    7:
+        -:    8:
+        -:    9:#include <memory>
+        -:   10:#include "ListNode.hpp"
+        -:   11:
+        -:   12:
+        -:   13:
+        -:   14:namespace denis {
+        -:   15:    template<typename T>
+        -:   16:    class constListIterator;
+        -:   17:
+        -:   18:
+        -:   19:    template<typename T>
+        -:   20:    class listIterator: public std::iterator<std::input_iterator_tag, T> {
+        -:   21:        public:
+        -:   22:            listIterator();
+        -:   23:            explicit listIterator(const std::shared_ptr<listNode<T>> &node);
+        -:   24:            listIterator(const listIterator<T> &iterator);
+        -:   25:
+      140:   26:            ~listIterator() = default;
+      140:   26-block  0
+        -:   27:
+        -:   28:            virtual void next();
+        -:   29:            [[nodiscard]] virtual bool isInvalid() const;
+        -:   30:
+        -:   31:            listNode<T> *operator ->();
+        -:   32:            const listNode<T> *operator ->() const;
+        -:   33:
+        -:   34:            const listNode<T> &operator *() const;
+        -:   35:            listNode<T> &operator *();
+        -:   36:
+        -:   37:            explicit operator bool() const;
+        -:   38:
+        -:   39:
+        -:   40:            listIterator<T> &operator += (const int &size);
+        -:   41:            listIterator<T> operator + (const int &size) const;
+        -:   42:            listIterator<T>& operator = (const listIterator<T> &iterator);
+        -:   43:            listIterator<T> &operator ++ ();
+        -:   44:            const listIterator<T> operator ++ (int);
+        -:   45:
+        -:   46:            bool operator != (const listIterator<T> &iterator) const;
+        -:   47:            bool operator == (const listIterator<T> &iterator) const;
+        -:   48:            bool operator != (const constListIterator<T>& iterator) const;
+        -:   49:            bool operator == (const constListIterator<T>& iterator) const;
+        -:   50:
+        -:   51:            friend class constListIterator<T>;
+        -:   52:
+        -:   53:        private:
+        -:   54:            std::weak_ptr<listNode<T>> m_pNode;
+        -:   55:        };
+        -:   56:}
+        -:   57:
+        -:   58:#endif //LAB_02_OOP_LISTITERATOR_H

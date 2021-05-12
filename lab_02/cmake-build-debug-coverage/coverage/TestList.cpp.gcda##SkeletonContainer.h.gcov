@@ -1,0 +1,32 @@
+        -:    0:Source:/home/denis/OOP/lab_02/inc/SkeletonContainer.h
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 20.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LAB_02_OOP_SKELETONCONTAINER_H
+        -:    6:#define LAB_02_OOP_SKELETONCONTAINER_H
+        -:    7:
+        -:    8:namespace denis {
+        -:    9:    class ISkeletonContainer {
+        -:   10:    public:
+        -:   11:
+      19*:   12:        virtual ~ISkeletonContainer() = default;
+------------------
+_ZN5denis18ISkeletonContainerD0Ev:
+    #####:   12:        virtual ~ISkeletonContainer() = default;
+    %%%%%:   12-block  0
+------------------
+_ZN5denis18ISkeletonContainerD2Ev:
+       19:   12:        virtual ~ISkeletonContainer() = default;
+------------------
+        -:   13:        virtual bool isEmpty() = 0;
+        -:   14:        virtual void clear() = 0;
+        -:   15:
+        -:   16:    };
+        -:   17:}
+        -:   18:
+        -:   19:#endif //LAB_02_OOP_SKELETONCONTAINER_H

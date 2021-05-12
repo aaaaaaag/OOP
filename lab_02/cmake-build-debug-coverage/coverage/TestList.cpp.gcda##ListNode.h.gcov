@@ -1,0 +1,50 @@
+        -:    0:Source:/home/denis/OOP/lab_02/inc/ListNode.h
+        -:    0:Graph:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcno
+        -:    0:Data:/home/denis/OOP/lab_02/cmake-build-debug-coverage/CMakeFiles/lab_02_oop_tests.dir/tests/TestList.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by denis on 20.04.2021.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LAB_02_OOP_LISTNODE_H
+        -:    6:#define LAB_02_OOP_LISTNODE_H
+        -:    7:
+        -:    8:#include <memory>
+        -:    9:
+        -:   10:namespace denis {
+        -:   11:    template<typename T>
+        -:   12:    class listNode {
+        -:   13:    public:
+        -:   14:
+        -:   15:        listNode();
+        -:   16:        explicit listNode(const T &inData);
+        -:   17:        explicit listNode(std::shared_ptr<listNode<T>> &inNode);
+        -:   18:
+        -:   19:        void setData(const T &inData);
+        -:   20:
+        -:   21:        void setNextNode(const std::shared_ptr<listNode<T>> &inNextNode);
+        -:   22:
+        -:   23:        void setNextNode(const listNode<T> &inNode);
+        -:   24:
+        -:   25:        const T &get() const;
+        -:   26:
+        -:   27:        T &getData();
+        -:   28:
+        -:   29:        std::shared_ptr<listNode<T>> getNextNode() const;
+        -:   30:
+        -:   31:        void setNull();
+        -:   32:
+    #####:   33:        ~listNode() = default;
+    %%%%%:   33-block  0
+        -:   34:
+        -:   35:        bool operator == (const std::shared_ptr<listNode<T>>& cmpNode) const;
+        -:   36:        bool operator != (const std::shared_ptr<listNode<T>>& cmpNode) const;
+        -:   37:
+        -:   38:    private:
+        -:   39:        T m_data;
+        -:   40:        std::shared_ptr<listNode<T>> m_pNextNode;
+        -:   41:    };
+        -:   42:}
+        -:   43:
+        -:   44:#endif //LAB_02_OOP_LISTNODE_H
