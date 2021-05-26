@@ -11,7 +11,7 @@ enum direction {
     UP
 };
 
-#define CROSSING_FLOOR 1500
+#define CROSSING_FLOOR 2000
 #define DOORS_TIME 2000
 #define WAITING_TIME 2000
 
