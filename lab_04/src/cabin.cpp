@@ -9,7 +9,7 @@ Cabin::Cabin(QObject *parent): QObject(parent), m_currentFloor(1), m_target(-1),
                                 {
     m_crossingFloorTimer.setSingleShot(true);
 
-    QObject::connect(this, SIGNAL(cabinCalled()), &m_doors, SLOT(startClosing()));
+    QObject::connect(this, SIGNAL(cabinCalled()), &m_doors, SLOT(startOpening()));
     QObject::connect(this, SIGNAL(cabinReachedTarget(int)), this,
                      SLOT(cabinStopping()));
     QObject::connect(this, SIGNAL(cabinStopped(int)), &m_doors,
@@ -18,6 +18,8 @@ Cabin::Cabin(QObject *parent): QObject(parent), m_currentFloor(1), m_target(-1),
     QObject::connect(&m_crossingFloorTimer, SIGNAL(timeout()), this,
                      SLOT(cabinMove()));
 }
+
+// add change cabin state slot
 
 void Cabin::cabinMove() {
     if (m_newTarget && m_currentCabinState == WAIT) {
@@ -31,7 +33,6 @@ void Cabin::cabinMove() {
     }
 
     if (m_currentCabinState == MOVE) {
-        m_currentCabinState = MOVE;
         m_currentFloor += m_currentDirection;
 
         if (m_currentFloor == m_target)
@@ -53,16 +54,13 @@ void Cabin::cabinStopping() {
 }
 
 void Cabin::cabinCall(int floor, direction dir) {
-    if (m_currentCabinState != STOP) {
-        if (dir == m_currentDirection) m_target = floor;
-        qDebug() << "next target: " << m_target << ".";
-        return;
-    }
 
     m_newTarget = true;
-    m_currentCabinState = WAIT;
     m_target = floor;
     qDebug() << "next target: " << m_target << ".";
     m_currentDirection = dir;
-    emit cabinCalled();
+    if (m_currentCabinState == STOP) {
+        m_currentCabinState = WAIT;
+        emit cabinCalled();
+    }
 }

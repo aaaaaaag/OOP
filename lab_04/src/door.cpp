@@ -28,11 +28,11 @@ void Doors::startOpening() {
         m_currentDoorsState = OPENING;
         int t = m_doorsCloseTimer.remainingTime();
         m_doorsCloseTimer.stop();
-        m_doorsOpenTimer.start(DOORS_TIME - t);
+        m_doorsOpenTimer.start(t);
     }
 }
 
-void Doors::startClosing() {
+void Doors::startClosing() { // change to closing
     if (OPENED != m_currentDoorsState && CLOSED != m_currentDoorsState)
         return;
 
