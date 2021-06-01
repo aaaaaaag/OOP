@@ -8,8 +8,7 @@ ControlPanel::ControlPanel(QObject *parent)
 void ControlPanel::setNewFloorTarget(int floor) {
     m_currentPanelState = BUSY;
     m_vIsFloorTarget[floor - 1] = true;
-//
-//  qDebug() << "Current m_target panel: " << m_currentTarget << ".";
+
     if (m_currentTarget == -1)
       m_currentTarget = floor;
 
@@ -17,8 +16,6 @@ void ControlPanel::setNewFloorTarget(int floor) {
       (m_currentDirection == DOWN && floor > m_currentTarget && floor < m_currentFloor)) {
       m_currentTarget = floor;
     }
-//  qDebug() << "Current m_target panel: " << m_currentTarget << ".";
-//  qDebug() << "Current floor panel: " << m_currentFloor << ".";
 
     if (m_currentFloor > m_currentTarget)
         m_currentDirection = DOWN;

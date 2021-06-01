@@ -28,11 +28,12 @@ public slots:
     void cabinMove();
     void cabinStopping();
     void cabinCall(int floor, direction dir);
+    void cabinFindTarget();
 
 private:
     int m_currentFloor;
     int m_target;
-    bool m_newTarget;
+    bool m_hasTarget;
     cabin_state m_currentCabinState;
     direction m_currentDirection;
     Doors m_doors;
