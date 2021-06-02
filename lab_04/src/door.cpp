@@ -11,12 +11,12 @@ Doors::Doors(QObject *parent) : QObject(parent), m_currentDoorsState(CLOSED) {
     QObject::connect(this, SIGNAL(openedDoors()), &m_doorsStayOpenTimer,
                      SLOT(start()));
     QObject::connect(&m_doorsStayOpenTimer, SIGNAL(timeout()), this,
-                     SLOT(startClosing()));
+                     SLOT(closing()));
     QObject::connect(&m_doorsOpenTimer, SIGNAL(timeout()), this, SLOT(open()));
     QObject::connect(&m_doorsCloseTimer, SIGNAL(timeout()), this, SLOT(close()));
 }
 
-void Doors::startOpening() {
+void Doors::opening() {
     if (CLOSED != m_currentDoorsState && CLOSING != m_currentDoorsState)
         return;
     qDebug() << "Doors are opening........";
@@ -32,7 +32,7 @@ void Doors::startOpening() {
     }
 }
 
-void Doors::startClosing() { // change to closing
+void Doors::closing() { // change to closing
     if (OPENED != m_currentDoorsState)
         return;
 

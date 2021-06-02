@@ -9,10 +9,10 @@ Cabin::Cabin(QObject *parent): QObject(parent), m_currentFloor(1), m_target(-1),
                                 {
     m_crossingFloorTimer.setSingleShot(true);
 
-    QObject::connect(this, SIGNAL(cabinCalled()), &m_doors, SLOT(startOpening()));
+    QObject::connect(this, SIGNAL(cabinCalled()), &m_doors, SLOT(opening()));
     QObject::connect(this, SIGNAL(cabinReachedTarget(int)), this,
                      SLOT(cabinStopping()));
-    QObject::connect(this, SIGNAL(cabinStopped(int)), &m_doors, SLOT(startOpening()));
+    QObject::connect(this, SIGNAL(cabinStopped(int)), &m_doors, SLOT(opening()));
     QObject::connect(&m_doors, SIGNAL(closedDoors()), this, SLOT(cabinFindTarget()));
     QObject::connect(&m_crossingFloorTimer, SIGNAL(timeout()), this,
                      SLOT(cabinMove()));
@@ -23,15 +23,11 @@ void Cabin::cabinFindTarget() {
         return;
 
     if (m_currentCabinState == WAIT && m_currentFloor == m_target)
-    {
         m_currentCabinState = STOP;
-        m_hasTarget = false;
-    }
     else
-    {
         m_currentCabinState = MOVE;
-        cabinMove();
-    }
+
+    cabinMove();
 }
 
 void Cabin::cabinMove() {
@@ -54,14 +50,11 @@ void Cabin::cabinStopping() {
       return;
 
     m_currentCabinState = WAIT;
-    m_hasTarget = false;
     qDebug() << "Cabin stopped at floor " << QString::number(m_currentFloor) << ".";
     emit cabinStopped(m_currentFloor);
 }
 
 void Cabin::cabinCall(int floor, direction dir) {
-
-    m_hasTarget = true;
     m_target = floor;
     m_currentDirection = dir;
     if (m_currentCabinState == WAIT && m_target == m_currentFloor)

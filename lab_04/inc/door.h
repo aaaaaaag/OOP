@@ -22,8 +22,8 @@ signals:
     void openedDoors();
 
 public slots:
-    void startOpening();
-    void startClosing();
+    void opening();
+    void closing();
 
 private slots:
     void open();
