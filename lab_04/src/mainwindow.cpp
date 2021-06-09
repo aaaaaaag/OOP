@@ -12,11 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
   for (int i = 0; i < ui->cabin_buttons.size(); ++i) {
     connect(ui->cabin_buttons[i], &QPushButton::pressed, this,
             [=, this]() { onButtonCabinClicked(i + 1); });
-    ui->cabin_buttons[i]->setStyleSheet("background-color: red");
-    ui->cabin_buttons[i]->setStyleSheet("background-color: white");
   }
-  QObject::connect(&lift, SIGNAL(liftReachedFloor(int)), this,
-                      SLOT(floorReached(int)));
+
 }
 
 MainWindow::~MainWindow() {
@@ -25,11 +22,6 @@ MainWindow::~MainWindow() {
 
 void MainWindow::onButtonCabinClicked(int num) {
   qDebug() << "In cabin pressed button " << num;
-  ui->cabin_buttons[num - 1]->setStyleSheet("background-color: red");
-  lift.click(num);
-}
-
-void MainWindow::floorReached(int num) {
-    ui->cabin_buttons[num - 1]->setStyleSheet("background-color: white");
+  lift.floor_but_clicked(num);
 }
 

@@ -1,20 +1,14 @@
-#include <lift.h>
+#include "../inc/lift.hpp"
 
-Lift::Lift() {
-    QObject::connect(&cabin, SIGNAL(cabinStopped(int)), this,
-                     SLOT(reach(int)));
-    QObject::connect(&control_panel, SIGNAL(setFloorTarget(int, direction)), &cabin,
-                   SLOT(cabinCall(int, direction)));
-    QObject::connect(&cabin, SIGNAL(cabinCrossingFloor(int, direction)),
-                   &control_panel, SLOT(passedFloor(int)));
-    QObject::connect(&cabin, SIGNAL(cabinStopped(int)), &control_panel,
-                   SLOT(achievedFloor(int)));
+Lift::Lift(QObject *parent) : QObject(parent)
+{
+    QObject::connect(&_control_panel, SIGNAL(panel_new_target(long,direction)), &_cabin, SLOT(start_moving(long,direction)));
+    QObject::connect(&_cabin, SIGNAL(cabin_crossed_floor(long,direction)), &_control_panel, SLOT(busy(long,direction)));
+    QObject::connect(&_control_panel, SIGNAL(cabin_achieved_target()), &_cabin, SLOT(stay_not_closed()));
+    QObject::connect(&_cabin, SIGNAL(cabin_stay_closed(long)), &_control_panel, SLOT(free(long)));
 }
 
-void Lift::click(int floor) {
-    control_panel.setNewFloorTarget(floor);
-}
-
-void Lift::reach(int floor) {
-    emit liftReachedFloor(floor);
+void Lift::floor_but_clicked(long floor)
+{
+    _control_panel.new_target(floor);
 }

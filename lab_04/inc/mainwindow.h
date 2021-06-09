@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QMainWindow>
-#include <lift.h>
+#include <lift.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -16,7 +16,6 @@ public:
 
 private slots:
     void onButtonCabinClicked(int num);
-    void floorReached(int num);
 
 private:
   Ui::MainWindow *ui;

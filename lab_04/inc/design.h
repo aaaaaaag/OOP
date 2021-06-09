@@ -7,7 +7,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
-
+#define NUM_FLOORS 10
 QT_BEGIN_NAMESPACE
 
 class Ui_MainWindow {

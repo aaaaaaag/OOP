@@ -10,8 +10,8 @@ set(QT_VERSION 5)
 set(REQUIRED_LIBS Core Gui Widgets)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
 
-add_library(${PROJECT_NAME} inc/cabin.h inc/constants.h inc/control_panel.h inc/door.h inc/lift.h inc/pub_consts.h
-        src/cabin.cpp src/control_panel.cpp src/door.cpp src/lift.cpp)
+add_library(${PROJECT_NAME} inc/cabin.hpp inc/control_panel.hpp inc/doors.hpp inc/lift.hpp inc/direction.hpp
+        src/cabin.cpp src/control_panel.cpp src/doors.cpp src/lift.cpp)
 
 
 add_executable(${PROJECT_NAME}_debug
