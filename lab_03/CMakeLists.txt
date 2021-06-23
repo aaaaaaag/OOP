@@ -1,18 +1,31 @@
-cmake_minimum_required(VERSION 3.17)
-project(clion_oop_3)
+cmake_minimum_required(VERSION 3.0)
+project(lab_03)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
-file(GLOB srcFiles commands/* exceptions/* facade/* intermediary/* math/* objects/* render/* scene/*
-        transformations/* uploading/* visitor/* BaseManager.h DrawLabel.h DrawLabel.cpp MainWindow.h MainWindow.cpp)
+set(QT_VERSION 5)
+set(REQUIRED_LIBS Core Gui Widgets)
+set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
 
+add_executable(${PROJECT_NAME}
+        ./src/main.cpp
+        src/gui/qt/mainwindow.h
+        src/gui/qt/mainwindow.cpp
+        src/qt/drawer/qt_drawer.h
+        src/qt/drawer/qt_drawer.cpp
+        src/qt/qt_drawer_factory.h
+        src/qt/qt_drawer_factory.cpp
+        )
 
-add_library(${PROJECT_NAME} ${srcFiles})
+target_include_directories(${PROJECT_NAME} PRIVATE
+        ./libs/driver/include
+        ./src/
+        )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} -std=c++1y")
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Charts REQUIRED)
-target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::Charts)
+add_subdirectory(./libs/driver)
 
-add_executable(${PROJECT_NAME}_debug main.cpp)
-target_link_libraries(${PROJECT_NAME}_debug PUBLIC ${PROJECT_NAME})
+find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
+target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED} driver)
