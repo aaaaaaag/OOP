@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 
 project(driver)
+
 set(CMAKE_CXX_STANDARD 20)
-find_package(Qt5 COMPONENTS Widgets)
+
 set(OBJECTS
         src/objects/object.h
         src/objects/model/details/point/point.h
@@ -92,7 +93,7 @@ set(FACADE
 
 set(SRCS
         src/error/error.h
-        )
+        src/DrawVisitor.cpp src/DrawVisitor.h)
 
 set(PUB_INC
         include/driver/commands/base_command.h

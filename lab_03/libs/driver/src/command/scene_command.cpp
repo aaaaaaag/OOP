@@ -17,7 +17,8 @@ void DrawScene::execute() {
     _drawer->clear_scene();
     _draw_manager->set_drawer(_drawer);
     _draw_manager->set_cam(_scene_manager->get_cam());
-    _scene_manager->get_scene()->get_composite()->accept(_draw_manager);
+
+    //_scene_manager->get_scene()->accept();
 }
 
 LoadScene::LoadScene(std::string fname) : _fname(std::move(fname)) {}

@@ -3,10 +3,10 @@
 #include <loader/scene/base_scene_loader.h>
 
 namespace Load {
-    class FileSceneLoader : public BaseSceneLoader {
+    class FileSceneLoader: public BaseSceneLoader{
     public:
         FileSceneLoader();
-        ~FileSceneLoader() override = default;
+        ~FileSceneLoader() = default;
         std::shared_ptr<Object> load(const std::shared_ptr<SceneBuilder> &builder) override;
 
     public:

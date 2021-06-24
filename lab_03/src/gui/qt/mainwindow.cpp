@@ -57,7 +57,7 @@ void MainWindow::check_can_delete_cam() {
     _facade->execute(camera_command);
 
     if (*camera_count <= 1 && *model_count) {
-        std::string message = "Can not delete the last camera with the loaded models";
+        std::string message = "Can not delete the last camera with the loaded _composite";
         throw CameraError(message);
     }
 }
@@ -68,7 +68,7 @@ void MainWindow::check_models_exist() {
     _facade->execute(model_command);
 
     if (!*count) {
-        std::string message = "No models found.";
+        std::string message = "No _composite found.";
         throw ModelError(message);
     }
 }
@@ -89,7 +89,7 @@ void MainWindow::on_move_button_clicked() {
             ui->dx_box->value(),
             ui->dy_box->value(),
             ui->dz_box->value(),
-            ui->model_choose->currentIndex());
+            ui->model_choose->currentText().toStdString());
     _facade->execute(move_command);
     update_scene();
 }
@@ -110,7 +110,7 @@ void MainWindow::on_scale_button_clicked() {
             ui->kx_box->value(),
             ui->ky_box->value(),
             ui->kz_box->value(),
-            ui->model_choose->currentIndex());
+            ui->model_choose->currentText().toStdString());
     _facade->execute(scale_command);
     update_scene();
 }
@@ -131,7 +131,7 @@ void MainWindow::on_turn_button_clicked() {
             ui->ox_box->value(),
             ui->oy_box->value(),
             ui->oz_box->value(),
-            ui->model_choose->currentIndex());
+            ui->model_choose->currentText().toStdString());
     _facade->execute(rotate_command);
     update_scene();
 }
@@ -149,7 +149,7 @@ void MainWindow::on_load_button_clicked() {
     if (t.isNull())
         return;
 
-    LoadModel load_command(t.toUtf8().data());
+    LoadModel load_command(t.toUtf8().data(), QFileInfo(t.toUtf8().data()).fileName().toStdString());
 
     try {
         _facade->execute(load_command);
@@ -171,7 +171,7 @@ void MainWindow::on_delete_model_button_clicked() {
         return;
     }
 
-    RemoveModel remove_command(ui->model_choose->currentIndex());
+    RemoveModel remove_command(ui->model_choose->currentText().toStdString());
     _facade->execute(remove_command);
 
     ui->model_choose->removeItem(ui->model_choose->currentIndex());
@@ -205,7 +205,8 @@ void MainWindow::clear_scene() {
     }
 
     for (int i = ui->model_choose->count() - 1; i >= 0; --i) {
-        RemoveModel remove_command(i);
+        auto text = ui->model_choose->itemText(i);
+        RemoveModel remove_command(text.toStdString());
         _facade->execute(remove_command);
 
         ui->model_choose->removeItem(i);
@@ -216,12 +217,17 @@ void MainWindow::clear_scene() {
 
 void MainWindow::on_add_camera_clicked() {
     auto rcontent = ui->graphicsView->contentsRect();
-    AddCamera camera_command(rcontent.width() / 2.0, rcontent.height() / 2.0, 0.0);
+    auto cam = ui->camera_choose;
+    auto c = cam->count() + 1;
+    std::string name;
+    name += std::to_string(c);
+    AddCamera camera_command(name, rcontent.width() / 2.0, rcontent.height() / 2.0, 0.0);
     _facade->execute(camera_command);
 
     update_scene();
+    update_scene();
 
-    auto cam = ui->camera_choose;
+
     if (0 == cam->count())
         cam->addItem(QString::number(1));
     else
@@ -246,7 +252,7 @@ void MainWindow::on_delete_camera_clicked() {
         return;
     }
 
-    RemoveCamera remove_command(ui->camera_choose->currentIndex());
+    RemoveCamera remove_command(ui->camera_choose->currentText().toStdString());
     _facade->execute(remove_command);
 
     ui->camera_choose->removeItem(ui->camera_choose->currentIndex());
@@ -266,8 +272,7 @@ void MainWindow::change_cam() {
     } catch (const CameraError &error) {
         return;
     }
-
-    SetCamera camera_command(ui->camera_choose->currentIndex());
+    SetCamera camera_command(ui->camera_choose->currentText().toStdString());
     _facade->execute(camera_command);
     update_scene();
 }
@@ -284,7 +289,7 @@ void MainWindow::on_right_button_clicked() {
         return;
     }
 
-    MoveCamera camera_command(ui->camera_choose->currentIndex(), 10, 0);
+    MoveCamera camera_command(ui->camera_choose->currentText().toStdString(), 10, 0);
     _facade->execute(camera_command);
     update_scene();
 }
@@ -301,7 +306,7 @@ void MainWindow::on_up_button_clicked() {
         return;
     }
 
-    MoveCamera camera_command(ui->camera_choose->currentIndex(), 0, -10);
+    MoveCamera camera_command(ui->camera_choose->currentText().toStdString(), 0, -10);
     _facade->execute(camera_command);
     update_scene();
 }
@@ -318,7 +323,7 @@ void MainWindow::on_down_button_clicked() {
         return;
     }
 
-    MoveCamera camera_command(ui->camera_choose->currentIndex(), 0, 10);
+    MoveCamera camera_command(ui->camera_choose->currentText().toStdString(), 0, 10);
     _facade->execute(camera_command);
     update_scene();
 }
@@ -335,7 +340,7 @@ void MainWindow::on_left_button_clicked() {
         return;
     }
 
-    MoveCamera camera_command(ui->camera_choose->currentIndex(), -10, 0);
+    MoveCamera camera_command(ui->camera_choose->currentText().toStdString(), -10, 0);
     _facade->execute(camera_command);
     update_scene();
 }

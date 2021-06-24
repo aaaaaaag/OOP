@@ -16,12 +16,16 @@ public:
     Iterator begin() override;
     Iterator end() override;
 
+    [[nodiscard]] std::shared_ptr<ModelDetails> get_details() const override;
+
+    Point get_pos() override;
+
     bool is_visible() override;
     [[nodiscard]] bool is_composite() const override;
     void reform(const Point &move, const Point &scale, const Point &turn) override;
-    void accept(std::shared_ptr<Visitor> visitor) override;
+    void accept(std::shared_ptr<BaseVisitor> visitor) override;
 
-    std::vector<std::shared_ptr<Object>> &get_objects();
+    std::vector<std::shared_ptr<Object>> &get_objects() override;
 
 private:
     std::vector<std::shared_ptr<Object>> objects;

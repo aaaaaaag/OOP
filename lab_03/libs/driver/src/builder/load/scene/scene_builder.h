@@ -4,7 +4,7 @@
 #include <scene/scene.h>
 
 namespace Load {
-    class SceneBuilder : public BaseBuilder {
+    class SceneBuilder: public BaseBuilder{
     public:
         SceneBuilder() = default;
         ~SceneBuilder() = default;

@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include <load_controller//abstract_load_controller.h>
+#include <load_controller//scene/scene_load_controller.h>
 #include <loader/base_loader.h>
 #include <managers/base_manager.h>
 #include <objects/model/model.h>

@@ -9,18 +9,8 @@ void DrawManager::set_drawer(std::shared_ptr<AbstractDrawer> drawer) {
     _drawer = std::move(drawer);
 }
 
-void DrawManager::set_cam(std::shared_ptr<Camera> new_cam) {
+void DrawManager::set_cam(std::shared_ptr<Object> new_cam) {
     cam = std::move(new_cam);
-}
-
-void DrawManager::visit(const Model &_model) {
-    auto points = _model.get_details()->get_points();
-
-    auto center = _model.get_details()->get_center();
-    for (auto edge : _model.get_details()->get_edges())
-        _drawer->draw_line(
-                proect_point(points.at(edge.get_fst()).relative_to(center)),
-                proect_point(points.at(edge.get_snd())).relative_to(center));
 }
 
 Point DrawManager::proect_point(const Point &_point) {
@@ -32,5 +22,7 @@ Point DrawManager::proect_point(const Point &_point) {
     return new_point;
 }
 
-void DrawManager::visit(const Camera &camera){};
-void DrawManager::visit(const Composite &composite){}
+void DrawManager::draw(const std::shared_ptr<Scene>& inScene) {
+    _visitor = std::make_shared<DrawVisitor>(_drawer, cam);
+    inScene->accept(_visitor);
+}

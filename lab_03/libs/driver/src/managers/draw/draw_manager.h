@@ -6,25 +6,25 @@
 #include <managers/base_manager.h>
 #include <objects/composite/composite.h>
 #include <objects/model/details/point/point.h>
-#include <visitor.h>
-
-class DrawManager : public Visitor, public BaseManager {
+#include <DrawVisitor.h>
+#include "scene/scene.h"
+class Scene;
+class DrawManager: public BaseManager {
 public:
     DrawManager() = default;
     DrawManager(const DrawManager &) = delete;
     DrawManager &operator=(const DrawManager &) = delete;
     ~DrawManager() = default;
 
-    void visit(const Camera &cam) override;
-    void visit(const Model &model) override;
-    void visit(const Composite &composite) override;
-
     void set_drawer(std::shared_ptr<AbstractDrawer>);
-    void set_cam(std::shared_ptr<Camera>);
+    void set_cam(std::shared_ptr<Object>);
+
+    void draw(const std::shared_ptr<Scene>& inScene);
 
 private:
 
+    std::shared_ptr<DrawVisitor> _visitor;
     Point proect_point(const Point &point);
     std::shared_ptr<AbstractDrawer> _drawer;
-    std::shared_ptr<Camera> cam;
+    std::shared_ptr<Object> cam;
 };

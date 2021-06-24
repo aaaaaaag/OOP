@@ -12,12 +12,12 @@ public:
     ~SceneManager() = default;
 
     [[nodiscard]] std::shared_ptr<Scene> get_scene() const;
-    [[nodiscard]] std::shared_ptr<Camera> get_cam() const;
+    [[nodiscard]] std::shared_ptr<Object> get_cam() const;
 
     void set_scene(std::shared_ptr<Scene> scene_);
-    void set_cam(const std::size_t &cam_numb);
+    void set_cam(const std::string &cam_numb);
 
 private:
     std::shared_ptr<Scene> _scene;
-    std::shared_ptr<Camera> current_cam;
+    std::shared_ptr<Object> current_cam;
 };

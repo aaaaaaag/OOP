@@ -44,10 +44,19 @@ void Composite::reform(const Point &move, const Point &scale, const Point &turn)
     }
 }
 
-void Composite::accept(std::shared_ptr<Visitor> visitor) {
+void Composite::accept(std::shared_ptr<BaseVisitor> visitor) {
     for (const auto &obj : objects) {
         obj->accept(visitor);
     }
 }
 
 std::vector<std::shared_ptr<Object>> &Composite::get_objects() { return objects; }
+
+std::shared_ptr<ModelDetails> Composite::get_details() const {
+    return std::shared_ptr<ModelDetails>();
+}
+
+Point Composite::get_pos() {
+    return Point();
+}
+

@@ -11,7 +11,7 @@
 #include <objects/object.h>
 
 class Model : public VisibleObject {
-    friend void DrawManager::visit(const Model &model);
+    friend void BaseVisitor::visit(const Model &model);
 
 public:
     Model() : _details(new ModelDetails){};
@@ -20,10 +20,13 @@ public:
     ~Model() override = default;
 
     void reform(const Point &move, const Point &scale, const Point &rotate) override;
-    void accept(std::shared_ptr<Visitor> visitor) override;
+    void accept(std::shared_ptr<BaseVisitor> visitor) override;
 
-protected:
-    [[nodiscard]] const std::shared_ptr<ModelDetails> get_details() const { return _details; };
+    std::shared_ptr<ModelDetails> get_details() const override { return _details; };
+
+    std::vector<std::shared_ptr<Object>> &get_objects() override;
+
+    Point get_pos() override;
 
 private:
     std::shared_ptr<ModelDetails> _details;

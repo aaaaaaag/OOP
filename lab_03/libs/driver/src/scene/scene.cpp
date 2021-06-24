@@ -2,34 +2,22 @@
 
 #include <iterator>
 
-void Scene::add_model(const std::shared_ptr<Object> &model) {
-    models->add(model);
+void Scene::addObject(const std::shared_ptr<Object>& obj) {
+    _objects->add(obj);
 }
 
-void Scene::remove_model(const std::size_t index) {
-    auto it = models->begin();
-    std::advance(it, index);
-    models->remove(it);
+void Scene::removeObject(const std::string& objName) {
+    for (auto iter = _objects->begin(); iter != _objects->end(); iter++)
+    {
+        if (iter->get()->getName() == objName)
+            _objects->remove(iter);
+    }
 }
 
-void Scene::add_camera(const std::shared_ptr<Camera> &camera) {
-    cams.push_back(camera);
-}
-
-void Scene::remove_camera(const std::size_t index) {
-    auto it = cams.begin();
-    std::advance(it, index);
-    cams.erase(it);
-}
-
-std::vector<std::shared_ptr<Object>> Scene::get_models() {
-    return models->get_objects();
-}
-
-std::shared_ptr<Composite> Scene::get_composite() {
-    return models;
-}
-
-std::vector<std::shared_ptr<Camera>> Scene::get_cams() {
-    return cams;
+std::shared_ptr<Object> Scene::getObject(const std::string &objName) {
+    for (auto iter = _objects->begin(); iter != _objects->end(); iter++)
+    {
+        if (iter->get()->getName() == objName)
+            return *iter;
+    }
 }

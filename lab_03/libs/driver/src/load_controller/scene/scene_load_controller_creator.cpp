@@ -11,7 +11,7 @@ std::shared_ptr<Load::SceneLoadController> Load::SceneLoadControllerCreator::cre
     return _controller;
 }
 
-std::shared_ptr<Load::SceneLoadController> Load::SceneLoadControllerCreator::create_controller(const std::shared_ptr<BaseSceneLoader> &loader) {
+std::shared_ptr<Load::SceneLoadController> Load::SceneLoadControllerCreator::create_controller(const std::shared_ptr<FileSceneLoader> &loader) {
     if (nullptr == _controller)
         create_instance();
 
@@ -24,8 +24,8 @@ void Load::SceneLoadControllerCreator::create_instance() {
     static std::shared_ptr<SceneLoadController> controller;
 
     if (!controller) {
-        std::shared_ptr<BaseSceneLoader> loader;
-        loader = std::shared_ptr<BaseSceneLoader>(new FileSceneLoader);
+        std::shared_ptr<FileSceneLoader> loader;
+        loader = std::make_shared<FileSceneLoader>();
         controller = std::make_shared<SceneLoadController>(loader);
     }
 

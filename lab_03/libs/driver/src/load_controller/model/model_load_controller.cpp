@@ -17,6 +17,5 @@ std::shared_ptr<Object> Load::ModelLoadController::load(std::string &fname) {
     }
 
     loader->close();
-
     return model;
 }

@@ -9,17 +9,17 @@ void Load::SceneBuilder::build() {
 }
 
 std::shared_ptr<Object> Load::SceneBuilder::get() {
-    return scene_ptr;
+    //return scene_ptr;
 }
 
 void Load::SceneBuilder::build_model(const std::shared_ptr<Object> &object) {
     if (!is_build()) {}
 
-    scene_ptr->add_model(object);
+    scene_ptr->addObject(object);
 }
 
 void Load::SceneBuilder::build_camera(const std::shared_ptr<Camera> &camera) {
     if (!is_build()) {}
 
-    scene_ptr->add_camera(camera);
+    scene_ptr->addObject(camera);
 }

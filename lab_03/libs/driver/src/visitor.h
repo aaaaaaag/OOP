@@ -1,14 +1,15 @@
+#include <utility>
+
 #pragma once
-
 class Camera;
-class Model;
 class Composite;
+class Model;
 
-class Visitor
+class BaseVisitor
 {
 public:
-    Visitor() = default;
-    ~Visitor() = default;
+    BaseVisitor() = default;
+    ~BaseVisitor() = default;
 
     virtual void visit(const Camera &cam) = 0;
     virtual void visit(const Model &model) = 0;

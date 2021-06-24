@@ -1,7 +1,7 @@
 #pragma once
 
 #include <objects/object.h>
-
+#include "scene/scene.h"
 namespace Load {
     class BaseBuilder {
     public:

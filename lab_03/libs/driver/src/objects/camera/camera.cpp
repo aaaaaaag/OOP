@@ -17,6 +17,15 @@ void Camera::reform(const Point &new_pos, const Point &scale, const Point &turn)
     move_y(new_pos.get_y());
 }
 
-void Camera::accept(std::shared_ptr<Visitor> _visitor) {
+void Camera::accept(std::shared_ptr<BaseVisitor> _visitor) {
     _visitor->visit(*this);
+}
+
+std::shared_ptr<ModelDetails> Camera::get_details() const {
+    return std::shared_ptr<ModelDetails>();
+}
+
+std::vector<std::shared_ptr<Object>> &Camera::get_objects() {
+    std::vector<std::shared_ptr<Object>> c;
+    return c;
 }
